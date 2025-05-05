@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JoyJar - FAQ</title>
+  <link rel="stylesheet" type="text/css" href="style.css" title="style">
+  <link rel="stylesheet" href="./chatbot/styles.css">
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo"><a href="index.html"><img src="JJ_Finallogo.jpg" width="60px"></a>&nbsp;JOYJAR<br>
+      <div class="slogan"><i>Nurturing minds, One Jar at a time!</i></div></div>
+    
+    <div class="nav">
+      <a href="index.html">Home</a>
+      <a href="./About.html">About</a>
+      <a href="./blogs.html">Blogs</a>
+      <a href="./Therapy.html">Therapy</a>
+      <a href="./Resources.html">FAQs</a>
+      <a href="./Contact.html">Contact</a>
+    </div>
+    <div class="controls">
+      <button onclick="toggleDarkMode()" data-tooltip="Toggle Dark/Light Mode">🌙 / ☀️</button>
+      <button onclick="document.location='Signin.html'" data-tooltip="Login to your account">Sign In</button>
+      <button onclick="document.location='Signup.html'" data-tooltip="Sign up for a new account">Sign Up</button>
+    </div>
+  </div>
+
+  <main class="faq-section">
+    <h1 class="faq-title">Frequently Asked Questions</h1>
+   
+
+    <div class="faq-container">
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-icon">❓</span> What is JoyJar?
+        </button>
+        <div class="faq-answer">
+          <p>JoyJar is a mental health support platform offering resources, therapy services, and guidance to help individuals improve their emotional well-being. Our mission is to nurture minds, one jar at a time!</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-icon">❓</span> How do I sign up for JoyJar?
+        </button>
+        <div class="faq-answer">
+          <p>To sign up, click on the 'Sign Up' button on the homepage. Enter your details to create an account, and gain full access to all of JoyJar's features.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-icon">❓</span> What types of therapy are available?
+        </button>
+        <div class="faq-answer">
+          <p>We offer various therapy methods including Online Counseling, Cognitive Behavioral Therapy (CBT), and Group Therapy. All sessions are conducted by licensed professionals.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-icon">❓</span> Is my personal information safe on JoyJar?
+        </button>
+        <div class="faq-answer">
+          <p>Yes! At JoyJar, we take your privacy seriously. All information shared with us is protected through secure encryption and kept confidential at all times.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-icon">❓</span> Can I access resources for free?
+        </button>
+        <div class="faq-answer">
+          <p>Yes, many of the resources available on JoyJar are free, including articles, self-help tools, and more. Therapy services are available at a cost, but we offer affordable pricing plans to suit all needs.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 <a href="https:joyjar.com" style="color: maroon; text-decoration: none;">JoyJar</a>. All rights reserved.</p>
+      <p><a href="https://www.mentalhealthfirstaid.org/mental-health-resources/" target="_blank">Mental Health Resources</a></p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach((question) => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        answer.classList.toggle('show');
+      });
+    });
+  </script>
+
+</body>
+</html>

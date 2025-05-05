@@ -3,168 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JoyJar - Blogs</title>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            text-align: center;
-            transition: background 0.3s, color 0.3s;
-        }
-        .dark-mode {
-            background-color: #1e1e1e;
-            color: white;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(135deg, #6a89cc, #3b5998);
-            padding: 20px;
-            color: white;
-            box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
-        }
-        .logo {
-            font-size: 32px;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-        .nav {
-            display: flex;
-            gap: 25px;
-        }
-        .nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            transition: color 0.3s;
-        }
-        .nav a:hover {
-            color: #ffd700;
-            text-decoration: underline;
-        }
-        .controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .controls button {
-            cursor: pointer;
-            padding: 10px 18px;
-            border: none;
-            background: #ff7675;
-            color: white;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: background 0.3s, transform 0.2s;
-        }
-        .controls button:hover {
-            background: #d63031;
-            transform: scale(1.05);
-        }
-        .blog-container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            padding: 40px;
-        }
-        .blog-post {
-            background: white;
-            padding: 20px;
-            width: 30%;
-            box-shadow: 0px 5px 10px rgba(0,0,0,0.15);
-            border-radius: 12px;
-            transition: transform 0.2s;
-            margin-bottom: 20px;
-        }
-        .dark-mode .blog-post {
-            background: #333;
-            color: white;
-        }
-        .blog-post:hover {
-            transform: translateY(-5px);
-        }
-        .blog-post h2 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-        .blog-post p {
-            font-size: 16px;
-            color: #666;
-        }
-        .dark-mode .blog-post p {
-            color: #bbb;
-        }
-        .blog-post a {
-            text-decoration: none;
-            color: #ff7675;
-            font-weight: bold;
-        }
-        .blog-post a:hover {
-            text-decoration: underline;
-        }
-        .chatbot {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #ff7675;
-            color: white;
-            padding: 18px 28px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 16px;
-            box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
-            transition: background 0.3s, transform 0.2s;
-        }
-        .chatbot:hover {
-            background: #d63031;
-            transform: scale(1.1);
-        }
-    </style>
+    <title>JoyJar - Mental Health Support</title>
+    <link rel="stylesheet" type="text/css" href="style.css" title="style">
+    <link rel="stylesheet" href="./chatbot/styles.css">
+
 </head>
 <body>
     <div class="header">
-        <div class="logo">JOYJAR</div>
+        <div class="logo"><a href="index.html"><img src="JJ_Finallogo.jpg" width="60px"></a>&nbsp;JOYJAR<br>
+          <div class="slogan"><i>Nurturing minds, One Jar at a time!</i></div></div>
+        
         <div class="nav">
             <a href="index.html">Home</a>
-            <a href="#">About</a>
-            <a href="blogs.html">Blogs</a>
-            <a href="#">Magazines</a>
-            <a href="#">Contact</a>
+            <a href="./About.html">About</a>
+            <a href="./blogs.html">Blogs</a>
+            <a href="./Therapy.html">Therapy</a>
+            <a href="./FAQ.html">FAQs</a>
+            <a href="./Contact.html">Contact</a>
         </div>
         <div class="controls">
             <button onclick="toggleDarkMode()" data-tooltip="Toggle Dark/Light Mode">🌙 / ☀️</button>
-            <button data-tooltip="Login to your account">Login</button>
-            <button data-tooltip="Sign up for a new account">Sign Up</button>
+            <button onclick="document.location='Signin.html'" data-tooltip="Login to your account">Sign In</button>
+            <button onclick="document.location='Signup.html'" data-tooltip="Sign up for a new account">Sign Up</button>
         </div>
     </div>
+
 
     <div class="blog-container">
-        <div class="blog-post">
-            <h2>How to Improve Mental Health Daily</h2>
-            <p>Discover small daily habits that can greatly improve your mental well-being.</p>
-            <a href="#">Read More</a>
-        </div>
-        <div class="blog-post">
-            <h2>The Science Behind Meditation</h2>
-            <p>Explore how meditation can rewire your brain and reduce stress.</p>
-            <a href="#">Read More</a>
-        </div>
-        <div class="blog-post">
-            <h2>Overcoming Anxiety: A Step-by-Step Guide</h2>
-            <p>Practical strategies to help manage and overcome anxiety.</p>
-            <a href="#">Read More</a>
-        </div>
+      <div class="blog-post">
+          <h2>How to Improve Mental Health Daily</h2>
+          <img src="./Images/01.avif" alt="Sunrise over mountains" class="blog-image">
+          <p>Discover small daily habits that can greatly improve your mental well-being.
+            <span id="dots">..</span>
+            <span id="more" style="display:none;">
+              <br><br>Mental health isn't just about avoiding illness—it's about cultivating resilience, peace, and positivity in everyday life. <br>
+              <br>Here are some science-backed practices you can start today:
+              <br>
+              🌞 1. Morning Light Exposure<br>
+              🧘 2. Micro-Mindfulness<br>
+              📓 3. Gratitude Journaling<br>
+              🤸 4. Movement Snacks<br>
+              📵 5. Digital Sunset<br>
+            </span></p>
+          <button onclick="myFunction()" id="myBtn">Read More</button>
+      </div>
+      <div class="blog-post">
+          <h2>The Science Behind Meditation</h2>         
+          <img src="./Images/sciencebehmed.png" alt="Sunrise over mountains" class="blog-image">
+          <p>Explore how meditation can rewire your brain and reduce stress.</p>
+          
+              Meditation isn't just a spiritual practice—it's a scientifically proven method to rewire your brain, reduce stress, and improve emotional regulation. Let's explore what makes meditation such a powerful tool for mental health:<br>
+              <a href="#SciebMed">Read More</a>
+      </div>
+      <div class="blog-post">
+          <h2>Overcoming Anxiety: A Step-by-Step Guide</h2>
+          <img src="./Images/Anxiety.webp" alt="Sunrise over mountains" class="blog-image">
+          <p>Practical strategies to help manage and overcome anxiety.</p><br>
+          <a href="#AnxietyBlog">Read More</a>
+          
+      </div>
     </div>
 
-    <div class="chatbot">Chat with JoyJar</div>
+    <section id="SciebMed" class="expanded">
+      <h2>The Science Behind Meditation</h2>
+      <p>Meditation isn’t just a spiritual practice—it’s a science-backed method to enhance mental clarity, emotional balance, and stress resilience. Neuroscience shows that consistent meditation can reshape the brain in powerful ways.</p>
+    
+      <h3>🧠 Changes in Brain Structure</h3>
+      <p>Studies using MRI scans reveal that meditation increases gray matter in areas like the hippocampus (linked to memory and learning) and decreases activity in the amygdala, the center of fear and anxiety.</p>
+    
+      <h3>😌 Reduced Stress and Cortisol</h3>
+      <p>Regular mindfulness meditation significantly lowers cortisol, the stress hormone. This leads to improved mood, better sleep, and even lower blood pressure.</p>
+    
+      <h3>🎯 Better Focus and Attention</h3>
+      <p>Just 10–15 minutes of daily meditation can enhance your attention span and ability to concentrate by strengthening the brain’s prefrontal cortex.</p>
+    
+      <h3>🧘 Emotional Regulation</h3>
+      <p>Meditators often report feeling more emotionally balanced. Scientific studies confirm this, showing reduced reactivity to negative stimuli and improved emotional control.</p>
+    
+      <img src="./Images/M&m.jpg" alt="Meditation and Mindfulness" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+    </section>
+
+    <section id="AnxietyBlog" class="expanded">
+      <h2>Overcoming Anxiety: A Step-by-Step Guide</h2>
+      <p>Anxiety can feel like a swirling storm cloud overhead—persistent, heavy, and unpredictable. But with the right tools, you can clear the skies and reclaim your calm. This guide will help you transform anxious energy into grounded confidence.</p>
+    
+      <h3>🔍 Unravel the Roots</h3>
+      <p>Behind every anxious thought is a story. Trace it gently. Is it fear of failure? The pressure to be perfect? Reflection through journaling or talking with a trusted guide can reveal the origin of your worry and help you take back the narrative.</p>
+    
+      <h3>🌿 Anchor Yourself in the Now</h3>
+      <p>When your mind races ahead, grounding practices gently pull you back to the present. Try the <strong>5-4-3-2-1 technique</strong>: See 5 things, touch 4, hear 3, smell 2, taste 1. Breathe deep—let the world remind you that you’re safe here and now.</p>
+    
+      <h3>🧠 Reframe the Storm</h3>
+      <p>Your thoughts shape your world. Cognitive reframing is the art of shifting perspective—like changing the lens on a camera. Challenge anxious beliefs: <em>“What else could be true?”</em> This opens the door to clarity and calm.</p>
+    
+      <h3>💃 Move with Intention</h3>
+      <p>Anxiety lives in the body. Shake it loose. A brisk walk, yoga flow, or dance session can release trapped tension and flood your brain with feel-good endorphins. Even five minutes can spark a shift.</p>
+    
+      <h3>🌙 Rest as Ritual</h3>
+      <p>An anxious mind needs restful sleep to reset. Create a sleep sanctuary: dim the lights, silence notifications, and trade scrolling for story time or soft music. Let your evening routine be a gentle invitation to peace.</p>
+    
+      <img src="./Images/breathing.jpg" alt="Peaceful person breathing deeply" style="width: 100%; border-radius: 10px; margin-top: 15px;">
+    
+      <p>Remember, anxiety is not a flaw—it’s a signal. With compassion and care, you can learn to listen, respond, and lead yourself back to steadiness, again and again.</p>
+    </section>
+    
+    
+    <script>
+      function myFunction() {
+        var dots = document.getElementById("dots");
+        var moreText = document.getElementById("more");
+        var btnText = document.getElementById("myBtn");
+      
+        if (dots.style.display === "none") {
+          dots.style.display = "inline";
+          btnText.innerHTML = "Read more"; 
+          moreText.style.display = "none";
+        } else {
+          dots.style.display = "none";
+          btnText.innerHTML = "Read less"; 
+          moreText.style.display = "inline";
+        }
+      }
+      </script>
 
     <script>
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
         }
     </script>
+
+<div id="chatbot-icon">💬</div>
+
+<!-- Chatbot Container -->
+<div id="chatbot-container" class="hidden">
+  <div id="chatbot-header">
+    <span>JoyJar - Your Companion</span>
+    <button id="close-btn">&times;</button>
+  </div>
+  <div id="chatbot-body">
+    <div id="chatbot-messages"></div>
+  </div>
+  <div id="chatbot-input-container">
+    <input type="text" id="chatbot-input" placeholder="Type a message..." />
+    <button id="send-btn">Send</button>
+  </div>
+</div>
+<script src="./chatbot/script.js"></script>
+
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>&copy; 2025 <a href="https:joyjar.com" style="color: maroon; text-decoration: none;">JoyJar</a>. All rights reserved.</p>
+    <p><a href="https://www.mentalhealthfirstaid.org/mental-health-resources/" target="_blank">Mental Health Resources</a></p>
+  </div>
+</footer>
 </body>
 </html>

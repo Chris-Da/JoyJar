@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - JoyJar</title>
+  <link rel="stylesheet" type="text/css" href="style.css" title="style" />
+  <link rel="stylesheet" href="./chatbot/styles.css" />
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="index.html"><img src="JJ_Finallogo.jpg" width="60px" /></a>&nbsp;JOYJAR<br />
+      <div class="slogan"><i>Nurturing minds, One Jar at a time!</i></div>
+    </div>
+
+    <div class="nav">
+      <a href="index.html">Home</a>
+      <a href="./About.html">About</a>
+      <a href="./blogs.html">Blogs</a>
+      <a href="./Therapy.html">Therapy</a>
+      <a href="./FAQ.html">FAQs</a>
+      <a href="./Contact.html">Contact</a>
+    </div>
+
+    <div class="controls">
+      <button onclick="toggleDarkMode()" data-tooltip="Toggle Dark/Light Mode">🌙 / ☀️</button>
+      <button onclick="document.location='Signin.html'" data-tooltip="Login to your account">Sign In</button>
+      <button onclick="document.location='Signup.html'" data-tooltip="Sign up for a new account">Sign Up</button>
+    </div>
+  </div>
+
+  <div class="about-container" style="padding: 40px; max-width: 1000px; margin: auto;">
+    <h1>About JoyJar</h1>
+    <p style="font-size: 18px; margin-top: 20px;">
+      <strong>JoyJar</strong> is more than a platform—it's a movement to support mental well-being in a warm, welcoming digital space. Born from the belief that emotional health should be nurtured daily, JoyJar offers tools, stories, and community for every step of your mental health journey.
+    </p>
+
+    <span><h2 style="margin-top: 30px;">🌱 Our Mission</h2>
+    <p>
+      To make mental wellness accessible, inclusive, and empowering for all. We combine self-help resources, AI-driven conversation, and community care to support users in building resilience and self-awareness.
+    </p>
+
+    <h2 style="margin-top: 30px;">👥 Meet the Vision</h2>
+    <ul sytle="text-align:left;">
+      <li>✅ Encourage open conversations about mental health</li>
+      <li>✅ Provide accessible tools like journaling, chatbots, and guided programs</li>
+      <li>✅ Collaborate with therapists and wellness experts</li>
+    </ul>
+
+    <h2 style="margin-top: 30px;">🧭 Why JoyJar?</h2>
+    <p>
+      Just like a jar filled with memories or affirmations, we believe in collecting small acts of kindness, self-awareness, and support—every day. With JoyJar, you're never alone.
+    </p>
+
+    <img src="https://images.unsplash.com/photo-1588776814546-dc7135aa384b" alt="Mental Health Support" style="width: 100%; height: auto; border-radius: 12px; margin-top: 30px;" />
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+  </script>
+
+  <div id="chatbot-icon">💬</div>
+  <div id="chatbot-container" class="hidden">
+    <div id="chatbot-header">
+      <span>JoyJar - Your Companion</span>
+      <button id="close-btn">&times;</button>
+    </div>
+    <div id="chatbot-body">
+      <div id="chatbot-messages"></div>
+    </div>
+    <div id="chatbot-input-container">
+      <input type="text" id="chatbot-input" placeholder="Type a message..." />
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
+  <script src="./chatbot/script.js"></script>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 <a href="https://joyjar.com" style="color: maroon; text-decoration: none;">JoyJar</a>. All rights reserved.</p>
+      <p><a href="https://www.mentalhealthfirstaid.org/mental-health-resources/" target="_blank">Mental Health Resources</a></p>
+    </div>
+  </footer>
+</body>
+</html>

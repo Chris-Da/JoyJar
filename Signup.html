@@ -3,29 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JoyJar - Sign In</title>
+  <title>JoyJar - Sign Up</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #e0eafc, #cfdef3);
+      background: linear-gradient(to right, #f5f7fa, #c3cfe2);
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
     }
 
-    .signin-container {
+    .signup-container {
       background: white;
       padding: 40px;
       border-radius: 20px;
       box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
       width: 100%;
-      max-width: 400px;
+      max-width: 450px;
     }
 
-    .signin-container h2 {
+    .signup-container h2 {
       text-align: center;
       margin-bottom: 20px;
       color: #333;
@@ -66,7 +66,7 @@
       color: #333;
     }
 
-    .signin-container button {
+    .signup-container button {
       width: 100%;
       padding: 14px;
       background: #5c6bc0;
@@ -78,23 +78,23 @@
       transition: background 0.3s ease;
     }
 
-    .signin-container button:hover {
+    .signup-container button:hover {
       background: #3f51b5;
     }
 
-    .signup-link {
+    .signin-link {
       text-align: center;
       margin-top: 20px;
       font-size: 14px;
     }
 
-    .signup-link a {
+    .signin-link a {
       color: #5c6bc0;
       text-decoration: none;
       font-weight: bold;
     }
 
-    .signup-link a:hover {
+    .signin-link a:hover {
       text-decoration: underline;
     }
     .go-home-link {
@@ -115,34 +115,47 @@
   </style>
 </head>
 <body>
-  <div class="signin-container">
-    <h2>Welcome Back to JoyJar 💫</h2>
-    <form onsubmit="return validateLogin(event)">
+  <div class="signup-container">
+    <h2>Join JoyJar 💙</h2>
+    <form id="signupForm" onsubmit="return validateSignup(event)">
+      <div class="form-group">
+        <input type="text" name="firstname" required placeholder=" " pattern="[A-Za-z]{2,}">
+        <label>First Name</label>
+      </div>
+      <div class="form-group">
+        <input type="text" name="lastname" required placeholder=" " pattern="[A-Za-z]{2,}">
+        <label>Last Name</label>
+      </div>
       <div class="form-group">
         <input type="email" name="email" required placeholder=" ">
         <label>Email</label>
       </div>
       <div class="form-group">
-        <input type="password" name="password" required placeholder=" " minlength="6">
+        <input type="password" name="password" id="password" required placeholder=" " minlength="6">
         <label>Password</label>
       </div>
-      <button type="submit">Sign In</button>
+      <div class="form-group">
+        <input type="password" name="confirm" id="confirm" required placeholder=" " minlength="6">
+        <label>Confirm Password</label>
+      </div>
+      <button type="submit">Create Account</button>
     </form>
+
     <div class="go-home-link">
       <a href="index.html">← Go back to Home</a>
     </div>
-    <div class="signup-link">
-      Don't have an account? <a href="Signup.html">Sign Up</a>
+    
+    <div class="signin-link">
+      Already have an account? <a href="Signin.html">Sign In</a>
     </div>
   </div>
 
   <script>
-    function validateLogin(event) {
-      // Basic placeholder for validation or backend connection
-      const email = event.target.email.value;
-      const password = event.target.password.value;
-      if (!email || !password) {
-        alert("Please fill in all fields.");
+    function validateSignup(event) {
+      const pass = document.getElementById("password").value;
+      const confirm = document.getElementById("confirm").value;
+      if (pass !== confirm) {
+        alert("Passwords do not match!");
         event.preventDefault();
         return false;
       }
@@ -151,4 +164,3 @@
   </script>
 </body>
 </html>
-

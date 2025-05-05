@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoyJar - Mental Health Support</title>
+    <link rel="stylesheet" type="text/css" href="style.css" title="style">
+    <link rel="stylesheet" href="./chatbot/styles.css">
+
+</head>
+<body>
+    <div class="header">
+        <div class="logo"><a href="index.html"><img src="JJ_Finallogo.jpg" width="60px"></a>&nbsp;JOYJAR<br>
+          <div class="slogan"><i>Nurturing minds, One Jar at a time!</i></div></div>
+        
+        <div class="nav">
+            <a href="index.html">Home</a>
+            <a href="./About.html">About</a>
+            <a href="./blogs.html">Blogs</a>
+            <a href="Therapy.html">Therapy</a>
+            <a href="FAQ.html">FAQs</a>
+            <a href="./Contact.html">Contact</a>
+        </div>
+        <div class="controls">
+            <button onclick="toggleDarkMode()" data-tooltip="Toggle Dark/Light Mode">🌙 / ☀️</button>
+            <button onclick="document.location='Signin.html'" data-tooltip="Login to your account">Sign In</button>
+            <button onclick="document.location='Signup.html'" data-tooltip="Sign up for a new account">Sign Up</button>
+        </div>
+    </div>
+    <main class="therapy-section">
+      <section class="therapy-intro">
+        <h1>Therapy That Cares</h1>
+        
+        <p>Explore evidence-based therapy methods tailored for emotional resilience, clarity, and self-discovery. At JoyJar, we believe healing begins with understanding.</p>
+        <img src="./Images/therapistses.jpg" alt="Therapist session" class="therapy-image">
+      </section>
+    
+      <section class="therapy-options">
+        <a href="https://www.betterhelp.com" target="_blank" class="therapy-card-link">
+          <div class="therapy-card">
+            <img src="./Images/onliecou.webp" alt="Online Counseling">
+            <h2>Online Counseling</h2>
+            <p>Connect with licensed therapists from the comfort of your space. Secure, confidential, and effective.</p>
+          </div>
+        </a>
+        <a href="https://www.talkspace.com/therapy/cognitive-behavioral-therapy" target="_blank" class="therapy-card-link">
+          <div class="therapy-card">
+            <img src="./Images/cbt.webp" alt="Cognitive Behavioral Therapy">
+            <h2>Cognitive Behavioral Therapy (CBT)</h2>
+            <p>Reframe negative thinking patterns and develop healthier coping mechanisms with structured CBT sessions.</p>
+          </div>
+        </a>
+        <a href="https://www.psychologytoday.com/us/groups" target="_blank" class="therapy-card-link">
+          <div class="therapy-card">
+            <img src="./Images/gpthe.webp" alt="Group Therapy">
+            <h2>Group Therapy</h2>
+            <p>Experience healing in community. Share and grow with others facing similar challenges in guided group settings.</p>
+          </div>
+        </a>
+      </section>
+    </main>
+    
+
+    <!-- <main class="therapy-section">
+      <section class="therapy-intro">
+        <h1>Therapy That Cares</h1>
+        <div class="bar">
+          <div class="ball" ></div>
+        </div>
+        <p>Explore evidence-based therapy methods tailored for emotional resilience, clarity, and self-discovery. At JoyJar, we believe healing begins with understanding.</p>
+        <img src="./Images/therapistses.jpg" alt="Therapist session" class="therapy-image">
+      </section>
+    
+      <section class="therapy-options">
+        <div class="therapy-card">
+          <img src="./Images/onliecou.webp" alt="Online Counseling">
+          <h2>Online Counseling</h2>
+          <p>Connect with licensed therapists from the comfort of your space. Secure, confidential, and effective.</p>
+        </div>
+        <div class="therapy-card">
+          <img src="./Images/cbt.webp" alt="Cognitive Behavioral Therapy">
+          <h2>Cognitive Behavioral Therapy (CBT)</h2>
+          <p>Reframe negative thinking patterns and develop healthier coping mechanisms with structured CBT sessions.</p>
+        </div>
+        <div class="therapy-card">
+          <img src="./Images/gpthe.webp" alt="Group Therapy">
+          <h2>Group Therapy</h2>
+          <p>Experience healing in community. Share and grow with others facing similar challenges in guided group settings.</p>
+        </div>
+      </section>
+    </main> -->
+    
+
+   
+    
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+    <script src="./chatbot/script.js"></script>
+
+
+<div id="chatbot-icon">💬</div>
+
+<!-- Chatbot Container -->
+<div id="chatbot-container" class="hidden">
+  <div id="chatbot-header">
+    <span>JoyJar - Your Companion</span>
+    <button id="close-btn">&times;</button>
+  </div>
+  <div id="chatbot-body">
+    <div id="chatbot-messages"></div>
+  </div>
+  <div id="chatbot-input-container">
+    <input type="text" id="chatbot-input" placeholder="Type a message..." />
+    <button id="send-btn">Send</button>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>&copy; 2025 <a href="https:joyjar.com" style="color: maroon; text-decoration: none;">JoyJar</a>. All rights reserved.</p>
+    <p><a href="https://www.mentalhealthfirstaid.org/mental-health-resources/" target="_blank">Mental Health Resources</a></p>
+  </div>
+</footer>
+</body>
+</html>

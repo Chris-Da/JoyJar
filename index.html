@@ -4,160 +4,178 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JoyJar - Mental Health Support</title>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            text-align: center;
-            transition: background 0.3s, color 0.3s;
-        }
-        .dark-mode {
-            background-color: #1e1e1e;
-            color: white;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(135deg, #6a89cc, #3b5998);
-            padding: 20px;
-            color: white;
-            box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
-        }
-        .logo {
-            font-size: 32px;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-        .nav {
-            display: flex;
-            gap: 25px;
-        }
-        .nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            transition: color 0.3s;
-        }
-        .nav a:hover {
-            color: #ffd700;
-            text-decoration: underline;
-        }
-        .controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .controls button {
-            position: relative;
-            cursor: pointer;
-            padding: 10px 18px;
-            border: none;
-            background: #ff7675;
-            color: white;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: background 0.3s, transform 0.2s;
-        }
-        .controls button:hover {
-            background: #d63031;
-            transform: scale(1.05);
-        }
-        .controls button:hover::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: -35px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 12px;
-            white-space: nowrap;
-        }
-        .main-content {
-            display: flex;
-            justify-content: space-around;
-            padding: 40px;
-        }
-        .box {
-            background: white;
-            padding: 25px;
-            box-shadow: 0px 5px 10px rgba(0,0,0,0.15);
-            width: 30%;
-            border-radius: 12px;
-            transition: background 0.3s, color 0.3s, transform 0.2s;
-        }
-        .dark-mode .box {
-            background: #333;
-            color: white;
-        }
-        .box:hover {
-            transform: translateY(-5px);
-        }
-        .chatbot {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #ff7675;
-            color: white;
-            padding: 18px 28px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 16px;
-            box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
-            transition: background 0.3s, transform 0.2s;
-        }
-        .chatbot:hover {
-            background: #d63031;
-            transform: scale(1.1);
-        }
-        .chatbot:hover::after {
-            content: "Talk to our mental health assistant";
-            position: absolute;
-            bottom: 50px;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 12px;
-            white-space: nowrap;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css" title="style">
+    <link rel="stylesheet" href="./chatbot/styles.css">
+
 </head>
 <body>
     <div class="header">
-        <div class="logo">JOYJAR</div>
+        <div class="logo"><a href="index.html"><img src="JJ_Finallogo.jpg" width="60px"></a>&nbsp;JOYJAR<br>
+          <div class="slogan"><i>Nurturing minds, One Jar at a time!</i></div></div>
+        
         <div class="nav">
             <a href="index.html">Home</a>
-            <a href="#">About</a>
+            <a href="./About.html">About</a>
             <a href="./blogs.html">Blogs</a>
-            <a href="#">Magazines</a>
-            <a href="#">Contact</a>
+            <a href="./Therapy.html">Therapy</a>
+            <a href="./FAQ.html">FAQs</a>
+            <a href="./Contact.html">Contact</a>
         </div>
         <div class="controls">
             <button onclick="toggleDarkMode()" data-tooltip="Toggle Dark/Light Mode">🌙 / ☀️</button>
-            <button data-tooltip="Login to your account">Login</button>
-            <button data-tooltip="Sign up for a new account">Sign Up</button>
+            <button onclick="document.location='Signin.html'" data-tooltip="Login to your account">Sign In</button>
+            <button onclick="document.location='Signup.html'"data-tooltip="Sign up for a new account">Sign Up</button>
         </div>
     </div>
     
     <div class="main-content">
-        <div class="box">Announcements</div>
-        <div class="box">Programs</div>
-        <div class="box">News Headlines</div>
+        <div class="box">
+          <h2>📣 Announcements</h2>
+          <p>Stay updated with the latest mental wellness events, sessions, and feature releases on JoyJar.</p>
+          <button onclick="document.location='blogs.html'">View More</button>
+        </div>
+        <div class="box">
+          <h2>🧘 Programs</h2>
+          <p>Explore curated programs like mindfulness routines, journaling challenges, and support groups.</p>
+          <button onclick="document.location='Therapy.html'">Explore</button>
+        </div>
+        <div class="box">
+        <span><h2>📰 News Headlines</h2></span>
+    <p>Get the latest news and research on mental health, self-care trends, and community stories by <strong>Connecting</strong> with us.</p>
+    <button onclick="document.location='Contact.html'">Get in Touch</button>
+        </div>
     </div>
+
+  <section id="resources" class="resources-section">      
+      <h1>Mental Health Resources <span class="icon">💡</span></h1>
+      <div class="card">
+        <p class="heading">
+          <h3><a href="https://www.healthline.com/mental-health/depression" target="_blank">Depression Treatment Guide <span>🌧️</span></a></h3>
+        </p>
+          <p class="section-intro">Depression is more than sadness—it's a medical condition that affects thinking, energy, sleep, and joy. <strong>Over 80% of people improve with proper treatment.</strong></p>
+        </p>
+        <div class="key-fact">
+          <span class="fact-icon">📊</span>
+          <span>Clinical depression affects 1 in 6 adults in their lifetime</span>
+        </div>
+        <h4 class="treatment-header">Effective Treatments:</h4>
+        <ul class="treatment-list" style="text-align: justify;">
+          <li><strong>Cognitive Behavioral Therapy (CBT):</strong> Helps change negative thought patterns</li>
+          <li><strong>Medication (SSRIs):</strong> Like fluoxetine to balance brain chemistry</li>
+          <li><strong>Exercise:</strong> 30 mins daily can be as effective as medication for mild cases</li>
+          <li><strong>Mindfulness:</strong> Reduces rumination by 40% according to Johns Hopkins research</li>
+        </ul>
+      </div>
+           
+  
+      <div class="card">
+        <p class="heading">
+          <h3><a href="https://www.healthline.com/health/mental-health/sleep-and-mental-health" target="_blank">Sleep & Mental Health <span>🌙</span></a></h3>
+        </p>
+        <p class="section-intro">Poor sleep doesn't just make you tired—it rewires emotional processing in your brain. <strong>Quality sleep can reduce depression risk by 40%.</strong></p>
+        <div class="key-fact">
+          <span class="fact-icon">😴</span>
+          <span>Just 1 night of poor sleep increases anxiety by 30% (UC Berkeley study)</span>
+        </div>
+        <h4 class="treatment-header">Sleep Improvement Strategies:</h4>
+        <ul class="treatment-list" style="text-align: left;">
+          <li><strong>Circadian Rhythm:</strong> Get morning sunlight within 1 hour of waking</li>
+          <li><strong>Temperature:</strong> Keep bedroom at 60-67°F (15-19°C) for optimal sleep</li>
+          <li><strong>Wind Down Routine:</strong> 1-hour screen-free buffer before bed</li>
+          <li><strong>The 20-Minute Rule:</strong> If not asleep, get up and do quiet activity</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <p class="heading">
+          <h3><a href="https://www.healthline.com/health/anxiety" target="_blank">Anxiety Management <span>🌪️</span></a></h3>
+        </p>
+        <p class="section-intro">Anxiety is your brain's overprotective alarm system. <strong>Proven techniques can retrain this response in weeks.</strong></p>
+        <div class="key-fact">
+          <span class="fact-icon">🧠</span>
+          <span>Anxiety disorders affect 19% of adults, yet only 36% receive treatment</span>
+        </div>
+        <h4 class="treatment-header">Evidence-Based Techniques:</h4>
+        <ul class="treatment-list" style="text-align: left;">
+          <li><strong>5-4-3-2-1 Grounding:</strong> Name 5 things you see, 4 you feel, 3 you hear, 2 you smell, 1 you taste</li>
+          <li><strong>Diaphragmatic Breathing:</strong> 4-7-8 method (inhale 4s, hold 7s, exhale 8s)</li>
+          <li><strong>Thought Records:</strong> Challenge worries with factual evidence</li>
+          <li><strong>Temperature Change:</strong> Hold ice cube to activate calming dive reflex</li>
+        </ul>
+      </div>
+</section>
+
+<section class="testimonials">
+  <img src="./images/02.avif" id="handshake">
+  <h2>What People Say About JoyJar</h2>
+  <div class="testimonial-box">
+    <blockquote>"JoyJar helped me feel seen and heard when I needed it the most."</blockquote>
+    <p>— Anjali R., Student</p>
+  </div>
+  <div class="testimonial-box">
+    <blockquote>"A caring platform with excellent resources and trustworthy support."</blockquote>
+    <p>— Ramesh V., Educator</p>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Ready to take the first step toward emotional wellness?</h2>
+  <a href="Signup.html" class="cta-btn">Join JoyJar Now</a>
+</section>
+
+
+<section id="contact">
+  <h2>Reach Out to Us</h2>
+  <p>Have questions or need support? Shoot us an email at <a href="mailto:joyjar@gmail.com" style="color: white; font-weight: bold;">joyjar@gmail.com</a></p>
+  <form action="mailto:support@joyjar.com" method="post" enctype="text/plain">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+
+    <button id="readmore" type="submit">Send Message</button>
+  </form>
+</section>
+
+
+    <!-- <div class="chatbot">Chat with JoyJar</div> -->
     
-    <div class="chatbot">Chat with JoyJar</div>
-    
+
     <script>
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
         }
     </script>
+    <script src="./chatbot/script.js"></script>
+    <script src="script.js"></script>
+
+
+<div id="chatbot-icon">💬</div>
+
+<!-- Chatbot Container -->
+<div id="chatbot-container" class="hidden">
+  <div id="chatbot-header">
+    <span>JoyJar - Your Companion</span>
+    <button id="close-btn">&times;</button>
+  </div>
+  <div id="chatbot-body">
+    <div id="chatbot-messages"></div>
+  </div>
+  <div id="chatbot-input-container">
+    <input type="text" id="chatbot-input" placeholder="Type a message..." />
+    <button id="send-btn">Send</button>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>&copy; 2025 <a href="https:joyjar.com" style="color: maroon; text-decoration: none;">JoyJar</a>. All rights reserved.</p>
+    <p><a href="https://www.mentalhealthfirstaid.org/mental-health-resources/" target="_blank">Mental Health Resources</a></p>
+  </div>
+</footer>
 </body>
 </html>

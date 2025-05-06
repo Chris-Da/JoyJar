@@ -79,8 +79,48 @@ document.addEventListener("DOMContentLoaded", function () {
     "mental health": "Mental health is about emotional, psychological, and social well-being.",
     "stress": "Take a deep breath. Try a quick walk, journaling, or talking to someone you trust.",
     "depression": "You’re not alone. It's okay to reach out. Want some self-care tips?",
-"i'm sad": "It's okay to feel sad sometimes. Try expressing your feelings, journaling, or reaching out to someone you trust."
-    };
+"i'm sad": "It's okay to feel sad sometimes. Try expressing your feelings, journaling, or reaching out to someone you trust.",
+  // Greetings  
+  "hi": "Hi there! 🌟 Welcome to JoyJar—your digital buddy for mental wellness. How can I help you today?",
+  "hello": "Hello! 💛 I’m JoyJar, here to support you. What’s on your mind?",
+  "hey": "Hey friend! 👋 How are you feeling today?",
+  
+  // Mental Health Basics  
+  "what is mental health": "Mental health includes our emotional, psychological, and social well-being. It shapes how we think, feel, and handle life. Small steps matter! 💪",
+  "mental health": "Mental health is just as important as physical health. Let’s nurture it together—want tips or just to talk?",
+  
+  // Stress & Anxiety  
+  "stress": "Stress can feel heavy. Try this: pause, take 3 deep breaths, or step outside for fresh air. You’ve got this. 🌿",  
+  "how to reduce stress": "Stress-busters: short walks, laughter, journaling, or humming a calming tune. What works for you?",
+  "feeling anxious": "Anxiety is tough but temporary. Try the 5-4-3-2-1 method: Name 5 things you see, 4 you feel, 3 you hear, 2 you smell, 1 you taste. 🌈",  
+  "i'm overwhelmed": "Overwhelm is valid. Break tasks into tiny steps, sip water, or scribble your thoughts on paper. One moment at a time. 💧",
+  
+  // Sadness & Depression  
+  "i'm sad": "Your feelings matter. 💔 Would a distraction (like a funny video) help, or do you need to vent? I’m here.",  
+  "what is depression": "Depression is more than sadness—it can drain energy and joy. But help exists, and you deserve support. 🌻",  
+  "i feel empty": "That sounds really hard. You’re not alone. Even small acts (like a warm shower) can be a start. Be gentle with yourself. 🫂",
+  
+  // Motivation & Self-Care  
+  "how to stay motivated": "Motivation is a flickering flame. Try the 2-minute rule: just start tiny. A walk? One deep breath? Celebrate little wins! 🎉",  
+  "how to practice self-care": "Self-care isn’t selfish! Try: a 5-minute stretch, saying no guilt-free, or doodling. What feels nourishing today? 🛁",  
+  "i'm tired": "Rest is resistance too. 💤 Can you pause for a 3-minute break? Close your eyes, or listen to calming sounds.",  
+  
+  // Sleep  
+  "can't sleep": "Sleep struggles are real. Try: a warm drink (no caffeine!), dimming lights early, or writing down worries to ‘set them aside’ tonight. 🌙",  
+  "insomnia": "Insomnia can feel lonely. Gentle tip: Get up and do something quiet (like reading) if you’re awake >20 mins. Avoid screens! 📚",  
+  
+  // Mindfulness & Coping  
+  "what is mindfulness": "Mindfulness = anchoring to the now. Try noticing your breath or the weight of your feet on the floor. No judgment. 🍃",  
+  "panic attack": "Breathe with me: in (4 sec), hold (4), out (6). You’re safe. This will pass. I’m here. 💨",  
+  "grounding techniques": "Grounding helps! Name objects around you, press your palms together, or savor a mint. Reconnect to the present. 🌍",  
+  
+  // Encouragement & Closing  
+  "thank you": "You’re so welcome! Remember: progress > perfection. Reach out anytime. 💖",  
+  "goodbye": "Goodbye, friend! Be kind to yourself today. JoyJar’s always here if you need me. 🌼",  
+  
+  // Default fallback  
+  "default": "I’m still learning, but I care. Could you rephrase that? Or try: ‘stress’, ‘sadness’, or ‘self-care’. 🌸",  
+};
   
     // Match user message to a predefined response
     for (const key in responses) {
@@ -89,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
     }
-    const apiKey = "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"; // Replace with your OpenAI API key
+    const apiKey = "Enter you API Key"; // Replace with your OpenAI API key
     const apiUrl = "https://api.openai.com/v1/chat/completions";
 
     try {
@@ -111,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
       appendMessage("bot", botMessage);
     } catch (error) {
       console.error("Error fetching bot response:", error);
-      appendMessage("bot", "Sorry, something went wrong. Please try again.");
+      appendMessage("bot", "Apologies for the hiccup! Could you give it another go.");
     }
   }
 });

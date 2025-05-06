@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
     }
-    const apiKey = "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"; // Replace with your OpenAI API key
+    const apiKey = "Enter your Key"; // Replace with your OpenAI API key
     const apiUrl = "https://api.openai.com/v1/chat/completions";
 
     try {

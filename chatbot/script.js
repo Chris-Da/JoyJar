@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
     const apiKey = "Enter your Key"; // Replace with your OpenAI API key
-    const apiUrl = "Enter url";
+    const apiUrl = "https://api.openai.com/v1/chat/completions";
 
     try {
       const response = await fetch(apiUrl, {

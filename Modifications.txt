@@ -1,4 +1,0 @@
-1. Uniform color
-2. contact page separate from home page
-3. cancel button for sign in and sign up page
-4. Give a background for sign in and sign up to show it belongs to JJ

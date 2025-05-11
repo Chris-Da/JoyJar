@@ -1,3 +1,6 @@
+html{
+  scroll-behavior: smooth;
+}
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -1228,7 +1231,7 @@ body.dark-mode .newsletter-form button:hover {
           text-align: center;
       }
       
-      .banner-image {
+      /* .banner-image {
           width: 80%;
           height:auto;
           margin-top: 20px;
@@ -1236,7 +1239,7 @@ body.dark-mode .newsletter-form button:hover {
           box-shadow: 0px 5px 10px rgba(0,0,0,0.15);
           opacity: 0.9;
           animation: bounce 2s ease-in-out infinite;
-      }
+      } */
       
       
   }
@@ -1408,59 +1411,29 @@ body.dark-mode .newsletter-form button:hover {
 
 .meditation-header h2 {
   font-size: 2rem;
-  color: #0f3483;
+  color: #0f2c64;
+}
+.dark-mode .meditation-header h2 {
+  color: #f8f5ee;
 }
 
 .see-all {
   font-size: 1rem;
-  color: #0f3483;
+  color: #0f2c64;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s;
 }
+.dark-mode .see-all {
+  color: #f8f5ee;
+}
 
 .see-all:hover {
   color: #08306b;
+  text-decoration: solid underline;
+  text-underline-offset: 2px;
 }
 
-/* 
-.meditation-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 30px;
-}
-
-.meditation-card {
-  flex: 1 1 48%;
-  background: #f9fbff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
-  transition: transform 0.3s ease;
-}
-
-.meditation-card:hover {
-  transform: translateY(-5px);
-}
-
-.meditation-card h3 {
-  font-size: 1.2rem;
-  color: #004d80;
-  margin-bottom: 10px;
-}
-
-.meditation-card p {
-  font-size: 1rem;
-  color: #444;
-  line-height: 1.5;
-  margin-bottom: 10px;
-}
-
-.meditation-card audio {
-  width: 100%;
-  outline: none;
-} */
 
 .meditation-grid {
   display: flex;

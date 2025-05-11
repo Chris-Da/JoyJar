@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoyJar - Mental Health Support</title>
+    <link rel="stylesheet" type="text/css" href="style.css" title="style">
+    <link rel="stylesheet" href="./chatbot/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="header">
+        <div class="logo"><a href="index.html" style="text-decoration: none; color:white;">&nbsp;JOYJAR</a><br>
+          <div class="slogan"><i>Nurturing minds, One Jar at a time!</i></div></div>
+        <!-- <img src="./Images/JJ_Finallogo.jpg" width="60px"> -->
+        <div class="nav">
+            <a href="./Home.html">Home</a>
+            <a href="./About.html">About</a>
+            <a href="./blogs.html">Blogs</a>
+            <a href="./Therapy.html">Therapy</a>
+            <a href="./FAQ.html">FAQs</a>
+            <a href="./Contact.html">Contact</a>
+        </div>
+        <div>
+          <button id="togglebtn" onclick="toggleDarkMode()" class="toggle-switch" data-tooltip="Toggle Dark/Light Mode">
+            <span class="icon">😎</span>
+            <span class="slider"></span>
+            <span class="icon">&nbsp;🌜</span>
+          </button>
+        </div>
+        <div class="controls">            
+            <button class="controls" onclick="document.location='Signin.html'" data-tooltip="Login to your account">Sign In</button>
+            <button onclick="document.location='Signup.html'"data-tooltip="Sign up for a new account">Sign Up</button>
+        </div>
+    </div>
+
+    <div class="banner-wrapper">
+        <div class="banner-container">
+            <div class="banner-content">
+                <h1 class="banner-head">Nurturing Minds, One Jar at a Time</h1>
+                <p class="subheading" style="color:black; font-size:larger; margin-top:15px;"><span>Your safe space for mental wellness where - hope, healing, and happiness begin.</span></p>
+                <p style="font-size: 16px; margin-top:20px;">At JoyJar, we believe mental health care should be accessible, compassionate, and stigma-free. <br> Our tools and community empower you to build resilience and find joy in everyday moments.</p>
+                <div class="cta-buttons">
+                    <a href="./Therapy.html" class="cta-primary">Find Support Now</a>
+                    <a href="./blogs.html" class="cta-secondary">Explore Resources</a>
+                </div>
+            </div>            
+                <img src="./images/emotional-healing.jpg" alt="Happy person meditating" class="banner-image">
+            
+        </div>
+    </div>
+
+    <section id="mission">    
+        <h2 style="color:#dfb459; font-weight: 800;margin-top: 30px;">Our Mission</h2>
+        <p class="mission-intro">
+          We <span class="mission-intro-italics">empower</span> you with the knowledge and skills you need to strengthen your mental health <span class="mission-intro-italics">&</span> well-being
+           through <span class="mission-intro-italics">education</span>, <span class="mission-intro-italics">support</span>, and <span class="mission-intro-italics">community</span>.        
+</section>
+
+<section class="info-section">
+  <div class="info-card">
+    <img src="./Images/guidance.jpg" alt="Guidance you can trust">
+    <p class="info-heading">🌈 Guidance you can trust</p>
+    <p>Find trustworthy information about mental health and wellness that you can use to make better decisions. </p>
+  </div>
+
+  <div class="info-card">
+    <img src="./Images/skills.jpg" alt="Image 2">
+    <p class="info-heading">Skills for life success</p>
+    <p>Build skills to manage your emotions, strengthen your relationships, and cope with difficult situations. </p>
+  </div>
+
+  <div class="info-card">
+    <img src="./Images/feelbetter.jpg" alt="Image 3">
+    <p class="info-heading">Strategies to feel better</p>
+    <p>Learn how to improve your mental health and well-being—and help your friends and family do the same.</p>
+  </div>
+  <div class="info-card">
+    <img src="./Images/mental_support.jpg" alt="Image 3">
+    <p class="info-heading">Support you can rely on</p>
+    <p>As a free online resource, we’re here for you, day or night, whenever you need guidance, encouragement, or support. </p>
+  </div>
+</section>
+
+<section class="meditation-section">
+  <div class="meditation-header">
+    <h2>Featured Meditation</h2>
+    <a href="#" class="see-all">See All</a>
+  </div>
+
+  <div class="meditation-grid">
+      <div class="meditation-card">
+      <div class="meditation-content">
+        <div class="meditation-text">
+          <h3>Body Scan Meditation</h3>
+          <p>Cultivate your ability to be mindful and tuned in to what you’re feeling.</p>
+          <audio controls>
+            <source src="audio/10-Minute Body Scan Meditation.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        <div class="meditation-image">
+          <img src="images/bodyscan.jpg" alt="Body Scan">
+        </div>
+      </div>
+    </div>
+
+     <div class="meditation-card">
+      <div class="meditation-content">
+        <div class="meditation-text">
+          <h3>Coping with Uncertainty Meditation</h3>
+          <p>Feeling anxious about the future? This mindfulness meditation can help.</p>
+          <audio controls>
+            <source src="audio/videoplayback.mp4" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        <div class="meditation-image">
+          <img src="images/meditating.jpg" alt="Body Scan">
+        </div>
+      </div>
+    </div>
+
+     <div class="meditation-card">
+      <div class="meditation-content">
+        <div class="meditation-text">
+          <h3>Gratitude in Difficult Times</h3>
+          <p>Change your perspective and fight negativity by practicing gratitude.</p>
+          <audio controls>
+            <source src="audio/It's Time to be Grateful.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        <div class="meditation-image">
+          <img src="images/Gratitude.jpg" alt="Body Scan">
+        </div>
+      </div>
+    </div>
+
+     <div class="meditation-card">
+      <div class="meditation-content">
+        <div class="meditation-text">
+          <h3>Mindful Breathing Meditation</h3>
+          <p>Relax and reconnect by focusing on your breath, one inhale at a time.</p>
+          <audio controls>
+            <source src="audio/5 Minute Mindfulness Meditation.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        <div class="meditation-image">
+          <img src="images/breathingmed.jpg" alt="Body Scan">
+        </div>
+      </div>
+    </div>
+
+    
+
+    
+
+    
+
+   
+</section>
+
+<section class="featured-section-alt">
+  <h2 class="section-header">Editor's Picks</h2>
+
+  <div class="flow-feature">
+     <a href="agoraphobia.html">
+    <img src="images/agoraphobia.jpg" alt="Agoraphobia Illustration">
+    </a>
+    <div class="text-block">
+      <span class="category-label">Anxiety</span>
+      <h3>Agoraphobia</h3>
+      <p>Self-care tips if you have a fear of anxiety or panic</p>
+      <div class="duration">19 mins</div>
+    </div>
+  </div>
+
+  <div class="flow-feature">    
+    <div class="text-block">
+      <span class="category-label">Personality Disorders</span>
+      <h3>Borderline Personality Disorder (BPD)</h3>
+      <p>A guide to symptoms, treatment, and recovery for BPD</p>
+      <div class="duration">22 mins</div>
+    </div>
+    <a href="BPD.html">
+    <img src="images/moodswings.jpg" alt="Agoraphobia Illustration">
+    </a>
+  </div>
+
+  <div class="flow-feature">
+    <a href="Self_harm.html">
+      <img src="images/Cutting and Self-Harm.jpg" alt="Agoraphobia Illustration">
+    </a>
+    <div class="text-block">
+      <span class="category-label">Self-Harm</span>
+      <h3>Cutting and Self-Harm</h3>
+      <p>How to feel better without hurting yourself</p>
+      <div class="duration">12 mins</div>
+    </div>
+  </div>
+ <div class="flow-feature">
+    <div class="text-block">
+      <span class="category-label">ADHD</span>
+      <h3>ADHD in Adults</h3>
+      <p>Recognizing the signs and symptoms, and what you can do about it</p>
+      <div class="duration">13 mins</div>
+    </div>
+    <a href="ADHD.html">
+    <img src="images/adhd.jpg " alt="Hands above head">
+    </a>
+  </div>
+
+    <div class="flow-feature">
+    <a href="PTSD.html">
+    <img src="images/ptsd.jpg" alt="Agoraphobia Illustration">
+    </a>
+    <div class="text-block">
+      <span class="category-label">PTSD & Trauma</span>
+      <h3>Recovering from Rape and Sexual Trauma</h3>
+      <p>Tips to regain your sense of control, rebuild your self-worth, and heal</p>
+      <div class="duration">15 mins</div>
+    </div>
+  </div>
+
+ 
+
+  <!-- Repeat for other entries -->
+</section>
+
+   <!-- <div class="goal">
+            <div class="goal-item">
+              <h3>🌱 Guidance you can trust </h3>
+              <p>Fostering personal growth and resilience through self-care practices.</p>
+            </div>
+            <div class="goal-item">
+              <h3>💬 Connection</h3>
+              <p>Building a supportive community for shared experiences and healing.</p>
+            </div>
+            <div class="goal-item">
+              <h3>🧠 Awareness</h3>
+              <p>Raising awareness about mental health issues and reducing stigma.</p>
+            </div>
+          </div> -->
+
+    <!-- <div class="main-content">
+        <div class="box">
+          <h2>📢Announcements</h2>
+          <p>Stay updated with the latest mental wellness events, sessions, and feature releases on JoyJar.</p>
+          <button onclick="document.location='blogs.html'">View More</button>
+        </div>
+        <div class="box">
+          <h2>🧘🏻‍♀️Programs</h2>
+          <p>Explore curated programs like mindfulness routines, journaling challenges, and support groups.</p>
+          <button onclick="document.location='Therapy.html'">Explore</button>
+        </div>
+        <div class="box">
+        <span><h2>📰 News Headlines</h2></span>
+    <p>Get the latest news and research on mental health, self-care trends, and community stories by <strong>Connecting</strong> with us.</p>
+    <button onclick="document.location='Contact.html'">Get in Touch</button>
+        </div>
+    </div> -->
+    
+
+
+
+    <!-- <div class="chatbot">Chat with JoyJar</div> -->
+    
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+    <script src="./chatbot/script.js"></script>
+    <script src="script.js"></script>
+
+
+<div id="chatbot-icon">💬</div>
+
+<!-- Chatbot Container -->
+<div id="chatbot-container" class="hidden">
+  <div id="chatbot-header">
+    <span>JoyJar - Your Companion</span>
+    <button id="close-btn">&times;</button>
+  </div>
+  <div id="chatbot-body">
+    <div id="chatbot-messages"></div>
+  </div>
+  <div id="chatbot-input-container">
+    <input type="text" id="chatbot-input" placeholder="Type a message..." />
+    <button id="send-btn">Send</button>
+  </div>
+</div>
+
+<footer class="site-footer">
+   <div class="footer-content">
+    <div class="footer-left">
+      <p>Visit Us: &nbsp;  JoyJar, Mannarkkad, Kerala<br>
+         &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp; &nbsp;India 678582</p>
+      <p><a href="https://www.google.com/maps/place/Daniel's+Family/@11.0278695,76.5133441,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba87f083b95e22b:0xcdb9bfff17b0ebf3!8m2!3d11.0278643!4d76.518215!16s%2Fg%2F11smt0jmyy?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">📍 View on Google Maps</a></p>
+      <p>Contact: &nbsp; 
+        <a href="mailto:joyjar4u@gmail.com">joyjar4u@gmail.com</a><br>
+        &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="tel:+918119948228">+91 811 994 8228</a>
+      </p>
+    </div>
+    <div class="footer-right">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.1433525149387!2d76.51334407919288!3d11.02786952651767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba87f083b95e22b%3A0xcdb9bfff17b0ebf3!2sDaniel&#39;s%20Family!5e0!3m2!1sen!2sin!4v1746973218069!5m2!1sen!2sin" 
+      width="400" 
+      height="350" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+    </div>
+    
+  </div>
+<p>&copy; 2025 <a href="http://joyjar.chrispadaniel.com" style="text-decoration: none;">JoyJar</a>. All rights reserved.</p>
+      
+</footer>
+</body>
+</html>

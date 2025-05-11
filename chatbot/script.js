@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
       appendMessage("bot", botMessage);
     } catch (error) {
       console.error("Error fetching bot response:", error);
-      appendMessage("bot", "Sorry, something went wrong. Please try again.");
+      appendMessage("bot", "Looks like there was a hiccup. Try again and we’ll make it right.");
     }
   }
 });

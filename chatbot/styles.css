@@ -5,7 +5,7 @@
   right: 20px;
   width: 60px;
   height: 60px;
-  background-color:  #3b5998;
+  background-color:  #dfb459;
   color: white;
   font-size: 30px;
   display: flex;
@@ -18,7 +18,7 @@
 }
 
 #chatbot-icon:hover {
-  background-color: #b71c1c;
+  background-color: #032775;
   transform: scale(1.1);
 }
 
@@ -44,7 +44,7 @@
 
 /* Chatbot Header */
 #chatbot-header {
-  background-color: #d32f2f;
+  background-color: #2f68d3;
   color: white;
   padding: 15px;
   border-top-left-radius: 15px;
@@ -84,7 +84,7 @@
 }
 
 .message.user {
-  background-color: #d32f2f;
+  background-color: #2f71d3;
   color: white;
   align-self: flex-end;
 }
@@ -116,7 +116,7 @@
 #send-btn {
   margin-left: 10px;
   padding: 10px 15px;
-  background-color: #d32f2f;
+  background-color: #2f71d3;
   color: white;
   border: none;
   border-radius: 8px;
@@ -125,7 +125,8 @@
 }
 
 #send-btn:hover {
-  background-color: #b71c1c;
+  background-color: #dfb459;
+  color:black;
 }
 
 #chatbot-messages {

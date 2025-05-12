@@ -62,6 +62,47 @@ body {
     text-transform: capitalize;
 }
 
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  font-size: 20px;
+  margin-top:1px;
+  display: none;
+  position: absolute;
+  background-color:  #3b5998;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  min-width: 160px;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  border-radius: 6px;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+}
+
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dark-mode .dropdown-content {
+  background-color: #2b2b2b;
+}
+
+.dark-mode .dropdown-content a {
+  color: #eee;
+}
+
+.dark-mode .dropdown-content a:hover {
+  background-color: #444;
+}
 
 .nav {
     display: flex;
@@ -651,6 +692,7 @@ body.dark-mode .toggle-switch .slider {
     color: inherit;
     transition: transform 0.3s ease;
     display: block;
+    
   }
   .therapy-card-link:hover {
     transform: scale(1.03);
@@ -660,25 +702,71 @@ body.dark-mode .toggle-switch .slider {
     max-width: 1200px;
     margin: auto;
   }
+.therapy-subheading {
+  padding: 15px;
+  display: block;
+  font-size: 1.1em;
+  color: #000000;
+  margin-top: -10px;
+  margin-bottom: 25px;
+}
+.dark-mode .therapy-subheading {
+  color: #8a1616;
+}
+
   
   .therapy-intro {
+    padding-top: 20px;
+    margin-left:10%;
+    margin-right:10%;
+    padding:15px;
+    display: block;
     text-align: center;
     margin-bottom: 40px;
+    background-image: url("./Images/bg01.jpg")!important;
+    background-repeat: no-repeat;
+    background-position:center center;
+    background-size: cover;
+    position: relative;
+    border-radius: 30px;
   }
   
   .therapy-intro h1 {
+    margin-top:20px;
+    color: #032775;
     font-size: 2.5em;
     margin-bottom: 10px;
+    animation: glow 1.8s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+  from {
+    text-shadow:
+      0 0 5px #00eaff,
+      0 0 10px #00eaff,
+      0 0 15px #00eaff,
+      0 0 20px #00eaff;
+  }
+  to {
+    text-shadow:
+      0 0 10px #00ffff,
+      0 0 20px #00ffff,
+      0 0 30px #00ffff,
+      0 0 40px #00ffff;
+  }
+}
+  .dark-mode .therapy-intro h1 {
+    color: #c99017;
   }
   
   .therapy-intro p {
     font-size: 1.2em;
-    color: #555;
+    color: #000000;
     margin-bottom: 20px;
   }
   
   .therapy-image {
-    max-width: 100%;
+    width: 50%;
     height: auto;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -702,10 +790,6 @@ body.dark-mode .toggle-switch .slider {
     text-align: center;
   }
   
-  .therapy-card:hover {
-    transform: translateY(-5px);
-  }
-  
   .therapy-card img {
     width: 100%;
     height: auto;
@@ -725,13 +809,15 @@ body.dark-mode .toggle-switch .slider {
   
   .dark-mode .therapy-card,
   .dark-mode .therapy-intro {
+    padding:10px;
     background-color: #2b2b2b;
+    border-radius: 20px;;
     color: #f1f1f1;
   }
   
   .dark-mode .therapy-card p,
   .dark-mode .therapy-intro p {
-    color: #ccc;
+    color: #153375;
   }
 
 

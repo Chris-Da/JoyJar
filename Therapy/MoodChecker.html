@@ -86,6 +86,25 @@
 
     <a href="../Home.html" class="back-link">← Back to JoyJar</a>
   </div>
+
+  <script>
+      const moodResponses = {
+          happy: "That's wonderful to hear! Keep spreading the joy. 🌈",
+          sad: "It's okay to feel sad. Take a deep breath, and know you're not alone. 💙",
+          anxious: "Try this: Inhale slowly... Exhale gently. You're safe here. 🧘",
+          angry: "Let it out in a healthy way. Try journaling or a mindful walk. 🔥",
+          meh: "Even a small step today is progress. Let's find one good thing. 🌱"
+        };
+
+      document.querySelectorAll(".mood").forEach(el => {
+          el.addEventListener("click", () => {
+            const mood = el.getAttribute("data-mood");
+            const box = document.getElementById("responseBox");
+            box.textContent = moodResponses[mood];
+            box.style.display = "block";
+          });
+        });
+    </script>
     
 
     <script src="../chatbot/script.js"></script>

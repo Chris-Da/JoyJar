@@ -126,3 +126,12 @@ function dragDrop(e) {
   }
   this.classList.remove('hovered');
 }
+
+
+const moodResponses = {
+      happy: "That's wonderful to hear! Keep spreading the joy. 🌈",
+      sad: "It's okay to feel sad. Take a deep breath, and know you're not alone. 💙",
+      anxious: "Try this: Inhale slowly... Exhale gently. You're safe here. 🧘",
+      angry: "Let it out in a healthy way. Try journaling or a mindful walk. 🔥",
+      meh: "Even a small step today is progress. Let's find one good thing. 🌱"
+    };

@@ -2082,6 +2082,9 @@ body.dark-mode .newsletter-form button:hover {
       text-decoration: underline;
     }
 
+    .dark-mode .back-link {
+      color: #8bc34a;
+    }
     .picker-container {
       max-width: 600px;
       margin: 60px auto;
@@ -2610,7 +2613,6 @@ body.dark-mode .therapy-101 .closing {
 .dropdown-subcontent {
   top: 0;
   left: 100%;
-  margin-left: 2px;
 }
 
 /* Show on hover */

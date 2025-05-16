@@ -6,13 +6,14 @@
     <title>JoyJar - Mental Health Support</title>
     <link rel="stylesheet" type="text/css" href="style.css" title="style">
     <link rel="stylesheet" href="./chatbot/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 
 </head>
 <body>
     <div class="header">
-        <div class="logo"><a href="index.html"><img src="JJ_Finallogo.jpg" width="60px"></a>&nbsp;JOYJAR<br>
+        <div class="logo"><a href="index.html" style="text-decoration: none; color:white;">&nbsp;JOYJAR</a><br>
           <div class="slogan"><i>Nurturing minds, One Jar at a time!</i></div></div>
-        
+        <!-- <img src="./Images/JJ_Finallogo.jpg" width="60px"> -->
         <div class="nav">
             <a href="./Home.html">Home</a>
             <a href="./About.html" >About</a>
@@ -28,116 +29,141 @@
             <a href="./FAQ.html" >FAQs</a>
             <a href="./Contact.html">Contact</a>
         </div>
-        <div class="controls">
-            <button onclick="toggleDarkMode()" data-tooltip="Toggle Dark/Light Mode">🌙 / ☀️</button>
-            <button onclick="document.location='Signin.html'" data-tooltip="Login to your account">Sign In</button>
-            <button onclick="document.location='Signup.html'" data-tooltip="Sign up for a new account">Sign Up</button>
+        <div>
+          <button id="togglebtn" onclick="toggleDarkMode()" class="toggle-switch" data-tooltip="Toggle Dark/Light Mode">
+            <span class="icon">😎</span>
+            <span class="slider"></span>
+            <span class="icon">&nbsp;🌜</span>
+          </button>
+        </div>
+        <div class="controls">            
+            <button class="controls" onclick="document.location='Signin.html'" data-tooltip="Login to your account">Sign In</button>
+            <button onclick="document.location='Signup.html'"data-tooltip="Sign up for a new account">Sign Up</button>
         </div>
     </div>
 
+ <section class="blog-magazine">
+  <!-- Main Blog Grid -->
+  <div class="blog-grid-main">
 
-    <div class="blog-container">
-      <div class="blog-post">
-          <h2>How to Improve Mental Health Daily</h2>
-          <img src="./Images/01.avif" alt="Sunrise over mountains" class="blog-image">
-          <p>Discover small daily habits that can greatly improve your mental well-being.
-            <span id="dots">..</span>
-            <span id="more" style="display:none;">
-              <br><br>Mental health isn't just about avoiding illness—it's about cultivating resilience, peace, and positivity in everyday life. <br>
-              <br>Here are some science-backed practices you can start today:
-              <br>
-              🌞 1. Morning Light Exposure<br>
-              🧘 2. Micro-Mindfulness<br>
-              📓 3. Gratitude Journaling<br>
-              🤸 4. Movement Snacks<br>
-              📵 5. Digital Sunset<br>
-            </span></p>
-          <button onclick="myFunction()" id="myBtn">Read More</button>
+    <a href="./Featured pages/Anxiety.html" class="main-card">
+      <span class="tag">Anxiety</span>
+      <img src="images/anxious.jpg" alt="Anxiety Blog">
+      <h3>Overcoming Anxiety: A Daily Practice</h3>
+      <p>Discover calming practices that help ease anxiety day by day with small, mindful steps.</p>
+    </a>
+
+    <a href="./Featured pages/PTSD.html" class="main-card">
+      <span class="tag">PTSD</span>
+      <img src="images/PTSD_1.jpg" alt="PTSD Blog">
+      <h3>PTSD Healing: What the Journey Really Looks Like</h3>
+      <p>Understand the hidden battles and real stories behind PTSD healing paths.</p>
+    </a>
+
+    <a href="./Featured pages/ADHD.html" class="main-card">
+      <span class="tag">ADHD</span>
+      <img src="images/adhd_1.jpg" alt="ADHD Blog">
+      <h3>Managing ADHD at Work</h3>
+      <p>Tips and hacks to stay organized and focused in high-pressure environments.</p>
+    </a>
+
+    <a href="./Featured pages/self-harm.html" class="main-card">
+      <span class="tag">Self-Harm Recovery</span>
+      <img src="images/self-hurt recovery.jpg" alt="Self-Harm Recovery Blog">
+      <h3>Healing After Self-Harm: Tools That Help</h3>
+      <p>Explore supportive tools and gentle approaches to aid recovery from self-harming behaviors.</p>
+    </a>
+
+    <a href="./Featured pages/BPD.html" class="main-card">
+      <span class="tag">BPD</span>
+      <img src="images/bpd.jpg" alt="BPD Blog">
+      <h3>Understanding BPD in Daily Life</h3>
+      <p>A look into Borderline Personality Disorder and how it affects thoughts, relationships, and stability.</p>
+    </a>
+
+    <a href="./Featured pages/stress-relief.html" class="main-card">
+      <span class="tag">Stress</span>
+      <img src="images/stress-relief.jpg" alt="Stress Blog">
+      <h3>Stress-Relief Routines That Actually Work</h3>
+      <p>Simple daily routines that effectively help reduce stress and build resilience.</p>
+    </a>
+
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="blog-sidebar">
+    <h4>Featured</h4>
+
+    <a href="./Featured pages/Anxiety.html" class="side-post">            
+      <img src="images/anxiety.jpg" alt="" class="side-post-img">
+        <div class="side-post-content">
+          <span>April 2025</span>
+          <p>Overcoming Anxiety: A Daily Practice</p>
+        </div>
+      </a>
+
+    <a href="./Featured pages/PTSD.html" class="side-post">
+      <img src="images/ptsd.jpg" alt="" class="side-post-img">
+      <div class="side-post-content">
+        <span>March 2025</span>
+        <p>PTSD Healing: What the Journey Really Looks Like</p>
       </div>
-      <div class="blog-post">
-          <h2>The Science Behind Meditation</h2>         
-          <img src="./Images/sciencebehmed.png" alt="Sunrise over mountains" class="blog-image">
-          <p>Explore how meditation can rewire your brain and reduce stress.</p>
-          
-              Meditation isn't just a spiritual practice—it's a scientifically proven method to rewire your brain, reduce stress, and improve emotional regulation. Let's explore what makes meditation such a powerful tool for mental health:<br>
-              <a href="#SciebMed">Read More</a>
+    </a>
+
+    <a href="./Featured pages/BPD.html" class="side-post">
+      <img src="images/bpd.jpg" alt="" class="side-post-img">
+      <div class="side-post-content">
+        <span>February 2025</span>
+        <p>Understanding BPD in Daily Life</p>
       </div>
-      <div class="blog-post">
-          <h2>Overcoming Anxiety: A Step-by-Step Guide</h2>
-          <img src="./Images/Anxiety.webp" alt="Sunrise over mountains" class="blog-image">
-          <p>Practical strategies to help manage and overcome anxiety.</p><br>
-          <a href="#AnxietyBlog">Read More</a>
-          
+    </a>
+
+
+    <h4>Latest</h4>
+
+    <a href="./Featured pages/self-harm.html" class="side-post">
+      <img src="images/self-hurt.jpg" alt="" class="side-post-img">
+      <div>
+        <span>May 2025</span>
+        <p>Healing After Self-Harm: Tools That Help</p>
       </div>
-    </div>
+    </a>
 
-    <section id="SciebMed" class="expanded">
-      <h2>The Science Behind Meditation</h2>
-      <p>Meditation isn’t just a spiritual practice—it’s a science-backed method to enhance mental clarity, emotional balance, and stress resilience. Neuroscience shows that consistent meditation can reshape the brain in powerful ways.</p>
-    
-      <h3>🧠 Changes in Brain Structure</h3>
-      <p>Studies using MRI scans reveal that meditation increases gray matter in areas like the hippocampus (linked to memory and learning) and decreases activity in the amygdala, the center of fear and anxiety.</p>
-    
-      <h3>😌 Reduced Stress and Cortisol</h3>
-      <p>Regular mindfulness meditation significantly lowers cortisol, the stress hormone. This leads to improved mood, better sleep, and even lower blood pressure.</p>
-    
-      <h3>🎯 Better Focus and Attention</h3>
-      <p>Just 10–15 minutes of daily meditation can enhance your attention span and ability to concentrate by strengthening the brain’s prefrontal cortex.</p>
-    
-      <h3>🧘 Emotional Regulation</h3>
-      <p>Meditators often report feeling more emotionally balanced. Scientific studies confirm this, showing reduced reactivity to negative stimuli and improved emotional control.</p>
-    
-      <img src="./Images/M&m.jpg" alt="Meditation and Mindfulness" style="width: 100%; border-radius: 10px; margin-top: 15px;">
-    </section>
+    <a href="./Featured pages/BPD.html" class="side-post">
+      <img src="images/stress-relief_1.jpg" alt="" class="side-post-img">
+      <div>
+        <span>May 2025</span>
+        <p>Stress-Relief Routines That Actually Work</p>
+      </div>
+    </a>
+  </aside>
+</section>
 
-    <section id="AnxietyBlog" class="expanded">
-      <h2>Overcoming Anxiety: A Step-by-Step Guide</h2>
-      <p>Anxiety can feel like a swirling storm cloud overhead—persistent, heavy, and unpredictable. But with the right tools, you can clear the skies and reclaim your calm. This guide will help you transform anxious energy into grounded confidence.</p>
-    
-      <h3>🔍 Unravel the Roots</h3>
-      <p>Behind every anxious thought is a story. Trace it gently. Is it fear of failure? The pressure to be perfect? Reflection through journaling or talking with a trusted guide can reveal the origin of your worry and help you take back the narrative.</p>
-    
-      <h3>🌿 Anchor Yourself in the Now</h3>
-      <p>When your mind races ahead, grounding practices gently pull you back to the present. Try the <strong>5-4-3-2-1 technique</strong>: See 5 things, touch 4, hear 3, smell 2, taste 1. Breathe deep—let the world remind you that you’re safe here and now.</p>
-    
-      <h3>🧠 Reframe the Storm</h3>
-      <p>Your thoughts shape your world. Cognitive reframing is the art of shifting perspective—like changing the lens on a camera. Challenge anxious beliefs: <em>“What else could be true?”</em> This opens the door to clarity and calm.</p>
-    
-      <h3>💃 Move with Intention</h3>
-      <p>Anxiety lives in the body. Shake it loose. A brisk walk, yoga flow, or dance session can release trapped tension and flood your brain with feel-good endorphins. Even five minutes can spark a shift.</p>
-    
-      <h3>🌙 Rest as Ritual</h3>
-      <p>An anxious mind needs restful sleep to reset. Create a sleep sanctuary: dim the lights, silence notifications, and trade scrolling for story time or soft music. Let your evening routine be a gentle invitation to peace.</p>
-    
-      <img src="./Images/breathing.jpg" alt="Peaceful person breathing deeply" style="width: 100%; border-radius: 10px; margin-top: 15px;">
-    
-      <p>Remember, anxiety is not a flaw—it’s a signal. With compassion and care, you can learn to listen, respond, and lead yourself back to steadiness, again and again.</p>
-    </section>
-    
-    
-    <script>
-      function myFunction() {
-        var dots = document.getElementById("dots");
-        var moreText = document.getElementById("more");
-        var btnText = document.getElementById("myBtn");
-      
-        if (dots.style.display === "none") {
-          dots.style.display = "inline";
-          btnText.innerHTML = "Read more"; 
-          moreText.style.display = "none";
-        } else {
-          dots.style.display = "none";
-          btnText.innerHTML = "Read less"; 
-          moreText.style.display = "inline";
-        }
-      }
-      </script>
 
-    <script>
+
+
+
+
+        <script>
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
         }
     </script>
+
+    <script src="./chatbot/script.js"></script>
+    
+    <script src="script.js"></script>
+
+    <script>
+      document.querySelector('.scroll-top-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth' 
+        });
+      });
+    </script>
+
 
 <div id="chatbot-icon">💬</div>
 
@@ -155,14 +181,35 @@
     <button id="send-btn">Send</button>
   </div>
 </div>
-<script src="./chatbot/script.js"></script>
-
 
 <footer class="site-footer">
-  <div class="footer-content">
-    <p>&copy; 2025 <a href="https:joyjar.com" style="color: maroon; text-decoration: none;">JoyJar</a>. All rights reserved.</p>
-    <p><a href="https://www.mentalhealthfirstaid.org/mental-health-resources/" target="_blank">Mental Health Resources</a></p>
+   <div class="footer-content">
+    <div class="footer-left">
+      <p>Visit Us: &nbsp;  JoyJar, Mannarkkad, Kerala<br>
+         &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp; &nbsp;India 678582</p>
+      <p><a href="https://www.google.com/maps/place/Daniel's+Family/@11.0278695,76.5133441,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba87f083b95e22b:0xcdb9bfff17b0ebf3!8m2!3d11.0278643!4d76.518215!16s%2Fg%2F11smt0jmyy?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">📍 View on Google Maps</a></p>
+      <p>Contact: &nbsp; 
+        <a href="mailto:joyjar4u@gmail.com">joyjar4u@gmail.com</a><br>
+        &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="tel:+918119948228">+91 811 994 8228</a>
+      </p>
+    </div>
+    <div class="footer-right">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.1433525149387!2d76.51334407919288!3d11.02786952651767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba87f083b95e22b%3A0xcdb9bfff17b0ebf3!2sDaniel&#39;s%20Family!5e0!3m2!1sen!2sin!4v1746973218069!5m2!1sen!2sin" 
+      width="20%" 
+      height="10%" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+    </div>
+    
   </div>
+  <p><i>Designed and Developed by</i> <a href="http://chrispadaniel.com">Chrispa Daniel</a></p>
+<p>&copy; 2025 <a href="http://joyjar.chrispadaniel.com" style="text-decoration: none;">JoyJar</a>. All rights reserved.</p>
+      
 </footer>
+<a href="#" class="scroll-top-btn" title="Back to Top">☝️</a>
 </body>
 </html>

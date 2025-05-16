@@ -1,0 +1,253 @@
+.agoraphobia-section {
+  font-family: 'Segoe UI', sans-serif;
+  padding: 40px 20px;
+  background: #f8faff;
+  color: #1d2a38;
+  line-height: 1.8;
+}
+
+.intro {
+  display: flex;
+  align-items: flex-start; 
+  padding-left:70px;
+  padding-right: 20px;
+  border: 1px #0f3483;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.intro-content {
+  margin-top:20px;
+  flex: 1;
+  padding: 10px;
+}
+
+.hero-image {
+  width: 15%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
+  margin:5px;
+  
+}
+/* .agoraphobia-section .intro {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.intro h1{  
+  display:flex;
+  align-items: flex-start; 
+  gap: 20px;
+} */
+
+.agoraphobia-section .intro h1 {
+  font-size: 3rem;
+  color: #0f3483;
+}
+
+.agoraphobia-section .subtitle {
+  font-size: 1.3rem;
+  color: #555;
+  margin-top: 8px;
+}
+
+/* .hero-image {
+  width: 15%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+} */
+
+.content-block {
+  margin-bottom: 20px;
+}
+
+.centered-heading {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #0f3483;
+}
+
+.flex-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.flex-wrapper p {
+  flex: 1;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #1d2a38;
+}
+
+.content-block h2 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  color: #0f3483;
+}
+
+.content-block h3 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  color: #245fc2;
+}
+
+.content-block ul {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.inline-img {
+  display: flex;
+    float: left; 
+    max-width: 10%;
+    height: auto;;
+    margin-right: 20px; /* Add some space between the image and the text */
+    margin-bottom: 15px; /* Space below the image */
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    /* display: inline-block;
+    width: 100px;
+  width: 250px;
+  max-width: 40%;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); */
+}
+
+.fact-highlight {
+  background: #e6f0ff;
+  padding: 20px;
+  border-left: 6px solid #0f3483;
+  border-radius: 6px;
+  margin: 40px 0;
+}
+
+blockquote {
+  font-style: italic;
+  color: #444;
+  background: #f3f3f3;
+  padding: 20px;
+  border-left: 6px solid #ffc857;
+  border-radius: 8px;
+}
+
+blockquote cite {
+  display: block;
+  margin-top: 10px;
+  text-align: right;
+  font-style: normal;
+  font-weight: bold;
+  color: #0f3483;
+}
+
+.back-home-btn {
+  display: inline-block;
+  margin-top: 30px;
+  background: #0f3483;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.back-home-btn:hover {
+  background: #ffc857;
+  color: #0f3483;
+}
+
+.soft-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding-left: 0;
+}
+
+.soft-list div::before {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.soft-list div {
+  padding-left: 1rem;
+}
+
+.note-text {
+  font-style: italic;
+  color: #666;
+}
+
+.fact-highlight {
+  background-color: #f0f8ff;
+  border-left: 5px solid #5e99ec;
+  padding: 1rem;
+  margin: 2rem 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+body.dark-mode .agoraphobia-section {
+  background: #121e2a;
+  color: #dce3ea;
+}
+
+body.dark-mode .agoraphobia-section .intro h1,
+body.dark-mode .content-block h2,
+body.dark-mode .content-block h3 {
+  color: #8cb4ff;
+}
+
+body.dark-mode .subtitle {
+  color: #a3b8cc;
+}
+
+body.dark-mode .fact-highlight {
+  background: #1a2f4d;
+  border-left-color: #5e99ec;
+}
+
+body.dark-mode blockquote {
+  background: #1f2d3d;
+  color: #ccc;
+  border-left-color: #ffc857;
+}
+
+body.dark-mode .back-home-btn {
+  background: #ffcf63;
+  color: #0f3483;
+}
+
+body.dark-mode .back-home-btn:hover {
+  background: #0f3483;
+  color: #ffffff;
+}
+
+.inline-gif{
+  width: 200px;   
+  height: auto;;
+  margin-right: 20px; 
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  display:flex;
+  justify-content: center;
+  align-items:flex-end;
+  margin-left: 20px;
+}

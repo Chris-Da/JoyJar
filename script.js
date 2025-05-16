@@ -27,14 +27,25 @@ function toggleMenu() {
   document.querySelector('.menu-wrapper').classList.toggle('active');
 }
 
-document.querySelectorAll('.dropdown-submenu > a').forEach(item => {
-  item.addEventListener('click', function(e) {
-    if (window.innerWidth < 768) { // Mobile only
-      e.preventDefault();
-      this.nextElementSibling.classList.toggle('show');
-    }
+document.querySelectorAll('.dropdown').forEach(dropdown => {
+    dropdown.addEventListener('mouseenter', () => {
+      dropdown.querySelector('.dropdown-content').style.display = 'block';
+    });
+
+    dropdown.addEventListener('mouseleave', () => {
+      dropdown.querySelector('.dropdown-content').style.display = 'none';
+    });
   });
-});
+
+
+// document.querySelectorAll('.dropdown-submenu > a').forEach(item => {
+//   item.addEventListener('click', function(e) {
+//     if (window.innerWidth < 768) { // Mobile only
+//       e.preventDefault();
+//       this.nextElementSibling.classList.toggle('show');
+//     }
+//   });
+// });
 
 const circle = document.querySelector('.circle');
 const audio = document.getElementById('breathing-audio');

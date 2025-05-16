@@ -1,11 +1,12 @@
 
 #chatbot-icon {
   position: fixed;
+  z-index: 9999;
   bottom: 20px;
   right: 20px;
   width: 60px;
   height: 60px;
-  background-color:  #dfb459;
+  background-color:  #436ecc;
   color: white;
   font-size: 30px;
   display: flex;
@@ -15,21 +16,46 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
   cursor: pointer;
   transition: transform 0.2s, background-color 0.2s;
+  border:2px solid  #dfb459;
 }
 
 #chatbot-icon:hover {
+  content:"Click on me to chat";
   background-color: #032775;
   transform: scale(1.1);
 }
 
+
+#chatbot-icon::before {
+  content: "";
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  background: rgba(249, 204, 72, 0.5);
+  border-radius: 50%;
+  animation: pulse-ring 2s infinite;
+  z-index: -1;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
 /* Chatbot Container */
 #chatbot-container {
   position: fixed;
+  z-index: 9999;
   bottom: 80px;
   right: 20px;
   width: 350px;
   height: 450px;
-  background-color: #1f1f1f;
+  background-color: #ebe9e9;
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
   display: flex;
@@ -154,4 +180,23 @@
 
 #chatbot-messages::-webkit-scrollbar-thumb:hover {
   background: #64b3d9;
+}
+
+
+#chatbot-icon::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 75px;
+    right: 50%;
+    transform: translateX(50%);
+    background-color: #333;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 10000;
 }

@@ -55,7 +55,7 @@
   right: 20px;
   width: 350px;
   height: 450px;
-  background-color: #ebe9e9;
+  background-color: #e0d5d5f3;
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
   display: flex;
@@ -94,6 +94,7 @@
   flex: 1;
   padding: 10px;
   overflow-y: auto;
+  border: 1px solid yellow;;
 }
 
 /* Chatbot Messages */
@@ -127,7 +128,7 @@
   display: flex;
   padding: 10px;
   border-top: 1px solid #444;
-  background-color: #2c2c2c;
+  background-color: #f2edc0;
 }
 
 #chatbot-input {

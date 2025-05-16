@@ -1,34 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JoyJar - FAQ</title>
-  <link rel="stylesheet" type="text/css" href="style.css" title="style">
-  <link rel="stylesheet" href="./chatbot/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoyJar - Mental Health Support</title>
+    <link rel="stylesheet" type="text/css" href="style.css" title="style">
+    <link rel="stylesheet" href="./chatbot/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
 </head>
 <body>
-
   <div class="header">
-    <div class="logo"><a href="index.html"><img src="JJ_Finallogo.jpg" width="60px"></a>&nbsp;JOYJAR<br>
-      <div class="slogan"><i>Nurturing minds, One Jar at a time!</i></div></div>
-    
-    <div class="nav">
-      <a href="index.html">Home</a>
-      <a href="./About.html">About</a>
-      <a href="./blogs.html">Blogs</a>
-      <a href="./Therapy.html">Therapy</a>
-      <a href="./Resources.html">FAQs</a>
-      <a href="./Contact.html">Contact</a>
+    <div class="logo">
+      <a href="Home.html" style="text-decoration: none; color:white;">
+        &nbsp;JOYJAR
+        </a>
+      <div class="slogan"><i>Nurturing minds, One Jar at a time!</i></div>
     </div>
-    <div class="controls">
-      <button onclick="toggleDarkMode()" data-tooltip="Toggle Dark/Light Mode">🌙 / ☀️</button>
-      <button onclick="document.location='Signin.html'" data-tooltip="Login to your account">Sign In</button>
-      <button onclick="document.location='Signup.html'" data-tooltip="Sign up for a new account">Sign Up</button>
-    </div>
-  </div>
 
-  <main class="faq-section">
+      <!-- Three-dot toggle for mobile -->
+      <div class="menu-toggle" onclick="toggleMenu()" data-tooltip="Click to view Menu">⋮☰</div>
+
+      <!-- Wrap nav + controls for mobile toggle -->
+      <div class="menu-wrapper">
+        <div class="nav">
+          <a href="./Home.html" class="active">Home</a>
+          <a href="./About.html">About</a>
+          <div class="dropdown">
+            <a href="./blogs.html">Blogs</a>
+            <div class="dropdown-content">
+              <a href="./Featured pages/Agoraphobia.html">Agoraphobia</a>
+              <a href="./Featured pages/BPD.html">BPD</a>
+              <a href="./Featured pages/self-harm.html">Self-Harm</a>
+              <a href="./Featured pages/ADHD.html">ADHD</a>
+              <a href="./Featured pages/PTSD.html">PTSD</a>
+              <a href="./Featured pages/Anxiety.html">Anxiety</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <a href="./Therapy.html">Therapy</a>
+            <div class="dropdown-content">
+              <a href="./Therapy-101.html">Therapy 101</a>
+              <a href="./Therapy/MoodChecker.html">Mood Checker</a>
+              <a href="./Therapy/Booster.html">Boost Your Mind</a>
+              <div class="dropdown-submenu">
+                <a href="#">Relaxation Games <span class="arrow">▶</span></a>
+                <div class="dropdown-subcontent">
+                  <a href="./Therapy/breathing-exercise.html">Breathing Exercise</a>
+                  <a href="./Therapy/guided-imagery.html">Guided Imagery</a>
+                  <a href="./Therapy/calming-puzzles.html">Calming Puzzles</a>
+                  <a href="./Therapy/sound-therapy.html">Sound Therapy</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="./FAQ.html">FAQs</a>
+          <a href="./Contact.html">Contact</a>
+        </div>
+
+        <div class="controls">            
+          <button class="controls" onclick="document.location='Signin.html'" data-tooltip="Login to your account">Sign In</button>
+          <button onclick="document.location='Signup.html'" data-tooltip="Sign up for a new account">Sign Up</button>
+        </div>
+
+        <!-- Dark Mode Toggle Button -->
+        <button id="togglebtn" onclick="toggleDarkMode()" class="toggle-switch" data-tooltip="Toggle Dark/Light Mode">
+          <span class="icon">😎</span>
+          <span class="slider"></span>
+          <span class="icon">&nbsp;🌜</span>
+        </button>
+      </div>
+</div>
+
+
+<main class="faq-section">
     <h1 class="faq-title">Frequently Asked Questions</h1>
    
 
@@ -77,29 +122,151 @@
           <p>Yes, many of the resources available on JoyJar are free, including articles, self-help tools, and more. Therapy services are available at a cost, but we offer affordable pricing plans to suit all needs.</p>
         </div>
       </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-icon">❓</span> I'm feeling overwhelmed. Where should I start?
+        </button>
+        <div class="faq-answer">
+          <p>If you're feeling overwhelmed, you're not alone. Start with our <a href="./Therapy/MoodChecker.html">Mood Checker</a> to understand your current state, and explore calming tools like breathing exercises or guided imagery. You can also talk to our chatbot or access the 'Boost Your Mind' section for quick relief strategies.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-icon">❓</span> Do I need a diagnosis to use JoyJar?
+        </button>
+        <div class="faq-answer">
+          <p>No diagnosis is needed to access JoyJar. Whether you're managing a known condition or simply going through a tough time, our platform is here for support, reflection, and healing at your own pace.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-icon">❓</span> What makes JoyJar different from other mental health platforms?
+        </button>
+        <div class="faq-answer">
+          <p>JoyJar blends clinical insights with compassion. We offer interactive tools, supportive therapy resources, and daily wellness boosts—designed with empathy, especially for people navigating anxiety, depression, trauma, and everyday stress.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-icon">❓</span> Can I talk to someone immediately?
+        </button>
+        <div class="faq-answer">
+          <p>While we’re not a crisis service, JoyJar provides self-help tools and connects you to therapists. For urgent support, we list hotlines and emergency contact options in the <a href="./emergency-resources.html">Emergency Help</a> section.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-icon">❓</span> How often should I use JoyJar tools?
+        </button>
+        <div class="faq-answer">
+          <p>Use them as often as you like. Many users check in daily with a mood booster or weekly for journaling or reflection. The key is consistency and self-compassion—small steps make big changes.</p>
+        </div>
+      </div>
+
     </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-content">
-      <p>&copy; 2025 <a href="https:joyjar.com" style="color: maroon; text-decoration: none;">JoyJar</a>. All rights reserved.</p>
-      <p><a href="https://www.mentalhealthfirstaid.org/mental-health-resources/" target="_blank">Mental Health Resources</a></p>
-    </div>
-  </footer>
-
-  <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
-    }
-
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    faqQuestions.forEach((question) => {
-      question.addEventListener('click', () => {
-        const answer = question.nextElementSibling;
-        answer.classList.toggle('show');
+    <script> 
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      faqQuestions.forEach((question) => {
+        question.addEventListener('click', () => {
+          const answer = question.nextElementSibling;
+          answer.classList.toggle('show');
+        });
       });
-    });
-  </script>
+    </script>
 
+    
+
+    <script src="./chatbot/script.js"></script>
+
+    <script src="script.js"></script>
+
+
+
+<div id="chatbot-icon" data-tooltip="Chat with us">
+  <img src="./Icons/JJ_Logo.png" alt="Chatbot Icon" class="chatbot-icon">
+</div>
+
+<!-- Chatbot Container -->
+<div id="chatbot-container" class="hidden">
+  <div id="chatbot-header">
+    <span>JoyJar - Your Companion</span>
+    <button id="close-btn">&times;</button>
+  </div>
+  <div id="chatbot-body">
+    <div id="chatbot-messages"></div>
+  </div>
+  <div id="chatbot-input-container">
+    <input type="text" id="chatbot-input" placeholder="Type a message..." />
+    <button id="send-btn">Send</button>
+  </div>
+</div>
+
+
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-column footer-left">
+      <p><strong>Visit Us:</strong><br>
+        JoyJar, Mannarkkad, Kerala<br>
+        India 678582
+      </p>
+      <p>
+        <strong>Contact Us:</strong><br>
+        <a href="mailto:joyjar4u@gmail.com">joyjar4u@gmail.com</a><br>
+        <a href="tel:+918119948228">+91 811 994 8228</a>
+      </p>
+    </div>
+
+    <div class="footer-column footer-middle">
+      <p><strong>Quick Links</strong></p>
+      <ul>
+        <li><a href="/Home.html">Home</a></li>
+        <li><a href="/About.html">About Us</a></li>
+        <li><a href="/Therapy.html">Therapy</a></li>
+        <li><a href="/blogs.html">Blogs</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column footer-right">
+      <div class="newsletter-signup">
+        <p style="text-wrap: nowrap;"><strong>Daily Tips for a Healthy Mind to Your Inbox</strong></p>
+        <form action="http://joyjar.chrispadaniel.com/subscribe" method="POST" class="newsletter-form">
+          <input type="email" name="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+
+      <p><strong>Follow Us:</strong></p>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/joyjar4u" target="_blank" aria-label="Instagram">
+          <img src="icons/instagram.svg" alt="Instagram">
+        </a>
+        <a href="https://www.facebook.com/joyjar4u" target="_blank" aria-label="Facebook">
+          <img src="icons/facebook.svg" alt="Facebook">
+        </a>
+        <a href="https://wa.me/918119948228" target="_blank" aria-label="WhatsApp">
+          <img src="icons/whatsapp.svg" alt="WhatsApp">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p><i>Designed and Developed by</i> <a href="http://chrispadaniel.com">Chrispa Daniel</a></p>
+    <p>&copy; 2025 <a href="http://joyjar.chrispadaniel.com">JoyJar</a> - All rights reserved.</p>
+  </div>
+</footer>
+
+
+
+<a href="#" class="scroll-top-btn" title="Back to Top">☝️</a>
 </body>
 </html>

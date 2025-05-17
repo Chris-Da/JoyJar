@@ -30,7 +30,7 @@
 .title {
   font-size: 3rem;
   font-weight: 700;
-  color: var(--yellow);
+  color: var(--deep-blue);
   margin: 0;
   animation: glow 3s ease-in-out infinite alternate;
 }
@@ -324,4 +324,42 @@ body.dark-mode .contact-info a.ig {
   background-position: center;
   filter: blur(8px); /* controls how blurry */
   z-index: -1; /* behind content */
+}
+
+.smile-logo {
+  display: inline-block;
+  animation: smileWiggle 2.5s ease-in-out infinite;
+  transform-origin: center;
+  margin: 2rem auto;
+  width: 120px; /* Adjust size as needed */
+}
+
+.smile-logo img {
+  width: 100%;
+  height: auto;
+}
+
+/* Keyframes for smile-like wiggle and gentle pulse */
+@keyframes smileWiggle {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  15% {
+    transform: rotate(-5deg) scale(1.05);
+  }
+  30% {
+    transform: rotate(5deg) scale(1.1);
+  }
+  45% {
+    transform: rotate(-3deg) scale(1.05);
+  }
+  60% {
+    transform: rotate(3deg) scale(1);
+  }
+  75% {
+    transform: rotate(0deg) scale(1.03);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
 }

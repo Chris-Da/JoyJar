@@ -916,11 +916,14 @@ body.dark-mode {
 
   .faq-section {
     padding: 40px 20px;
-    background-color: #f4f4f9;
+    background-image: url("../Images/FAQ_bg.jpg");
     color: #333;
   }
   .dark-mode .faq-section{
-    background-color: #2b2b2b;
+    background-image: url("../Images/FAQ_dbg.jpg");
+    background-repeat: no-repeat;
+    background-position:center center;
+    background-size: cover;
   }
   
   .faq-container {
@@ -936,7 +939,11 @@ body.dark-mode {
     font-size: 2.5rem;
     text-align: center;
     margin-bottom: 10px;
-    color: #4CAF50;
+    color: blue;
+  }
+
+  .dark-mode .faq-title{
+    color: #8bc34a;
   }
   
   .bar {

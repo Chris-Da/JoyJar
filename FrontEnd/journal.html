@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoyJar - Journal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #5c6bc0;
+            --secondary-color: #3f51b5;
+            --background-color: #f5f7fa;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            background: var(--card-background);
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .user-profile {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .profile-initials {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0 auto 10px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .nav-menu li {
+            margin: 10px 0;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: background-color 0.3s;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .nav-menu i {
+            margin-right: 10px;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            padding: 20px;
+        }
+
+        .journal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .journal-entry {
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .journal-entry textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .journal-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .journal-actions button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .save-journal {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .save-journal:hover {
+            background: var(--secondary-color);
+        }
+
+        .journal-history {
+            margin-top: 40px;
+        }
+
+        .journal-entry-card {
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .journal-entry-date {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .journal-entry-content {
+            white-space: pre-wrap;
+        }
+
+        .logout-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .logout-btn:hover {
+            background: #cc0000;
+        }
+
+        .mood-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .mood-option {
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: var(--border-radius);
+            border: 1px solid #ddd;
+            transition: all 0.3s;
+        }
+
+        .mood-option.selected {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="user-profile">
+                <div class="profile-initials" id="profileInitials">CB</div>
+                <h3 id="userName">Loading...</h3>
+                <p id="userEmail">Loading...</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html"><i>📊</i> Dashboard</a></li>
+                <li><a href="#mood-tracker"><i>😊</i> Mood Tracker</a></li>
+                <li><a href="journal.html" class="active"><i>📝</i> Journal</a></li>
+                <li><a href="resources.html"><i>📚</i> Resources</a></li>
+                <li><a href="therapy-sessions.html"><i>💆</i> Therapy Sessions</a></li>
+                <li><a href="community.html"><i>👥</i> Community</a></li>
+                <li><a href="settings.html"><i>⚙️</i> Settings</a></li>
+            </ul>
+            <button class="logout-btn" onclick="handleLogout()">Logout</button>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="journal-header">
+                <h1>My Journal</h1>
+            </div>
+
+            <div class="journal-entry">
+                <h2>New Entry</h2>
+                <div class="mood-selector">
+                    <div class="mood-option" data-mood="happy">😊 Happy</div>
+                    <div class="mood-option" data-mood="calm">😌 Calm</div>
+                    <div class="mood-option" data-mood="neutral">😐 Neutral</div>
+                    <div class="mood-option" data-mood="anxious">😰 Anxious</div>
+                    <div class="mood-option" data-mood="sad">😔 Sad</div>
+                </div>
+                <textarea id="journalContent" placeholder="How are you feeling today? Write your thoughts here..."></textarea>
+                <div class="journal-actions">
+                    <button class="save-journal" onclick="saveJournalEntry()">Save Entry</button>
+                </div>
+            </div>
+
+            <div class="journal-history">
+                <h2>Journal History</h2>
+                <div id="journalEntries">
+                    <!-- Journal entries will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        function checkAuth() {
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+                window.location.href = 'Signin.html';
+            }
+        }
+
+        // Handle logout
+        function handleLogout() {
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('refresh_token');
+            window.location.href = 'Signin.html';
+        }
+
+        // Get user initials
+        function getUserInitials(firstName, lastName) {
+            return (firstName.charAt(0) + lastName.charAt(0)).toUpperCase();
+        }
+
+        // Fetch user data
+        async function fetchUserData() {
+            try {
+                const response = await fetch('http://localhost:8000/api/users/profile/', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const fullName = `${data.first_name} ${data.last_name}`;
+                    document.getElementById('userName').textContent = fullName;
+                    document.getElementById('userEmail').textContent = data.email;
+                    document.getElementById('profileInitials').textContent = getUserInitials(data.first_name, data.last_name);
+                }
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        }
+
+        // Handle mood selection
+        document.querySelectorAll('.mood-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.mood-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Save journal entry
+        async function saveJournalEntry() {
+            const content = document.getElementById('journalContent').value;
+            const selectedMood = document.querySelector('.mood-option.selected')?.dataset.mood;
+
+            if (!content.trim()) {
+                alert('Please write something in your journal entry');
+                return;
+            }
+
+            if (!selectedMood) {
+                alert('Please select your mood');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:8000/api/users/journal/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                    },
+                    body: JSON.stringify({
+                        content,
+                        mood: selectedMood
+                    })
+                });
+
+                if (response.ok) {
+                    alert('Journal entry saved successfully!');
+                    document.getElementById('journalContent').value = '';
+                    document.querySelectorAll('.mood-option').forEach(opt => opt.classList.remove('selected'));
+                    loadJournalEntries();
+                } else {
+                    alert('Failed to save journal entry');
+                }
+            } catch (error) {
+                console.error('Error saving journal entry:', error);
+                alert('Error saving journal entry');
+            }
+        }
+
+        // Load journal entries
+        async function loadJournalEntries() {
+            try {
+                const response = await fetch('http://localhost:8000/api/users/journal/', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+
+                if (response.ok) {
+                    const entries = await response.json();
+                    const entriesContainer = document.getElementById('journalEntries');
+                    entriesContainer.innerHTML = entries.map(entry => `
+                        <div class="journal-entry-card">
+                            <div class="journal-entry-date">${new Date(entry.created_at).toLocaleDateString()}</div>
+                            <div class="mood-option selected">${getMoodEmoji(entry.mood)} ${entry.mood}</div>
+                            <div class="journal-entry-content">${entry.content}</div>
+                        </div>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error loading journal entries:', error);
+            }
+        }
+
+        // Get mood emoji
+        function getMoodEmoji(mood) {
+            const emojis = {
+                happy: '😊',
+                calm: '😌',
+                neutral: '😐',
+                anxious: '😰',
+                sad: '😔'
+            };
+            return emojis[mood] || '😐';
+        }
+
+        // Initialize page
+        function initPage() {
+            checkAuth();
+            fetchUserData();
+            loadJournalEntries();
+        }
+
+        // Run initialization when page loads
+        document.addEventListener('DOMContentLoaded', initPage);
+    </script>
+</body>
+</html> 

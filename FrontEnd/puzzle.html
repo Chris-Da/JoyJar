@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoyJar - Zen Garden Puzzle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #032775;
+            --secondary-color: #3b5998;
+            --accent-color: #dfb459;
+            --background-color: #f5f7fa;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            background: var(--card-background);
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .user-profile {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .profile-initials {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0 auto 10px;
+        }
+
+        .welcome-message {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 1.2em;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .nav-menu li {
+            margin: 10px 0;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: background-color 0.3s;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .nav-menu i {
+            margin-right: 10px;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .puzzle-container {
+            width: 100%;
+            max-width: 800px;
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .zen-garden {
+            width: 100%;
+            height: 400px;
+            background: #e8f5e9;
+            border-radius: var(--border-radius);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .element-palette {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .element {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            user-select: none;
+            font-size: 24px;
+        }
+
+        .element:hover {
+            transform: scale(1.1);
+        }
+
+        .element.selected {
+            border: 3px solid var(--primary-color);
+        }
+
+        .placed-element {
+            position: absolute;
+            transform-origin: center;
+            transition: transform 0.3s;
+            cursor: move;
+        }
+
+        .placed-element:hover {
+            transform: scale(1.1);
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .control-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            background: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .control-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .affirmation {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.2em;
+            color: var(--primary-color);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .affirmation.show {
+            opacity: 1;
+        }
+
+        .logout-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .logout-btn:hover {
+            background: #cc0000;
+        }
+
+        .instructions {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .instructions p {
+            margin: 5px 0;
+            color: #795548;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="user-profile">
+                <div class="profile-initials" id="profileInitials"></div>
+                <div class="welcome-message" id="welcomeMessage"></div>
+                <p id="userEmail"></p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html"><i>📊</i> Dashboard</a></li>
+                <li><a href="#mood-tracker"><i>😊</i> Mood Tracker</a></li>
+                <li><a href="journal.html"><i>📝</i> Journal</a></li>
+                <li><a href="puzzle.html" class="active"><i>🎯</i> Zen Garden</a></li>
+                <li><a href="resources.html"><i>📚</i> Resources</a></li>
+                <li><a href="therapy-sessions.html"><i>💆</i> Therapy Sessions</a></li>
+                <li><a href="community.html"><i>👥</i> Community</a></li>
+                <li><a href="settings.html"><i>⚙️</i> Settings</a></li>
+            </ul>
+            <button class="logout-btn" onclick="handleLogout()">Logout</button>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="puzzle-container">
+                <h1 style="color: var(--primary-color);">Zen Garden</h1>
+                <div class="instructions">
+                    <p>Welcome to your peaceful Zen Garden 🌸</p>
+                    <p>Create your own calming space by placing elements in the garden</p>
+                    <p>Take your time, breathe, and enjoy the process</p>
+                </div>
+                <div class="element-palette">
+                    <div class="element" data-element="🌸" title="Cherry Blossom">🌸</div>
+                    <div class="element" data-element="🌿" title="Leaf">🌿</div>
+                    <div class="element" data-element="🌺" title="Flower">🌺</div>
+                    <div class="element" data-element="🍃" title="Leaf">🍃</div>
+                    <div class="element" data-element="🌱" title="Sprout">🌱</div>
+                    <div class="element" data-element="✨" title="Sparkle">✨</div>
+                    <div class="element" data-element="💫" title="Star">💫</div>
+                    <div class="element" data-element="🌙" title="Moon">🌙</div>
+                </div>
+                <div class="zen-garden" id="zenGarden"></div>
+                <div class="affirmation" id="affirmation"></div>
+                <div class="controls">
+                    <button class="control-btn" onclick="clearGarden()">Clear Garden</button>
+                    <button class="control-btn" onclick="saveGarden()">Save Garden</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        function checkAuth() {
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+                window.location.href = 'Signin.html';
+            }
+        }
+
+        // Handle logout
+        function handleLogout() {
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('refresh_token');
+            window.location.href = 'Signin.html';
+        }
+
+        // Get user initials
+        function getUserInitials(firstName, lastName) {
+            return (firstName.charAt(0) + lastName.charAt(0)).toUpperCase();
+        }
+
+        // Fetch user data
+        async function fetchUserData() {
+            try {
+                const response = await fetch('http://localhost:8000/api/users/profile/', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const fullName = `${data.first_name} ${data.last_name}`;
+                    document.getElementById('userName').textContent = fullName;
+                    document.getElementById('userEmail').textContent = data.email;
+                    document.getElementById('profileInitials').textContent = getUserInitials(data.first_name, data.last_name);
+                    document.getElementById('welcomeMessage').textContent = `Welcome back, ${fullName}`;
+                }
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        }
+
+        // Zen Garden functionality
+        let selectedElement = null;
+        let placedElements = [];
+        let isDragging = false;
+        let currentElement = null;
+        let startX, startY;
+
+        const affirmations = [
+            "You are doing great! 🌟",
+            "Take a deep breath, you're safe here 🌸",
+            "Every moment is a new beginning ✨",
+            "You are stronger than you know 💫",
+            "Your garden is beautiful, just like you 🌺",
+            "Peace begins with a single breath 🍃",
+            "You are worthy of peace and joy 🌙",
+            "Your presence makes the world better 🌱"
+        ];
+
+        // Initialize element selection
+        document.querySelectorAll('.element').forEach(element => {
+            element.addEventListener('click', function() {
+                document.querySelectorAll('.element').forEach(el => el.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedElement = this.dataset.element;
+            });
+        });
+
+        // Initialize garden
+        const garden = document.getElementById('zenGarden');
+        garden.addEventListener('click', function(e) {
+            if (!selectedElement) return;
+            
+            const rect = garden.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            placeElement(x, y);
+            showRandomAffirmation();
+        });
+
+        // Place element in garden
+        function placeElement(x, y) {
+            const element = document.createElement('div');
+            element.className = 'placed-element';
+            element.textContent = selectedElement;
+            element.style.left = `${x}px`;
+            element.style.top = `${y}px`;
+            element.style.fontSize = `${Math.random() * 20 + 20}px`; // Random size between 20-40px
+            element.style.transform = `rotate(${Math.random() * 360}deg)`; // Random rotation
+            
+            // Add drag functionality
+            element.addEventListener('mousedown', startDrag);
+            
+            garden.appendChild(element);
+            placedElements.push(element);
+        }
+
+        // Drag functionality
+        function startDrag(e) {
+            isDragging = true;
+            currentElement = e.target;
+            const rect = currentElement.getBoundingClientRect();
+            startX = e.clientX - rect.left;
+            startY = e.clientY - rect.top;
+            
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', stopDrag);
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            
+            const rect = garden.getBoundingClientRect();
+            const x = e.clientX - rect.left - startX;
+            const y = e.clientY - rect.top - startY;
+            
+            // Keep element within garden bounds
+            const maxX = rect.width - currentElement.offsetWidth;
+            const maxY = rect.height - currentElement.offsetHeight;
+            
+            currentElement.style.left = `${Math.max(0, Math.min(x, maxX))}px`;
+            currentElement.style.top = `${Math.max(0, Math.min(y, maxY))}px`;
+        }
+
+        function stopDrag() {
+            isDragging = false;
+            document.removeEventListener('mousemove', drag);
+            document.removeEventListener('mouseup', stopDrag);
+        }
+
+        // Show random affirmation
+        function showRandomAffirmation() {
+            const affirmation = document.getElementById('affirmation');
+            affirmation.textContent = affirmations[Math.floor(Math.random() * affirmations.length)];
+            affirmation.classList.add('show');
+            
+            setTimeout(() => {
+                affirmation.classList.remove('show');
+            }, 3000);
+        }
+
+        // Clear garden
+        function clearGarden() {
+            if (confirm('Are you sure you want to clear your garden?')) {
+                placedElements.forEach(element => element.remove());
+                placedElements = [];
+                showRandomAffirmation();
+            }
+        }
+
+        // Save garden
+        function saveGarden() {
+            const gardenState = placedElements.map(element => ({
+                element: element.textContent,
+                x: element.style.left,
+                y: element.style.top,
+                size: element.style.fontSize,
+                rotation: element.style.transform
+            }));
+            
+            localStorage.setItem('zenGarden', JSON.stringify(gardenState));
+            alert('Your garden has been saved! 🌸');
+        }
+
+        // Load saved garden
+        function loadGarden() {
+            const savedGarden = localStorage.getItem('zenGarden');
+            if (savedGarden) {
+                const gardenState = JSON.parse(savedGarden);
+                gardenState.forEach(state => {
+                    const element = document.createElement('div');
+                    element.className = 'placed-element';
+                    element.textContent = state.element;
+                    element.style.left = state.x;
+                    element.style.top = state.y;
+                    element.style.fontSize = state.size;
+                    element.style.transform = state.rotation;
+                    element.addEventListener('mousedown', startDrag);
+                    garden.appendChild(element);
+                    placedElements.push(element);
+                });
+            }
+        }
+
+        // Initialize page
+        function initPage() {
+            checkAuth();
+            fetchUserData();
+            loadGarden();
+        }
+
+        // Run initialization when page loads
+        document.addEventListener('DOMContentLoaded', initPage);
+    </script>
+</body>
+</html> 

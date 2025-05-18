@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoyJar - Therapy Sessions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #5c6bc0;
+            --secondary-color: #3f51b5;
+            --background-color: #f5f7fa;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            background: var(--card-background);
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .user-profile {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .profile-initials {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0 auto 10px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .nav-menu li {
+            margin: 10px 0;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: background-color 0.3s;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .nav-menu i {
+            margin-right: 10px;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            padding: 20px;
+        }
+
+        .therapy-header {
+            margin-bottom: 30px;
+        }
+
+        .therapy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .therapy-card {
+            background: var(--card-background);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .therapy-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .therapy-card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .therapy-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .therapy-card .duration {
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .start-session-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .start-session-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .session-progress {
+            margin-top: 40px;
+        }
+
+        .progress-card {
+            background: var(--card-background);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .logout-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .logout-btn:hover {
+            background: #cc0000;
+        }
+
+        .therapy-icon {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .upcoming-sessions {
+            margin-top: 40px;
+        }
+
+        .session-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .session-item {
+            background: var(--card-background);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+
+        .session-info {
+            flex-grow: 1;
+        }
+
+        .session-time {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .join-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            margin-left: 15px;
+        }
+
+        .join-btn:hover {
+            background: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="user-profile">
+                <div class="profile-initials" id="profileInitials">CB</div>
+                <h3 id="userName">Loading...</h3>
+                <p id="userEmail">Loading...</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html"><i>📊</i> Dashboard</a></li>
+                <li><a href="#mood-tracker"><i>😊</i> Mood Tracker</a></li>
+                <li><a href="journal.html"><i>📝</i> Journal</a></li>
+                <li><a href="resources.html"><i>📚</i> Resources</a></li>
+                <li><a href="therapy-sessions.html" class="active"><i>💆</i> Therapy Sessions</a></li>
+                <li><a href="community.html"><i>👥</i> Community</a></li>
+                <li><a href="settings.html"><i>⚙️</i> Settings</a></li>
+            </ul>
+            <button class="logout-btn" onclick="handleLogout()">Logout</button>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="therapy-header">
+                <h1>Therapy Sessions</h1>
+                <p>Choose from our variety of therapy sessions and activities to support your mental well-being.</p>
+            </div>
+
+            <div class="therapy-grid">
+                <!-- Guided Meditation -->
+                <div class="therapy-card">
+                    <div class="therapy-icon">🧘</div>
+                    <h3>Guided Meditation</h3>
+                    <p>Find peace and clarity through guided meditation sessions.</p>
+                    <div class="duration">Duration: 10-20 minutes</div>
+                    <button class="start-session-btn" onclick="startSession('meditation')">Start Session</button>
+                </div>
+
+                <!-- Breathing Exercises -->
+                <div class="therapy-card">
+                    <div class="therapy-icon">🫁</div>
+                    <h3>Breathing Exercises</h3>
+                    <p>Learn and practice breathing techniques for stress relief.</p>
+                    <div class="duration">Duration: 5-15 minutes</div>
+                    <button class="start-session-btn" onclick="startSession('breathing')">Start Session</button>
+                </div>
+
+                <!-- Cognitive Behavioral Therapy -->
+                <div class="therapy-card">
+                    <div class="therapy-icon">🧠</div>
+                    <h3>CBT Exercises</h3>
+                    <p>Work through CBT exercises to manage thoughts and emotions.</p>
+                    <div class="duration">Duration: 20-30 minutes</div>
+                    <button class="start-session-btn" onclick="startSession('cbt')">Start Session</button>
+                </div>
+
+                <!-- Art Therapy -->
+                <div class="therapy-card">
+                    <div class="therapy-icon">🎨</div>
+                    <h3>Art Therapy</h3>
+                    <p>Express yourself through guided art therapy sessions.</p>
+                    <div class="duration">Duration: 30-45 minutes</div>
+                    <button class="start-session-btn" onclick="startSession('art')">Start Session</button>
+                </div>
+
+                <!-- Group Therapy -->
+                <div class="therapy-card">
+                    <div class="therapy-icon">👥</div>
+                    <h3>Group Therapy</h3>
+                    <p>Join supportive group therapy sessions with others.</p>
+                    <div class="duration">Duration: 60 minutes</div>
+                    <button class="start-session-btn" onclick="startSession('group')">View Schedule</button>
+                </div>
+
+                <!-- One-on-One Counseling -->
+                <div class="therapy-card">
+                    <div class="therapy-icon">💬</div>
+                    <h3>One-on-One Counseling</h3>
+                    <p>Schedule private sessions with licensed therapists.</p>
+                    <div class="duration">Duration: 45-60 minutes</div>
+                    <button class="start-session-btn" onclick="startSession('counseling')">Book Session</button>
+                </div>
+            </div>
+
+            <!-- Session Progress -->
+            <div class="session-progress">
+                <h2>Your Progress</h2>
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h3>Weekly Goal</h3>
+                        <span>3/5 sessions</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Sessions -->
+            <div class="upcoming-sessions">
+                <h2>Upcoming Sessions</h2>
+                <ul class="session-list">
+                    <li class="session-item">
+                        <div class="session-info">
+                            <h4>Group Therapy Session</h4>
+                            <div class="session-time">Today, 2:00 PM</div>
+                        </div>
+                        <button class="join-btn">Join</button>
+                    </li>
+                    <li class="session-item">
+                        <div class="session-info">
+                            <h4>One-on-One Counseling</h4>
+                            <div class="session-time">Tomorrow, 10:00 AM</div>
+                        </div>
+                        <button class="join-btn">Join</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        function checkAuth() {
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+                window.location.href = 'Signin.html';
+            }
+        }
+
+        // Handle logout
+        function handleLogout() {
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('refresh_token');
+            window.location.href = 'Signin.html';
+        }
+
+        // Get user initials
+        function getUserInitials(firstName, lastName) {
+            return (firstName.charAt(0) + lastName.charAt(0)).toUpperCase();
+        }
+
+        // Fetch user data
+        async function fetchUserData() {
+            try {
+                const response = await fetch('http://localhost:8000/api/users/profile/', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const fullName = `${data.first_name} ${data.last_name}`;
+                    document.getElementById('userName').textContent = fullName;
+                    document.getElementById('userEmail').textContent = data.email;
+                    document.getElementById('profileInitials').textContent = getUserInitials(data.first_name, data.last_name);
+                }
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        }
+
+        // Start therapy session
+        function startSession(type) {
+            switch(type) {
+                case 'meditation':
+                    window.location.href = 'Therapy/meditation.html';
+                    break;
+                case 'breathing':
+                    window.location.href = 'Therapy/breathing.html';
+                    break;
+                case 'cbt':
+                    window.location.href = 'Therapy/cbt.html';
+                    break;
+                case 'art':
+                    window.location.href = 'Therapy/art.html';
+                    break;
+                case 'group':
+                    window.location.href = 'Therapy/group-schedule.html';
+                    break;
+                case 'counseling':
+                    window.location.href = 'Therapy/book-counseling.html';
+                    break;
+            }
+        }
+
+        // Initialize page
+        function initPage() {
+            checkAuth();
+            fetchUserData();
+        }
+
+        // Run initialization when page loads
+        document.addEventListener('DOMContentLoaded', initPage);
+    </script>
+</body>
+</html> 

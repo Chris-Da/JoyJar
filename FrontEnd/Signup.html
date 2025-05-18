@@ -4,120 +4,347 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>JoyJar - Sign Up</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="./styles/style.css">
+  <script src="./scripts/darkMode.js"></script>
   <style>
+    :root {
+      --primary-color: #032775;
+      --secondary-color: #3b5998;
+      --accent-color: #dfb459;
+      --text-primary: #2c3e50;
+      --text-secondary: #666;
+      --background-light: #f8f9fa;
+      --white: #ffffff;
+      --error-color: #e74c3c;
+      --success-color: #2ecc71;
+      --border-radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #f5f7fa, #c3cfe2);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: linear-gradient(135deg, 
+        rgba(3, 39, 117, 0.05) 0%,
+        rgba(59, 89, 152, 0.05) 50%,
+        rgba(223, 180, 89, 0.05) 100%
+      );
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: var(--text-primary);
+      line-height: 1.6;
     }
 
     .signup-container {
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-lg);
       width: 100%;
       max-width: 450px;
+      margin: 120px auto;
+      margin-top: 40px;
+      position: relative;
+      border: 1px solid rgba(223, 180, 89, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .signup-container h2 {
       text-align: center;
-      margin-bottom: 20px;
-      color: #333;
+      margin-bottom: 2rem;
+      color: var(--primary-color);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
     }
 
     .form-group {
       position: relative;
-      margin-bottom: 25px;
+      margin-bottom: 1.5rem;
     }
 
     .form-group input {
       width: 100%;
-      padding: 14px 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      background: #f9f9f9;
+      padding: 1rem 1.25rem;
+      font-size: 1rem;
+      border: 2px solid #e1e8ed;
+      border-radius: var(--border-radius);
+      background: var(--background-light);
+      color: var(--text-primary);
+      transition: var(--transition);
+      box-sizing: border-box;
+    }
+
+    .form-group input:focus {
       outline: none;
-      transition: 0.3s;
+      border-color: var(--accent-color);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(223, 180, 89, 0.1);
     }
 
     .form-group label {
       position: absolute;
       top: 50%;
-      left: 12px;
+      left: 1rem;
       transform: translateY(-50%);
-      background: white;
-      padding: 0 5px;
-      color: #888;
+      background: var(--white);
+      padding: 0 0.5rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
       pointer-events: none;
-      transition: 0.3s ease;
+      transition: var(--transition);
     }
 
     .form-group input:focus + label,
     .form-group input:not(:placeholder-shown) + label {
       top: 0;
-      font-size: 12px;
-      color: #333;
+      left: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--accent-color);
+      font-weight: 500;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 2rem 0;
     }
 
     .signup-container button {
       width: 100%;
-      padding: 14px;
-      background: #5c6bc0;
-      color: white;
+      padding: 1rem;
       border: none;
-      border-radius: 12px;
-      font-weight: bold;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      font-size: 1rem;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .signup-container button:hover {
-      background: #3f51b5;
+    .signup-btn {
+      background: var(--primary-color);
+      color: var(--white);
+      box-shadow: var(--shadow-md);
     }
 
-    .signin-link {
+    .signup-btn:hover {
+      background: var(--secondary-color);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .signup-btn:active {
+      transform: translateY(0);
+    }
+
+    .clear-btn {
+      background: var(--background-light);
+      color: var(--text-secondary);
+      border: 1px solid #e1e8ed;
+    }
+
+    .clear-btn:hover {
+      background: #e1e8ed;
+      color: var(--text-primary);
+    }
+
+    .signin-link, .go-home-link {
       text-align: center;
-      margin-top: 20px;
-      font-size: 14px;
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
     }
 
-    .signin-link a {
-      color: #5c6bc0;
+    .signin-link a, .go-home-link a {
+      color: var(--primary-color);
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
     }
 
-    .signin-link a:hover {
-      text-decoration: underline;
+    .signin-link a::after, .go-home-link a::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: var(--accent-color);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
     }
-    .go-home-link {
-  text-align: center;
-  margin-top: 10px;
-  font-size: 14px;
-}
 
-.go-home-link a {
-  color: #333;
-  text-decoration: none;
-}
+    .signin-link a:hover::after, .go-home-link a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
 
-.go-home-link a:hover {
-  text-decoration: underline;
-}
+    .signin-link a:hover, .go-home-link a:hover {
+      color: var(--accent-color);
+    }
 
+    /* Dark mode support */
+    body.dark-mode {
+      background: linear-gradient(135deg, 
+        rgba(3, 39, 117, 0.15) 0%,
+        rgba(59, 89, 152, 0.15) 50%,
+        rgba(223, 180, 89, 0.15) 100%
+      );
+      color: var(--white);
+    }
+
+    body.dark-mode .signup-container {
+      background: rgba(30, 30, 30, 0.95);
+      border-color: rgba(223, 180, 89, 0.3);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    body.dark-mode .signup-container h2 {
+      color: var(--white);
+    }
+
+    body.dark-mode .form-group input {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+    }
+
+    body.dark-mode .form-group input:focus {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--accent-color);
+    }
+
+    body.dark-mode .form-group label {
+      background: rgba(30, 30, 30, 0.95);
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    body.dark-mode .form-group input:focus + label,
+    body.dark-mode .form-group input:not(:placeholder-shown) + label {
+      color: var(--accent-color);
+    }
+
+    body.dark-mode .clear-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    body.dark-mode .clear-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--white);
+    }
+
+    body.dark-mode .signin-link,
+    body.dark-mode .go-home-link {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    body.dark-mode .signin-link a,
+    body.dark-mode .go-home-link a {
+      color: var(--accent-color);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      .signup-container {
+        margin: 100px 1rem;
+        padding: 1.5rem;
+      }
+
+      .signup-container h2 {
+        font-size: 1.5rem;
+      }
+
+      .form-group input {
+        padding: 0.875rem 1rem;
+      }
+    }
   </style>
 </head>
 <body>
+  <div class="header">
+    <div class="logo">
+      <a href="./Home.html" style="text-decoration: none; color:white;">
+        &nbsp;JOYJAR
+      </a>
+      <div class="slogan"><i>Nurturing minds, One Jar at a time!</i></div>
+    </div>
+
+    <!-- Three-dot toggle for mobile -->
+    <div class="menu-toggle" onclick="toggleMenu()" data-tooltip="Click to view Menu">⋮☰</div>
+
+    <!-- Wrap nav + controls for mobile toggle -->
+    <div class="menu-wrapper">
+      <div class="nav">
+        <a href="./Home.html">Home</a>
+        <a href="./About.html">About</a>
+        <div class="dropdown">
+          <a href="./blogs.html">Blogs</a>
+          <div class="dropdown-content">
+            <a href="./Featured pages/Agoraphobia.html">Agoraphobia</a>
+            <a href="./Featured pages/BPD.html">BPD</a>
+            <a href="./Featured pages/self-harm.html">Self-Harm</a>
+            <a href="./Featured pages/ADHD.html">ADHD</a>
+            <a href="./Featured pages/PTSD.html">PTSD</a>
+            <a href="./Featured pages/Anxiety.html">Anxiety</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a href="./Therapy.html">Therapy</a>
+          <div class="dropdown-content">
+            <a href="./Therapy-101.html">Therapy 101</a>
+            <a href="./Therapy/MoodChecker.html">Mood Checker</a>
+            <a href="./Therapy/Booster.html">Boost Your Mind</a>
+            <a href="./Therapy/calming-puzzles.html">Calming Puzzles</a>
+          </div>
+        </div>
+        <a href="./FAQ.html">FAQs</a>
+        <a href="./Contact.html">Contact</a>
+      </div>
+      <div>
+        <button id="togglebtn" onclick="toggleDarkMode()" class="toggle-switch" data-tooltip="Toggle Dark/Light Mode">
+          <span class="icon">😎</span>
+          <span class="slider"></span>
+          <span class="icon">&nbsp;🌜</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div class="signup-container">
     <h2>Join JoyJar 💙</h2>
-    <form id="signupForm" onsubmit="return validateSignup(event)">
+    <form id="signupForm" onsubmit="return handleSignup(event)">
+      <div class="form-group">
+        <input type="text" name="username" required placeholder=" " pattern="[A-Za-z0-9_]{3,}">
+        <label>Username</label>
+      </div>
       <div class="form-group">
         <input type="text" name="firstname" required placeholder=" " pattern="[A-Za-z]{2,}">
         <label>First Name</label>
@@ -138,11 +365,14 @@
         <input type="password" name="confirm" id="confirm" required placeholder=" " minlength="6">
         <label>Confirm Password</label>
       </div>
-      <button type="submit">Create Account</button>
+      <div class="button-group">
+        <button type="submit" class="signup-btn">Create Account</button>
+        <button type="button" class="clear-btn" onclick="clearForm()">Clear Form</button>
+      </div>
     </form>
 
     <div class="go-home-link">
-      <a href="index.html">← Go back to Home</a>
+      <a href="Home.html">← Back to Home</a>
     </div>
     
     <div class="signin-link">
@@ -150,16 +380,131 @@
     </div>
   </div>
 
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-column footer-left">
+        <p><strong>Visit Us:</strong><br>
+          JoyJar, Mannarkkad, Kerala<br>
+          India 678582
+        </p>
+        <p>
+          <strong>Contact Us:</strong><br>
+          <a href="mailto:joyjar4u@gmail.com">joyjar4u@gmail.com</a><br>
+          <a href="tel:+918119948228">+91 811 994 8228</a>
+        </p>
+      </div>
+      <div class="footer-column footer-middle">
+        <p><strong>Quick Links</strong></p>
+        <ul>
+          <li><a href="./Home.html">Home</a></li>
+          <li><a href="./About.html">About Us</a></li>
+          <li><a href="./Therapy.html">Therapy</a></li>
+          <li><a href="./blogs.html">Blogs</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p><i>Designed and Developed by</i> <a href="http://chrispadaniel.com">Chrispa Daniel</a></p>
+      <p>&copy; 2025 <a href="http://joyjar.chrispadaniel.com">JoyJar</a> - All rights reserved.</p>
+    </div>
+  </footer>
+
   <script>
-    function validateSignup(event) {
-      const pass = document.getElementById("password").value;
-      const confirm = document.getElementById("confirm").value;
-      if (pass !== confirm) {
+    function clearForm() {
+      document.getElementById('signupForm').reset();
+      // Reset the label positions
+      document.querySelectorAll('.form-group input').forEach(input => {
+        input.dispatchEvent(new Event('input'));
+      });
+    }
+
+    // Add these functions for the header functionality
+    function toggleMenu() {
+      const menuWrapper = document.querySelector('.menu-wrapper');
+      menuWrapper.classList.toggle('active');
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const menuWrapper = document.querySelector('.menu-wrapper');
+      const menuToggle = document.querySelector('.menu-toggle');
+      if (!menuWrapper.contains(event.target) && !menuToggle.contains(event.target)) {
+        menuWrapper.classList.remove('active');
+      }
+    });
+
+    async function handleSignup(event) {
+      event.preventDefault();
+      
+      // Get form data
+      const form = event.target;
+      const formData = new FormData(form);
+      
+      // Validate passwords match
+      const password = formData.get('password');
+      const confirm = formData.get('confirm');
+      if (password !== confirm) {
         alert("Passwords do not match!");
-        event.preventDefault();
         return false;
       }
-      return true;
+
+      // Prepare data for API
+      const userData = {
+        username: formData.get('username'),
+        email: formData.get('email'),
+        password: password,
+        first_name: formData.get('firstname'),
+        last_name: formData.get('lastname')
+      };
+
+      console.log('Sending registration data:', userData);
+
+      try {
+        // Make API call to register endpoint
+        const response = await fetch('http://localhost:8000/api/users/register/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify(userData)
+        });
+
+        const data = await response.json();
+        console.log('Response status:', response.status);
+        console.log('Response data:', data);
+
+        if (response.ok) {
+          // Registration successful
+          alert('Registration successful! You can now sign in.');
+          // Store tokens if needed
+          if (data.access && data.refresh) {
+            localStorage.setItem('access_token', data.access);
+            localStorage.setItem('refresh_token', data.refresh);
+          }
+          // Redirect to sign in page
+          window.location.href = 'Signin.html';
+        } else {
+          // Registration failed - show detailed error
+          let errorMessage = 'Registration failed: ';
+          if (data.detail) {
+            errorMessage += data.detail;
+          } else if (typeof data === 'object') {
+            // Handle validation errors
+            const errors = Object.entries(data)
+              .map(([field, messages]) => `${field}: ${Array.isArray(messages) ? messages.join(', ') : messages}`)
+              .join('\n');
+            errorMessage += errors;
+          } else {
+            errorMessage += 'Unknown error occurred';
+          }
+          alert(errorMessage);
+        }
+      } catch (error) {
+        console.error('Registration error:', error);
+        alert('Registration failed: ' + error.message);
+      }
     }
   </script>
 </body>

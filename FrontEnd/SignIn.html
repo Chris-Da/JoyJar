@@ -4,120 +4,393 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>JoyJar - Sign In</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" type="text/css" href="./styles/style.css" title="style">
   <style>
+    :root {
+      --primary-color: #032775;
+      --secondary-color: #3b5998;
+      --accent-color: #dfb459;
+      --text-primary: #2c3e50;
+      --text-secondary: #666;
+      --background-light: #f8f9fa;
+      --white: #ffffff;
+      --error-color: #e74c3c;
+      --success-color: #2ecc71;
+      --border-radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #e0eafc, #cfdef3);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: linear-gradient(135deg, 
+        rgba(3, 39, 117, 0.05) 0%,
+        rgba(59, 89, 152, 0.05) 50%,
+        rgba(223, 180, 89, 0.05) 100%
+      );
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: var(--text-primary);
+      line-height: 1.6;
     }
 
     .signin-container {
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-lg);
       width: 100%;
-      max-width: 400px;
+      max-width: 420px;
+      
+      margin: 120px auto;
+      margin-top: 40px;
+      position: relative;
+      border: 1px solid rgba(223, 180, 89, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .signin-container h2 {
       text-align: center;
-      margin-bottom: 20px;
-      color: #333;
+      margin-bottom: 2rem;
+      color: var(--primary-color);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
     }
 
     .form-group {
       position: relative;
-      margin-bottom: 25px;
+      margin-bottom: 1.5rem;
     }
 
     .form-group input {
       width: 100%;
-      padding: 14px 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      background: #f9f9f9;
+      padding: 1rem 1.25rem;
+      font-size: 1rem;
+      border: 2px solid #e1e8ed;
+      border-radius: var(--border-radius);
+      background: var(--background-light);
+      color: var(--text-primary);
+      transition: var(--transition);
+      box-sizing: border-box;
+    }
+
+    .form-group input:focus {
       outline: none;
-      transition: 0.3s;
+      border-color: var(--accent-color);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(223, 180, 89, 0.1);
     }
 
     .form-group label {
       position: absolute;
       top: 50%;
-      left: 12px;
+      left: 1rem;
       transform: translateY(-50%);
-      background: white;
-      padding: 0 5px;
-      color: #888;
+      background: var(--white);
+      padding: 0 0.5rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
       pointer-events: none;
-      transition: 0.3s ease;
+      transition: var(--transition);
     }
 
     .form-group input:focus + label,
     .form-group input:not(:placeholder-shown) + label {
       top: 0;
-      font-size: 12px;
-      color: #333;
+      left: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--accent-color);
+      font-weight: 500;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 2rem 0;
     }
 
     .signin-container button {
       width: 100%;
-      padding: 14px;
-      background: #5c6bc0;
-      color: white;
+      padding: 1rem;
       border: none;
-      border-radius: 12px;
-      font-weight: bold;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      font-size: 1rem;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .signin-container button:hover {
-      background: #3f51b5;
+    .signin-btn {
+      background: var(--primary-color);
+      color: var(--white);
+      box-shadow: var(--shadow-md);
     }
 
-    .signup-link {
+    .signin-btn:hover {
+      background: var(--secondary-color);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .signin-btn:active {
+      transform: translateY(0);
+    }
+
+    .clear-btn {
+      background: var(--background-light);
+      color: var(--text-secondary);
+      border: 1px solid #e1e8ed;
+    }
+
+    .clear-btn:hover {
+      background: #e1e8ed;
+      color: var(--text-primary);
+    }
+
+    .signin-btn.loading {
+      color: transparent;
+      pointer-events: none;
+    }
+
+    .signin-btn.loading::after {
+      content: '';
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      top: 50%;
+      left: 50%;
+      margin: -12px 0 0 -12px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top-color: var(--white);
+      border-radius: 50%;
+      animation: button-loading-spinner 0.8s linear infinite;
+    }
+
+    @keyframes button-loading-spinner {
+      from { transform: rotate(0turn); }
+      to { transform: rotate(1turn); }
+    }
+
+    .signup-link, .go-home-link {
       text-align: center;
-      margin-top: 20px;
-      font-size: 14px;
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
     }
 
-    .signup-link a {
-      color: #5c6bc0;
+    .signup-link a, .go-home-link a {
+      color: var(--primary-color);
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
     }
 
-    .signup-link a:hover {
-      text-decoration: underline;
+    .signup-link a::after, .go-home-link a::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: var(--accent-color);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
     }
-    .go-home-link {
-  text-align: center;
-  margin-top: 10px;
-  font-size: 14px;
-}
 
-.go-home-link a {
-  color: #333;
-  text-decoration: none;
-}
+    .signup-link a:hover::after, .go-home-link a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
 
-.go-home-link a:hover {
-  text-decoration: underline;
-}
+    .signup-link a:hover, .go-home-link a:hover {
+      color: var(--accent-color);
+    }
 
+    /* Error state styling */
+    .form-group.error input {
+      border-color: var(--error-color);
+    }
+
+    .form-group.error label {
+      color: var(--error-color);
+    }
+
+    .error-message {
+      color: var(--error-color);
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+
+    .form-group.error .error-message {
+      display: block;
+    }
+
+    /* Success state styling */
+    .form-group.success input {
+      border-color: var(--success-color);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      .signin-container {
+        margin: 100px 1rem;
+        padding: 1.5rem;
+      }
+
+      .signin-container h2 {
+        font-size: 1.5rem;
+      }
+
+      .form-group input {
+        padding: 0.875rem 1rem;
+      }
+    }
+
+    /* Dark mode support */
+    body.dark-mode {
+      background: linear-gradient(135deg, 
+        rgba(3, 39, 117, 0.15) 0%,
+        rgba(59, 89, 152, 0.15) 50%,
+        rgba(223, 180, 89, 0.15) 100%
+      );
+      color: var(--white);
+    }
+
+    body.dark-mode .signin-container {
+      background: rgba(30, 30, 30, 0.95);
+      border-color: rgba(223, 180, 89, 0.3);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    body.dark-mode .signin-container h2 {
+      color: var(--white);
+    }
+
+    body.dark-mode .form-group input {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+    }
+
+    body.dark-mode .form-group input:focus {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--accent-color);
+    }
+
+    body.dark-mode .form-group label {
+      background: rgba(30, 30, 30, 0.95);
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    body.dark-mode .form-group input:focus + label,
+    body.dark-mode .form-group input:not(:placeholder-shown) + label {
+      color: var(--accent-color);
+    }
+
+    body.dark-mode .clear-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    body.dark-mode .clear-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--white);
+    }
+
+    body.dark-mode .signup-link,
+    body.dark-mode .go-home-link {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    body.dark-mode .signup-link a,
+    body.dark-mode .go-home-link a {
+      color: var(--accent-color);
+    }
   </style>
+  <script src="./scripts/darkMode.js"></script>
 </head>
 <body>
+  <div class="header">
+    <div class="logo">
+      <a href="./Home.html" style="text-decoration: none; color:white;">
+        &nbsp;JOYJAR
+      </a>
+      <div class="slogan"><i>Nurturing minds, One Jar at a time!</i></div>
+    </div>
+
+    <!-- Three-dot toggle for mobile -->
+    <div class="menu-toggle" onclick="toggleMenu()" data-tooltip="Click to view Menu">⋮☰</div>
+
+    <!-- Wrap nav + controls for mobile toggle -->
+    <div class="menu-wrapper">
+      <div class="nav">
+        <a href="./Home.html">Home</a>
+        <a href="./About.html">About</a>
+        <div class="dropdown">
+          <a href="./blogs.html">Blogs</a>
+          <div class="dropdown-content">
+            <a href="./Featured pages/Agoraphobia.html">Agoraphobia</a>
+            <a href="./Featured pages/BPD.html">BPD</a>
+            <a href="./Featured pages/self-harm.html">Self-Harm</a>
+            <a href="./Featured pages/ADHD.html">ADHD</a>
+            <a href="./Featured pages/PTSD.html">PTSD</a>
+            <a href="./Featured pages/Anxiety.html">Anxiety</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a href="./Therapy.html">Therapy</a>
+          <div class="dropdown-content">
+            <a href="./Therapy-101.html">Therapy 101</a>
+            <a href="./Therapy/MoodChecker.html">Mood Checker</a>
+            <a href="./Therapy/Booster.html">Boost Your Mind</a>
+            <a href="./Therapy/calming-puzzles.html">Calming Puzzles</a>
+          </div>
+        </div>
+        <a href="./FAQ.html">FAQs</a>
+        <a href="./Contact.html">Contact</a>
+      </div>
+      <div>
+        <button id="togglebtn" onclick="toggleDarkMode()" class="toggle-switch" data-tooltip="Toggle Dark/Light Mode">
+          <span class="icon">😎</span>
+          <span class="slider"></span>
+          <span class="icon">&nbsp;🌜</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div class="signin-container">
     <h2>Welcome Back to JoyJar 💫</h2>
-    <form onsubmit="return validateLogin(event)">
+    <form id="signinForm" onsubmit="return handleSignin(event)">
       <div class="form-group">
         <input type="email" name="email" required placeholder=" ">
         <label>Email</label>
@@ -126,28 +399,195 @@
         <input type="password" name="password" required placeholder=" " minlength="6">
         <label>Password</label>
       </div>
-      <button type="submit">Sign In</button>
+      <div class="button-group">
+        <button type="submit" class="signin-btn" id="signinButton">Sign In to Your Account</button>
+        <button type="button" class="clear-btn" onclick="clearForm()">Clear Form</button>
+      </div>
     </form>
     <div class="go-home-link">
-      <a href="index.html">← Go back to Home</a>
+      <a href="Home.html">← Back to Home</a>
     </div>
     <div class="signup-link">
       Don't have an account? <a href="Signup.html">Sign Up</a>
     </div>
   </div>
 
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-column footer-left">
+        <p><strong>Visit Us:</strong><br>
+          JoyJar, Mannarkkad, Kerala<br>
+          India 678582
+        </p>
+        <p>
+          <strong>Contact Us:</strong><br>
+          <a href="mailto:joyjar4u@gmail.com">joyjar4u@gmail.com</a><br>
+          <a href="tel:+918119948228">+91 811 994 8228</a>
+        </p>
+      </div>
+      <div class="footer-column footer-middle">
+        <p><strong>Quick Links</strong></p>
+        <ul>
+          <li><a href="./Home.html">Home</a></li>
+          <li><a href="./About.html">About Us</a></li>
+          <li><a href="./Therapy.html">Therapy</a></li>
+          <li><a href="./blogs.html">Blogs</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p><i>Designed and Developed by</i> <a href="http://chrispadaniel.com">Chrispa Daniel</a></p>
+      <p>&copy; 2025 <a href="http://joyjar.chrispadaniel.com">JoyJar</a> - All rights reserved.</p>
+    </div>
+  </footer>
+
   <script>
-    function validateLogin(event) {
-      // Basic placeholder for validation or backend connection
-      const email = event.target.email.value;
-      const password = event.target.password.value;
-      if (!email || !password) {
-        alert("Please fill in all fields.");
-        event.preventDefault();
-        return false;
-      }
-      return true;
+    // Remove the old dark mode functions since they're now in darkMode.js
+    function clearForm() {
+      document.getElementById('signinForm').reset();
+      // Reset the label positions
+      document.querySelectorAll('.form-group input').forEach(input => {
+        input.dispatchEvent(new Event('input'));
+      });
     }
+
+    async function handleSignin(event) {
+      event.preventDefault();
+      
+      // Show loading state
+      const signinButton = document.getElementById('signinButton');
+      signinButton.classList.add('loading');
+      signinButton.disabled = true;
+      
+      try {
+        // Clear any existing user data before new login
+        localStorage.clear();
+        
+        const form = event.target;
+        const formData = new FormData(form);
+        
+        const loginData = {
+          email: formData.get('email'),
+          password: formData.get('password')
+        };
+
+        const response = await fetch('http://localhost:8000/api/token/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify(loginData)
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          let errorMessage = 'Login failed: ';
+          if (data.detail) {
+            errorMessage += data.detail;
+          } else {
+            errorMessage += 'Invalid email or password';
+          }
+          alert(errorMessage);
+          // Reset button state
+          signinButton.classList.remove('loading');
+          signinButton.disabled = false;
+          return;
+        }
+
+        // Store tokens
+        localStorage.setItem('access_token', data.access);
+        localStorage.setItem('refresh_token', data.refresh);
+
+        // Store user data from the login response
+        if (data.user) {
+          const userData = {
+            first_name: data.user.first_name,
+            last_name: data.user.last_name,
+            email: data.user.email,
+            timestamp: new Date().getTime()
+          };
+          localStorage.setItem('user_data', JSON.stringify(userData));
+          window.location.href = 'dashboard.html';
+        } else {
+          // If user data is not in the login response, try to fetch it
+          try {
+            const profileResponse = await fetch('http://localhost:8000/api/users/profile/', {
+              method: 'GET',
+              headers: {
+                'Authorization': `Bearer ${data.access}`,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              }
+            });
+
+            if (!profileResponse.ok) {
+              throw new Error(`Profile fetch failed with status: ${profileResponse.status}`);
+            }
+
+            const profileData = await profileResponse.json();
+            
+            // Verify we have the required data
+            if (!profileData.first_name || !profileData.last_name || !profileData.email) {
+              throw new Error('Profile data is incomplete');
+            }
+
+            // Store user data
+            const userData = {
+              first_name: profileData.first_name,
+              last_name: profileData.last_name,
+              email: profileData.email,
+              timestamp: new Date().getTime()
+            };
+            
+            localStorage.setItem('user_data', JSON.stringify(userData));
+            window.location.href = 'dashboard.html';
+            
+          } catch (profileError) {
+            console.error('Profile fetch error:', profileError);
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('refresh_token');
+            
+            let errorMessage = 'Failed to load profile: ';
+            if (profileError.message.includes('status: 401')) {
+              errorMessage += 'Authentication failed. Please try logging in again.';
+            } else if (profileError.message.includes('status: 404')) {
+              errorMessage += 'Profile not found. Please contact support.';
+            } else if (profileError.message.includes('incomplete')) {
+              errorMessage += 'Profile data is incomplete. Please contact support.';
+            } else {
+              errorMessage += 'Please check your connection and try again.';
+            }
+            
+            alert(errorMessage);
+            window.location.href = 'Signin.html';
+          }
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        alert('Login failed: ' + error.message);
+        // Reset button state
+        signinButton.classList.remove('loading');
+        signinButton.disabled = false;
+      }
+    }
+
+    // Add these functions for the header functionality
+    function toggleMenu() {
+      const menuWrapper = document.querySelector('.menu-wrapper');
+      menuWrapper.classList.toggle('active');
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const menuWrapper = document.querySelector('.menu-wrapper');
+      const menuToggle = document.querySelector('.menu-toggle');
+      if (!menuWrapper.contains(event.target) && !menuToggle.contains(event.target)) {
+        menuWrapper.classList.remove('active');
+      }
+    });
   </script>
 </body>
 </html>

@@ -99,24 +99,32 @@
   </header>
 
   <main class="contact-main">
-    <form class="contact-form" action="#" method="POST" autocomplete="off">
+    <form class="contact-form" id="contactForm" onsubmit="return handleContactSubmit(event)">
       <div class="form-group">
-        <input type="text" id="name" name="name" required />
+        <input type="text" id="name" name="name" required minlength="2" />
         <label for="name">Full Name</label>
+        <div class="error-message" id="nameError"></div>
       </div>
       <div class="form-group">
         <input type="email" id="email" name="email" required />
         <label for="email">Email Address</label>
+        <div class="error-message" id="emailError"></div>
       </div>
       <div class="form-group">
-        <input type="tel" id="phone" name="phone" />
+        <input type="tel" id="phone" name="phone" pattern="[0-9+\s-()]{10,}" />
         <label for="phone">Phone Number (optional)</label>
+        <div class="error-message" id="phoneError"></div>
       </div>
       <div class="form-group">
-        <textarea id="message" name="message" rows="5" required></textarea>
+        <textarea id="message" name="message" rows="5" required minlength="10"></textarea>
         <label for="message">Your Message</label>
+        <div class="error-message" id="messageError"></div>
       </div>
-      <button type="submit" class="submit-btn">Send Message</button>
+      <div class="button-group">
+        <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
+        <button type="button" class="clear-btn" onclick="clearContactForm()">Clear Form</button>
+      </div>
+      <div id="formStatus" class="form-status"></div>
     </form>
 
     <aside class="contact-info">
@@ -226,5 +234,197 @@
 
 
 <a href="#" class="scroll-top-btn" title="Back to Top">☝️</a>
+
+<script>
+  function clearContactForm() {
+    document.getElementById('contactForm').reset();
+    // Reset error messages
+    document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+    document.getElementById('formStatus').textContent = '';
+    // Reset label positions
+    document.querySelectorAll('.form-group input, .form-group textarea').forEach(input => {
+      input.dispatchEvent(new Event('input'));
+    });
+  }
+
+  async function handleContactSubmit(event) {
+    event.preventDefault();
+    
+    // Reset previous error messages
+    document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+    document.getElementById('formStatus').textContent = '';
+    
+    // Get form data
+    const form = event.target;
+    const formData = new FormData(form);
+    
+    // Basic validation
+    let isValid = true;
+    const name = formData.get('name').trim();
+    const email = formData.get('email').trim();
+    const phone = formData.get('phone').trim();
+    const message = formData.get('message').trim();
+    
+    if (name.length < 2) {
+      document.getElementById('nameError').textContent = 'Name must be at least 2 characters long';
+      isValid = false;
+    }
+    
+    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      document.getElementById('emailError').textContent = 'Please enter a valid email address';
+      isValid = false;
+    }
+    
+    if (phone && !phone.match(/^[0-9+\s-()]{10,}$/)) {
+      document.getElementById('phoneError').textContent = 'Please enter a valid phone number';
+      isValid = false;
+    }
+    
+    if (message.length < 10) {
+      document.getElementById('messageError').textContent = 'Message must be at least 10 characters long';
+      isValid = false;
+    }
+    
+    if (!isValid) {
+      return false;
+    }
+    
+    // Disable submit button and show loading state
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    
+    try {
+      const response = await fetch('http://localhost:8000/api/contact/submit/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone: phone || null,
+          message
+        })
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        // Show success message
+        document.getElementById('formStatus').textContent = data.message;
+        document.getElementById('formStatus').className = 'form-status success';
+        // Clear form
+        clearContactForm();
+      } else {
+        // Show error messages
+        if (typeof data === 'object') {
+          Object.entries(data).forEach(([field, errors]) => {
+            const errorElement = document.getElementById(`${field}Error`);
+            if (errorElement) {
+              errorElement.textContent = Array.isArray(errors) ? errors[0] : errors;
+            }
+          });
+        } else {
+          document.getElementById('formStatus').textContent = 'Failed to send message. Please try again.';
+          document.getElementById('formStatus').className = 'form-status error';
+        }
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      document.getElementById('formStatus').textContent = 'Failed to send message. Please try again.';
+      document.getElementById('formStatus').className = 'form-status error';
+    } finally {
+      // Re-enable submit button
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    }
+    
+    return false;
+  }
+
+  // Add input event listeners to handle floating labels
+  document.querySelectorAll('.form-group input, .form-group textarea').forEach(input => {
+    input.addEventListener('input', function() {
+      if (this.value.trim() !== '') {
+        this.classList.add('has-value');
+      } else {
+        this.classList.remove('has-value');
+      }
+    });
+  });
+</script>
+
+<style>
+  .form-status {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    display: none;
+  }
+  
+  .form-status.success {
+    display: block;
+    background-color: var(--success-color);
+    color: white;
+  }
+  
+  .form-status.error {
+    display: block;
+    background-color: var(--error-color);
+    color: white;
+  }
+  
+  .error-message {
+    color: var(--error-color);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    display: none;
+  }
+  
+  .error-message:not(:empty) {
+    display: block;
+  }
+  
+  .form-group input.has-value + label,
+  .form-group textarea.has-value + label {
+    transform: translateY(-1.5rem) scale(0.85);
+    color: var(--accent-color);
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .clear-btn {
+    background: var(--background-light);
+    color: var(--text-secondary);
+    border: 1px solid #e1e8ed;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .clear-btn:hover {
+    background: #e1e8ed;
+    color: var(--text-primary);
+  }
+  
+  body.dark-mode .clear-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  body.dark-mode .clear-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--white);
+  }
+</style>
 </body>
 </html>

@@ -36,12 +36,92 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  function sendMessage() {
+  // Add welcome message
+  appendMessage("bot", "Hello! I'm JoyJar, your mental health companion. How can I help you today?");
+
+  async function sendMessage() {
     const userMessage = chatbotInput.value.trim();
-    if (userMessage) {
-      appendMessage("user", userMessage);
-      chatbotInput.value = "";
-      getBotResponse(userMessage);
+    if (!userMessage) return;
+
+    // Disable input while processing
+    chatbotInput.disabled = true;
+    sendBtn.disabled = true;
+
+    // Add user message to chat
+    appendMessage("user", userMessage);
+    chatbotInput.value = "";
+
+    try {
+      // Show typing indicator
+      const typingIndicator = appendMessage("bot", "Typing...");
+      
+      // Send message to backend
+      const response = await fetch('http://localhost:8000/api/chatbot/chat/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: userMessage })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get response');
+      }
+
+      const data = await response.json();
+      
+      // Remove typing indicator
+      typingIndicator.remove();
+      
+      // Add bot response
+      const messageElement = appendMessage("bot", data.response);
+      
+      // Add feedback buttons if we have an interaction ID
+      if (data.interaction_id) {
+        const feedbackContainer = document.createElement('div');
+        feedbackContainer.className = 'feedback-container';
+        feedbackContainer.innerHTML = `
+          <span>Was this helpful?</span>
+          <button class="feedback-btn" data-feedback="true">👍</button>
+          <button class="feedback-btn" data-feedback="false">👎</button>
+        `;
+        
+        // Add feedback event listeners
+        feedbackContainer.querySelectorAll('.feedback-btn').forEach(btn => {
+          btn.addEventListener('click', async function() {
+            const feedback = this.dataset.feedback === 'true';
+            try {
+              await fetch('http://localhost:8000/api/chatbot/feedback/', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  interaction_id: data.interaction_id,
+                  feedback: feedback
+                })
+              });
+              
+              // Disable feedback buttons after submission
+              feedbackContainer.querySelectorAll('.feedback-btn').forEach(b => b.disabled = true);
+              feedbackContainer.querySelector('span').textContent = 'Thank you for your feedback!';
+            } catch (error) {
+              console.error('Error submitting feedback:', error);
+            }
+          });
+        });
+        
+        messageElement.appendChild(feedbackContainer);
+      }
+
+    } catch (error) {
+      console.error('Error:', error);
+      appendMessage("bot", "I'm having trouble connecting right now. Please try again later.");
+    } finally {
+      // Re-enable input
+      chatbotInput.disabled = false;
+      sendBtn.disabled = false;
+      chatbotInput.focus();
     }
   }
 
@@ -51,67 +131,12 @@ document.addEventListener("DOMContentLoaded", function () {
     messageElement.textContent = message;
     chatbotMessages.appendChild(messageElement);
 
-    setTimeout(() => {
+    // Scroll to bottom
     chatbotMessages.scrollTo({
       top: chatbotMessages.scrollHeight,
-      behavior: "smooth",
+      behavior: "smooth"
     });
-  }, 100);
-  }
 
-  async function getBotResponse(userMessage) {
-
-    const message = userMessage.toLowerCase();
-
-    // Predefined responses
-    const responses = {
-      "hi":"Hi there!, Welcome to JoyJar - Your digital buddy.",
-      "what is mental health": "Mental health includes our emotional, psychological, and social well-being. It affects how we think, feel, and act.",
-      "how to reduce stress": "Try deep breathing, physical activity, connecting with friends, or mindfulness exercises to help reduce stress.",
-      "feeling anxious": "It's okay to feel anxious. Try grounding techniques, breathing exercises, or talking to someone you trust.",
-      "can't sleep": "Poor sleep can be caused by stress. Try a relaxing bedtime routine, limit screens before bed, and avoid caffeine late in the day.",
-      "what is mindfulness": "Mindfulness is being fully present and aware of the moment. It helps reduce stress and improve focus.",
-      "how to stay motivated": "Break tasks into small steps, set achievable goals, and reward yourself along the way. Progress matters more than perfection!",
-      "what is depression": "Depression is a mood disorder with persistent sadness or loss of interest. You're not alone—support and treatment are available.",
-      "how to practice self-care": "Self-care includes resting, eating well, staying active, and doing activities that bring you joy and relaxation.",
-      "how to improve mental health": "Start small: talk to someone, stay active, sleep well, and be kind to yourself.",
-      "hello": "Hi there! How can I support your mental wellness today?",
-    "mental health": "Mental health is about emotional, psychological, and social well-being.",
-    "stress": "Take a deep breath. Try a quick walk, journaling, or talking to someone you trust.",
-    "depression": "You’re not alone. It's okay to reach out. Want some self-care tips?",
-"i'm sad": "It's okay to feel sad sometimes. Try expressing your feelings, journaling, or reaching out to someone you trust."
-    };
-  
-    // Match user message to a predefined response
-    for (const key in responses) {
-      if (message.includes(key)) {
-        appendMessage("bot", responses[key]);
-        return;
-      }
-    }
-    const apiKey = "Enter your Key"; // Replace with your OpenAI API key
-    const apiUrl = "Enter URL";
-
-    try {
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify({
-          model: "gpt-3.5-turbo",
-          messages: [{ role: "user", content: userMessage }],
-          max_tokens: 150,
-        }),
-      });
-
-      const data = await response.json();
-      const botMessage = data.choices[0].message.content;
-      appendMessage("bot", botMessage);
-    } catch (error) {
-      console.error("Error fetching bot response:", error);
-      appendMessage("bot", "Looks like there was a hiccup. Try again and we’ll make it right.");
-    }
+    return messageElement;
   }
 });

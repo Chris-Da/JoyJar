@@ -7,8 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #5c6bc0;
-            --secondary-color: #3f51b5;
+            --primary-color: #032775;
+            --secondary-color: #3b5998;
+            --accent-color: #dfb459;
             --background-color: #f5f7fa;
             --card-background: #ffffff;
             --text-color: #333333;
@@ -46,14 +47,26 @@
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background: var(--primary-color);
-            color: white;
+            background: var(--accent-color);
+            color: var(--primary-color);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 32px;
             font-weight: bold;
             margin: 0 auto 10px;
+        }
+
+        .user-profile h3 {
+            margin: 0;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .user-profile p {
+            margin: 5px 0 0;
+            font-size: 0.9em;
+            opacity: 0.9;
         }
 
         .nav-menu {
@@ -76,13 +89,34 @@
             transition: background-color 0.3s;
         }
 
-        .nav-menu a:hover, .nav-menu a.active {
+        .nav-menu a:hover {
             background-color: var(--primary-color);
             color: white;
         }
 
         .nav-menu i {
             margin-right: 10px;
+        }
+
+        .nav-menu a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .logout-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #cc0000;
         }
 
         /* Main Content Styles */
@@ -160,21 +194,6 @@
             white-space: pre-wrap;
         }
 
-        .logout-btn {
-            background: #ff4444;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            margin-top: 20px;
-            width: 100%;
-        }
-
-        .logout-btn:hover {
-            background: #cc0000;
-        }
-
         .mood-selector {
             display: flex;
             gap: 10px;
@@ -193,6 +212,50 @@
             background: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
+        }
+
+        .journal-entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .no-entries {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+        }
+        
+        .form-status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+        
+        .form-status.success {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .form-status.error {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .journal-entry-card {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--card-background);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .journal-entry-content {
+            white-space: pre-wrap;
+            line-height: 1.5;
         }
     </style>
 </head>
@@ -253,6 +316,56 @@
             const token = localStorage.getItem('access_token');
             if (!token) {
                 window.location.href = 'Signin.html';
+                return;
+            }
+            
+            // Check if token is expired
+            try {
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                const expiry = payload.exp * 1000; // Convert to milliseconds
+                if (Date.now() >= expiry) {
+                    // Token is expired, try to refresh
+                    refreshToken();
+                }
+            } catch (error) {
+                console.error('Error checking token:', error);
+                window.location.href = 'Signin.html';
+            }
+        }
+
+        // Refresh token function
+        async function refreshToken() {
+            const refresh_token = localStorage.getItem('refresh_token');
+            if (!refresh_token) {
+                window.location.href = 'Signin.html';
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:8000/api/token/refresh/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        refresh: refresh_token
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    localStorage.setItem('access_token', data.access);
+                    // Optionally refresh the refresh token if provided
+                    if (data.refresh) {
+                        localStorage.setItem('refresh_token', data.refresh);
+                    }
+                } else {
+                    // If refresh fails, redirect to login
+                    window.location.href = 'Signin.html';
+                }
+            } catch (error) {
+                console.error('Error refreshing token:', error);
+                window.location.href = 'Signin.html';
             }
         }
 
@@ -273,7 +386,8 @@
             try {
                 const response = await fetch('http://localhost:8000/api/users/profile/', {
                     headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+                        'Accept': 'application/json'
                     }
                 });
 
@@ -282,10 +396,19 @@
                     const fullName = `${data.first_name} ${data.last_name}`;
                     document.getElementById('userName').textContent = fullName;
                     document.getElementById('userEmail').textContent = data.email;
-                    document.getElementById('profileInitials').textContent = getUserInitials(data.first_name, data.last_name);
+                    
+                    // Get initials from first and last name
+                    const initials = getUserInitials(data.first_name, data.last_name);
+                    document.getElementById('profileInitials').textContent = initials;
+                } else {
+                    throw new Error('Failed to fetch user data');
                 }
             } catch (error) {
                 console.error('Error fetching user data:', error);
+                // Redirect to login if unauthorized
+                if (error.message.includes('401')) {
+                    window.location.href = 'Signin.html';
+                }
             }
         }
 
@@ -297,7 +420,7 @@
             });
         });
 
-        // Save journal entry
+        // Save journal entry with token refresh
         async function saveJournalEntry() {
             const content = document.getElementById('journalContent').value;
             const selectedMood = document.querySelector('.mood-option.selected')?.dataset.mood;
@@ -312,30 +435,82 @@
                 return;
             }
 
+            const submitBtn = document.querySelector('.save-journal');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Saving...';
+
             try {
-                const response = await fetch('http://localhost:8000/api/users/journal/', {
+                // First try to save with current token
+                let response = await fetch('http://localhost:8000/api/users/journal/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+                        'Accept': 'application/json'
                     },
                     body: JSON.stringify({
-                        content,
+                        content: content.trim(),
                         mood: selectedMood
                     })
                 });
 
-                if (response.ok) {
-                    alert('Journal entry saved successfully!');
-                    document.getElementById('journalContent').value = '';
-                    document.querySelectorAll('.mood-option').forEach(opt => opt.classList.remove('selected'));
-                    loadJournalEntries();
-                } else {
-                    alert('Failed to save journal entry');
+                // If token is invalid, try to refresh and retry
+                if (response.status === 401) {
+                    await refreshToken();
+                    // Retry the request with new token
+                    response = await fetch('http://localhost:8000/api/users/journal/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            content: content.trim(),
+                            mood: selectedMood
+                        })
+                    });
                 }
+
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.detail || 'Failed to save journal entry');
+                }
+
+                const data = await response.json();
+
+                // Show success message
+                const formStatus = document.createElement('div');
+                formStatus.className = 'form-status success';
+                formStatus.textContent = 'Journal entry saved successfully!';
+                document.querySelector('.journal-entry').appendChild(formStatus);
+                
+                // Clear form
+                document.getElementById('journalContent').value = '';
+                document.querySelectorAll('.mood-option').forEach(opt => opt.classList.remove('selected'));
+                
+                // Remove success message after 3 seconds
+                setTimeout(() => {
+                    formStatus.remove();
+                }, 3000);
+
+                // Reload journal entries
+                await loadJournalEntries();
+
             } catch (error) {
                 console.error('Error saving journal entry:', error);
-                alert('Error saving journal entry');
+                const formStatus = document.createElement('div');
+                formStatus.className = 'form-status error';
+                formStatus.textContent = error.message || 'Network error. Please check your connection and try again.';
+                document.querySelector('.journal-entry').appendChild(formStatus);
+                
+                // Remove error message after 5 seconds
+                setTimeout(() => {
+                    formStatus.remove();
+                }, 5000);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Save Entry';
             }
         }
 
@@ -344,23 +519,37 @@
             try {
                 const response = await fetch('http://localhost:8000/api/users/journal/', {
                     headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+                        'Accept': 'application/json'
                     }
                 });
 
-                if (response.ok) {
-                    const entries = await response.json();
-                    const entriesContainer = document.getElementById('journalEntries');
-                    entriesContainer.innerHTML = entries.map(entry => `
-                        <div class="journal-entry-card">
-                            <div class="journal-entry-date">${new Date(entry.created_at).toLocaleDateString()}</div>
-                            <div class="mood-option selected">${getMoodEmoji(entry.mood)} ${entry.mood}</div>
-                            <div class="journal-entry-content">${entry.content}</div>
-                        </div>
-                    `).join('');
+                if (!response.ok) {
+                    throw new Error('Failed to load journal entries');
                 }
+
+                const entries = await response.json();
+                const entriesContainer = document.getElementById('journalEntries');
+                
+                if (entries.length === 0) {
+                    entriesContainer.innerHTML = '<p class="no-entries">No journal entries yet. Start writing your thoughts!</p>';
+                    return;
+                }
+
+                entriesContainer.innerHTML = entries.map(entry => `
+                    <div class="journal-entry-card">
+                        <div class="journal-entry-header">
+                            <div class="journal-entry-date">${new Date(entry.created_at).toLocaleDateString()} at ${new Date(entry.created_at).toLocaleTimeString()}</div>
+                            <div class="mood-option selected">${getMoodEmoji(entry.mood)} ${entry.mood}</div>
+                        </div>
+                        <div class="journal-entry-content">${entry.content}</div>
+                    </div>
+                `).join('');
+
             } catch (error) {
                 console.error('Error loading journal entries:', error);
+                const entriesContainer = document.getElementById('journalEntries');
+                entriesContainer.innerHTML = '<p class="error-message">Failed to load journal entries. Please try again later.</p>';
             }
         }
 

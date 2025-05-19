@@ -1,7 +1,3 @@
-Default.html
-Edit.html
-Color palette.txt
-
 # Python
 __pycache__/
 *.py[cod]
@@ -12,6 +8,7 @@ __pycache__/
 # Virtual environment
 venv/
 env/
+.venv/
 
 # Django stuff:
 *.log
@@ -27,3 +24,35 @@ local_settings.py
 
 # Environment variables
 .env
+
+# Additional ignores
+.pytest_cache/
+.mypy_cache/
+.DS_Store
+
+# Node.js
+node_modules/
+dist/
+build/
+
+# NLTK corpora and data
+nltk_data/
+**/nltk_data/
+**/corpora/
+**/tokenizers/
+**/taggers/
+**/chunkers/
+**/help/
+**/stem/
+**/sentiment/
+**/classify/
+**/translate/
+**/wordnet/
+**/stopwords/
+**/averaged_perceptron_tagger/
+**/maxent_treebank_pos_tagger/
+**/maxent_ne_chunker/
+FrontEnd/Therapy/default.html
+Default.html
+Edit.html
+Color palette.txt

@@ -4,39 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JoyJar - Mental Health Support</title>
-    <link rel="stylesheet" type="text/css" href="../style.css" title="style">
+    <link rel="stylesheet" type="text/css" href="../styles/style.css" title="style">
     <link rel="stylesheet" type="text/css" href="./style.css" title="style">
     <link rel="stylesheet" href="../chatbot/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-    <script src="../scripts/darkMode.js"></script>
+
 </head>
 <body>
-    <div class="header">
-        <div class="logo"><a href="index.html" style="text-decoration: none; color:white;">&nbsp;JOYJAR</a><br>
-          <div class="slogan"><i>Nurturing minds, One Jar at a time!</i></div></div>
-        <!-- <img src="./Images/JJ_Finallogo.jpg" width="60px"> -->
-        <div class="nav">
-            <a href="../Home.html">Home</a>
-            <a href="../About.html">About</a>
-            <a href="../blogs.html">Blogs</a>
-            <a href="../Therapy.html">Therapy</a>
-            <a href="../FAQ.html">FAQs</a>
-            <a href="../Contact.html">Contact</a>
-        </div>
-        <div>
-          <button id="togglebtn" onclick="toggleDarkMode()" class="toggle-switch" data-tooltip="Toggle Dark/Light Mode">
-            <span class="icon">😎</span>
-            <span class="slider"></span>
-            <span class="icon">&nbsp;🌜</span>
-          </button>
-        </div>
-        <div class="controls">            
-            <button class="controls" onclick="document.location='Signin.html'" data-tooltip="Login to your account">Sign In</button>
-            <button onclick="document.location='Signup.html'"data-tooltip="Sign up for a new account">Sign Up</button>
-        </div>
+  <div class="header">
+    <div class="logo">
+      <a href="Home.html" style="text-decoration: none; color:white;">
+        &nbsp;JOYJAR
+        </a>
+      <div class="slogan"><i>Nurturing minds, One Jar at a time!</i></div>
     </div>
 
-<section class="agoraphobia-section">  
+      <!-- Three-dot toggle for mobile -->
+      <div class="menu-toggle" onclick="toggleMenu()" data-tooltip="Click to view Menu">⋮☰</div>
+
+      <!-- Wrap nav + controls for mobile toggle -->
+      <div class="menu-wrapper">
+        <div class="nav">
+          <a href="../Home.html" class="active">Home</a>
+          <a href="../About.html">About</a>
+          <div class="dropdown">
+            <a href="../blogs.html">Blogs</a>
+            <div class="dropdown-content">
+              <a href="../Featured pages/Agoraphobia.html">Agoraphobia</a>
+              <a href="../Featured pages/BPD.html">BPD</a>
+              <a href="../Featured pages/self-harm.html">Self-Harm</a>
+              <a href="../Featured pages/ADHD.html">ADHD</a>
+              <a href="../Featured pages/PTSD.html">PTSD</a>
+              <a href="../Featured pages/Anxiety.html">Anxiety</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <a href="../Therapy.html">Therapy</a>
+            <div class="dropdown-content">
+              <a href="../Therapy-101.html">Therapy 101</a>
+              <a href="../Therapy/MoodChecker.html">Mood Checker</a>
+              <a href="../Therapy/Booster.html">Boost Your Mind</a>
+              <div class="dropdown-submenu">
+                <a href="#">Relaxation Games <span class="arrow">▶</span></a>
+                <div class="dropdown-subcontent">
+                  <a href="../Therapy/breathing-exercise.html">Breathing Exercise</a>
+                  <a href="../Therapy/guided-imagery.html">Guided Imagery</a>
+                  <a href="../Therapy/calming-puzzles.html">Calming Puzzles</a>
+                  <a href="../Therapy/sound-therapy.html">Sound Therapy</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="../FAQ.html">FAQs</a>
+          <a href="../Contact.html">Contact</a>
+        </div>
+
+        <div class="controls">            
+          <button class="controls" onclick="document.location='Signin.html'" data-tooltip="Login to your account">Sign In</button>
+          <button onclick="document.location='Signup.html'" data-tooltip="Sign up for a new account">Sign Up</button>
+        </div>
+
+        <!-- Dark Mode Toggle Button -->
+        <button id="togglebtn" onclick="toggleDarkMode()" class="toggle-switch" data-tooltip="Toggle Dark/Light Mode">
+          <span class="icon">😎</span>
+          <span class="slider"></span>
+          <span class="icon">&nbsp;🌜</span>
+        </button>
+      </div>
+</div>
+
+<!-- <section class="agoraphobia-section">  
   <div class="intro">
     <img src="../Images/person out of the window.jpg" alt="Person looking out a window" class="hero-image">
     <div class="intro-content">
@@ -173,32 +210,148 @@
     <p>Every step you take is a sign of courage. Keep going — you're not alone.</p>
     <a href="../Home.html" class="back-home-btn">← Back to Home</a>
   </div>
+</section> -->
+
+
+<section class="agoraphobia-article">
+  <div class="blog-card hero-card">
+    <!-- <img src="../Images/person out of the window.jpg" alt="Person looking out a window" class="card-image"> -->
+    <div class="card-content">
+      <h1>Understanding Agoraphobia</h1>
+      <p class="subtitle">Overcoming the fear of fear — one step at a time</p>
+    </div>
+  </div>
+
+  <div class="blog-card">
+    <h2>What is Agoraphobia?</h2>
+    <img src="../Images/Panic and avoidance.jpg" alt="Cycle of fear and avoidance" class="card-image">
+    <p>Agoraphobia is a type of anxiety disorder where you avoid places or situations that might make you feel trapped, panicked, or helpless. For some, the fear becomes so intense that they stop leaving their homes entirely.</p>
+  </div>
+
+  <div class="blog-card">
+    <h2>Common Triggers</h2>
+    <p>Common environments that may provoke fear include public transport, crowded places, or open areas. The fear usually centers around not being able to escape or get help if panic sets in.</p>
+    <ul class="blog-list">
+      🚎 Public transportation <br>
+      🏢 Enclosed spaces (elevators, malls) <br>
+      🌳 Open areas (parking lots, bridges) <br>
+      👥 Crowds or waiting in lines<br>
+      🏠 Being alone outside home<br>
+    </ul>
+  </div>
+
+  <div class="blog-card fact-highlight">
+    <h3>🧠 Did You Know?</h3>
+    <p>Agoraphobia affects about 1.7% of adults and typically begins between the ages of 18 and 35.</p>
+  </div>
+
+  <div class="blog-card">
+    <h2>Symptoms to Watch For</h2>
+    <img src="../Images/agoraphobia_express.jpg" alt="Visual guide of symptoms" class="card-image">
+    <p>Besides panic attacks, symptoms may include dizziness, rapid heartbeat, shortness of breath, and a feeling of detachment or lack of control in public spaces.</p>
+  </div>
+
+  <div class="blog-card">
+    <h2>Breaking the Cycle</h2>
+    <p>Most people find relief through a combination of the following approaches:</p>
+    <ul class="blog-list">
+      <strong>🧠 Cognitive Behavioral Therapy (CBT):</strong> Restructures unhelpful thinking patterns.<br>
+      <strong>🌀 Exposure Therapy:</strong> Gradual, controlled exposure to fears. <br>
+      <strong>💊 Medication:</strong> SSRIs or anti-anxiety medication often complement therapy.<br>
+    </ul>
+  </div>
+
+  <div class="blog-card fact-highlight">
+    <h3>🌿 Self-Care Tip</h3>
+    <p>Before facing a fear, try deep breathing or a 5-minute grounding meditation. Preparation makes a difference.</p>
+  </div>
+
+  <div class="blog-card">
+    <h2>Real Stories</h2>
+    <blockquote>
+      "I thought I'd never leave my apartment again. Therapy, support, and gradual exposure gave me my freedom back."<br>
+      <cite>– Sam, USA</cite>
+    </blockquote>
+  </div>
+
+  <div class="blog-card">
+    <h2>How It Feels</h2>
+    <img src="../images/fear_loop.jpg" alt="Fear loop illustration" class="card-image">
+    <p>Imagine needing groceries but dreading the store — not because you dislike shopping, but because being away from home triggers panic. It's not just fear, it's fear of the fear itself — a self-reinforcing loop.</p>
+  </div>
+
+  <div class="blog-card">
+    <h2>Why Agoraphobia Develops</h2>
+    <p>Often triggered by panic attacks in public, the brain links certain places to past distress. Slowly, your world shrinks into "safe zones." Avoidance becomes habitual until home is the only place that feels secure.</p>
+  </div>
+
+  <div class="blog-card fact-highlight">
+    <h3>✨ Surprising Insight</h3>
+    <p>Many people with agoraphobia still go out — but only via "safe routes" or with trusted companions.</p>
+  </div>
+
+  <div class="blog-card">
+    <h2>Types of Avoidance Behavior</h2>
+    <ul class="blog-list">
+      <li><strong>🕶️ Silent Avoidance:</strong> Taking longer routes to avoid triggers.</li>
+      <li><strong>🎧 Safety Objects:</strong> Carrying water, music, or medication.</li>
+      <li><strong>🧍‍♂️ Companion Dependence:</strong> Going out only with someone familiar.</li>
+    </ul>
+  </div>
+
+  <div class="blog-card">
+    <h2>What Recovery Looks Like</h2>
+    <p>Recovery doesn’t mean losing fear — it means learning to live with it. Each small step matters. Eventually, confidence grows, and fear loses control.</p>
+  </div>
+
+  <div class="blog-card fact-highlight">
+    <h3>🕊️ Tiny Victories Matter</h3>
+    <p>Walked outside for 5 minutes? Took one train stop alone? That's progress. Honor those steps.</p>
+  </div>
+
+  <div class="blog-card">
+    <h2>Helpful Practices</h2>
+    <img src="../images/Breathe Mental Health GIF by INTO ACTION.gif" alt="Grounding visual" class="card-image">
+    <ul class="blog-list">
+      <li><strong>📦 Box Breathing:</strong> Inhale 4s → Hold 4s → Exhale 4s → Hold 4s. Repeat.</li>
+      <li><strong>🌍 Grounding:</strong> Touch something cold. Name 5 things you see. Wiggle your toes.</li>
+      <li><strong>📓 Journaling:</strong> Track wins, triggers, and patterns.</li>
+    </ul>
+  </div>
+
+  <div class="blog-card">
+    <h2>You Are Not Alone</h2>
+    <p>Agoraphobia feels isolating, but healing is often social. Talk to someone. Join a group. The first step is connection.</p>
+  </div>
+
+  <div class="blog-card">
+    <h2>Resources & Support</h2>
+    <ul class="blog_link">
+      <a href="https://www.adaa.org/understanding-anxiety/agoraphobia" target="_blank">ADAA - Agoraphobia</a>  | 
+      <a href="https://www.nimh.nih.gov/health/topics/agoraphobia" target="_blank">National Institute of Mental Health</a>  |
+      <a href="https://www.mentalhealth.org.uk/explore-mental-health/a-z-topics/agoraphobia" target="_blank">Mental Health Foundation</a>
+    </ul>
+  </div>
+
+  <div class="closing-message">
+    <p>Every step you take is a sign of courage. Keep going — you're not alone.</p>
+    <a href="../Home.html" class="back-home-btn">← Back to Home</a>
+  </div>
 </section>
 
 
 
-        <script>
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-        }
-    </script>
+
 
     <script src="../chatbot/script.js"></script>
-    
-    <script src="../script.js"></script>
 
-    <script>
-      document.querySelector('.scroll-top-btn').addEventListener('click', function(e) {
-        e.preventDefault();
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth' 
-        });
-      });
-    </script>
+    <script src="../scripts/script.js"></script>
 
 
-<div id="chatbot-icon">💬</div>
+
+<div id="chatbot-icon" data-tooltip="Chat with us">
+  <img src="../Icons/JJ_Logo.png" alt="Chatbot Icon" class="chatbot-icon">
+</div>
 
 <!-- Chatbot Container -->
 <div id="chatbot-container" class="hidden">
@@ -215,34 +368,65 @@
   </div>
 </div>
 
+
+
 <footer class="site-footer">
-   <div class="footer-content">
-    <div class="footer-left">
-      <p>Visit Us: &nbsp;  JoyJar, Mannarkkad, Kerala<br>
-         &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         &nbsp; &nbsp;India 678582</p>
-      <p><a href="https://www.google.com/maps/place/Daniel's+Family/@11.0278695,76.5133441,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba87f083b95e22b:0xcdb9bfff17b0ebf3!8m2!3d11.0278643!4d76.518215!16s%2Fg%2F11smt0jmyy?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">📍 View on Google Maps</a></p>
-      <p>Contact: &nbsp; 
+  <div class="footer-content">
+    <div class="footer-column footer-left">
+      <p><strong>Visit Us:</strong><br>
+        JoyJar, Mannarkkad, Kerala<br>
+        India 678582
+      </p>
+      <p>
+        <strong>Contact Us:</strong><br>
         <a href="mailto:joyjar4u@gmail.com">joyjar4u@gmail.com</a><br>
-        &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="tel:+918119948228">+91 811 994 8228</a>
+        <a href="tel:+918119948228">+91 811 994 8228</a>
       </p>
     </div>
-    <div class="footer-right">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.1433525149387!2d76.51334407919288!3d11.02786952651767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba87f083b95e22b%3A0xcdb9bfff17b0ebf3!2sDaniel&#39;s%20Family!5e0!3m2!1sen!2sin!4v1746973218069!5m2!1sen!2sin" 
-      width="400" 
-      height="350" 
-      style="border:0;" 
-      allowfullscreen="" 
-      loading="lazy" 
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+
+    <div class="footer-column footer-middle">
+      <p><strong>Quick Links</strong></p>
+      <ul>
+        <li><a href="../Home.html">Home</a></li>
+        <li><a href="../About.html">About Us</a></li>
+        <li><a href="../Therapy.html">Therapy</a></li>
+        <li><a href="../blogs.html">Blogs</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
     </div>
-    
+
+    <div class="footer-column footer-right">
+      <div class="newsletter-signup">
+        <p style="text-wrap: nowrap;"><strong>Daily Tips for a Healthy Mind to Your Inbox</strong></p>
+        <form action="http://joyjar.chrispadaniel.com/subscribe" method="POST" class="newsletter-form">
+          <input type="email" name="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+
+      <p><strong>Follow Us:</strong></p>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/joyjar4u" target="_blank" aria-label="Instagram">
+          <img src="icons/instagram.svg" alt="Instagram">
+        </a>
+        <a href="https://www.facebook.com/joyjar4u" target="_blank" aria-label="Facebook">
+          <img src="icons/facebook.svg" alt="Facebook">
+        </a>
+        <a href="https://wa.me/918119948228" target="_blank" aria-label="WhatsApp">
+          <img src="icons/whatsapp.svg" alt="WhatsApp">
+        </a>
+      </div>
+    </div>
   </div>
-  <p><i>Designed and Developed by</i> <a href="http://chrispadaniel.com">Chrispa Daniel</a></p>
-<p>&copy; 2025 <a href="http://joyjar.chrispadaniel.com" style="text-decoration: none;">JoyJar</a>. All rights reserved.</p>
-      
+
+  <div class="footer-bottom">
+    <p><i>Designed and Developed by</i> <a href="http://chrispadaniel.com">Chrispa Daniel</a></p>
+    <p>&copy; 2025 <a href="http://joyjar.chrispadaniel.com">JoyJar</a> - All rights reserved.</p>
+  </div>
 </footer>
+
+
+
 <a href="#" class="scroll-top-btn" title="Back to Top">☝️</a>
 </body>
 </html>

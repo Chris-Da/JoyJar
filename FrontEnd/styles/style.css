@@ -2510,3 +2510,28 @@ body.dark-mode .therapy-101 .closing {
   background-color: #2a4371;
   color:#ffd700;
 }
+
+.clear_btn {
+      background:#032775;
+      color: white;
+      border: 1px solid #e1e8ed;
+      text-wrap: nowrap;
+      padding-left:5px;
+      padding-right:5px;
+      border-radius:20px;
+    }
+
+    .clear_btn:hover {
+      background: #dfb459;
+      color: #032775;
+    }
+
+.dark-mode .clear_btn {
+    background: #2b2b2b;
+    color: #e0e0e0;
+    border: 1px solid #444;
+}
+.dark-mode .clear_btn:hover {
+    background: #444;
+    color: #f0f0f0;
+}

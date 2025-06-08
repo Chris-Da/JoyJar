@@ -11,30 +11,68 @@
     <script src="../scripts/darkMode.js"></script>
 </head>
 <body>
-    <div class="header">
-        <div class="logo"><a href="index.html" style="text-decoration: none; color:white;">&nbsp;JOYJAR</a><br>
-          <div class="slogan"><i>Nurturing minds, One Jar at a time!</i></div></div>
-        <!-- <img src="./Images/JJ_Finallogo.jpg" width="60px"> -->
-        <div class="nav">
-            <a href="../Home.html">Home</a>
-            <a href="../About.html">About</a>
-            <a href="../blogs.html">Blogs</a>
-            <a href="../Therapy.html">Therapy</a>
-            <a href="../FAQ.html">FAQs</a>
-            <a href="../Contact.html">Contact</a>
-        </div>
-        <div>
-          <button id="togglebtn" onclick="toggleDarkMode()" class="toggle-switch" data-tooltip="Toggle Dark/Light Mode">
-            <span class="icon">😎</span>
-            <span class="slider"></span>
-            <span class="icon">&nbsp;🌜</span>
-          </button>
-        </div>
-        <div class="controls">            
-            <button class="controls" onclick="document.location='Signin.html'" data-tooltip="Login to your account">Sign In</button>
-            <button onclick="document.location='Signup.html'"data-tooltip="Sign up for a new account">Sign Up</button>
-        </div>
+     <div class="header">
+    <div class="logo">
+      <a href="Home.html" style="text-decoration: none; color:white;">
+        &nbsp;JOYJAR
+        </a>
+      <div class="slogan"><i>Nurturing minds, One Jar at a time!</i></div>
     </div>
+
+      <!-- Three-dot toggle for mobile -->
+      <div class="menu-toggle" onclick="toggleMenu()" data-tooltip="Click to view Menu">⋮☰</div>
+
+      <!-- Wrap nav + controls for mobile toggle -->
+      <div class="menu-wrapper">
+        <div class="nav">
+          <a href="../Home.html" >Home</a>
+          <a href="../About.html">About</a>
+          <div class="dropdown">
+            <a href="../blogs.html">Blogs</a>
+            <div class="dropdown-content">
+              <a href="../Featured pages/Agoraphobia.html">Agoraphobia</a>
+              <a href="../Featured pages/BPD.html" class="active">BPD</a>
+              <a href="../Featured pages/self-harm.html">Self-Harm</a>
+              <a href="../Featured pages/ADHD.html">ADHD</a>
+              <a href="../Featured pages/PTSD.html">PTSD</a>
+              <a href="../Featured pages/Anxiety.html">Anxiety</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <a href="../Therapy.html">Therapy</a>
+            <div class="dropdown-content">
+              <a href="../Therapy-101.html">Therapy 101</a>
+              <a href="../Therapy/MoodChecker.html">Mood Checker</a>
+              <a href="../Therapy/Booster.html">Boost Your Mind</a>
+              <div class="dropdown-submenu">
+                <a href="#">Relaxation Games <span class="arrow">▶</span></a>
+                <div class="dropdown-subcontent">
+                  <a href="../Therapy/breathing-exercise.html">Breathing Exercise</a>
+                  <a href="../Therapy/guided-imagery.html">Guided Imagery</a>
+                  <a href="../Therapy/calming-puzzles.html">Calming Puzzles</a>
+                  <a href="../Therapy/sound-therapy.html">Sound Therapy</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="../FAQ.html">FAQs</a>
+          <a href="../Contact.html">Contact</a>
+        </div>
+
+        <div class="controls">            
+          <button class="controls" onclick="document.location='../Signin.html'" data-tooltip="Login to your account">Sign In</button>
+          <button onclick="document.location='../Signup.html'" data-tooltip="Sign up for a new account">Sign Up</button>
+        </div>
+
+        <!-- Dark Mode Toggle Button -->
+        <button id="togglebtn" onclick="toggleDarkMode()" class="toggle-switch" data-tooltip="Toggle Dark/Light Mode">
+          <span class="icon">😎</span>
+          <span class="slider"></span>
+          <span class="icon">&nbsp;🌜</span>
+        </button>
+      </div>
+</div>
+
 
     <div class="blog-content">
       <article class="bpd-article">

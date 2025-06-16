@@ -300,6 +300,7 @@ body.dark-mode .toggle-switch .slider {
 }
 
 
+
 #contact {
     background-color: rgb(219, 170, 80);
     padding: 2rem;
@@ -1782,12 +1783,12 @@ body.dark-mode .newsletter-form button:hover {
 }
 
 .flow-feature img {
-  width: 70%;
-  height:fit-content;
+  width: 400px;       /* or any fixed width */
+  height: 400px;      /* or adjust proportionally */
+  object-fit: cover;
   display:block;
   border-radius: 14px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-  object-fit: cover;
 }
 
 .dark-mode .featured-section-alt {

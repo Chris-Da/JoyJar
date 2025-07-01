@@ -238,6 +238,7 @@ body.dark-mode .back-home-btn:hover {
 }
 
 .blog-card {
+  list-style: none;
   background-color: #3057ac;
   border-radius: 16px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);

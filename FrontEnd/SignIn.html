@@ -6,6 +6,7 @@
   <title>JoyJar - Sign In</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" type="text/css" href="./styles/style.css" title="style">
+  <link rel="stylesheet" href="./chatbot/styles.css">
   <style>
     :root {
       --primary-color: #032775;
@@ -351,41 +352,54 @@
     <div class="menu-toggle" onclick="toggleMenu()" data-tooltip="Click to view Menu">⋮☰</div>
 
     <!-- Wrap nav + controls for mobile toggle -->
-    <div class="menu-wrapper">
-      <div class="nav">
-        <a href="./Home.html">Home</a>
-        <a href="./About.html">About</a>
-        <div class="dropdown">
-          <a href="./blogs.html">Blogs</a>
-          <div class="dropdown-content">
-            <a href="./Featured pages/Agoraphobia.html">Agoraphobia</a>
-            <a href="./Featured pages/BPD.html">BPD</a>
-            <a href="./Featured pages/self-harm.html">Self-Harm</a>
-            <a href="./Featured pages/ADHD.html">ADHD</a>
-            <a href="./Featured pages/PTSD.html">PTSD</a>
-            <a href="./Featured pages/Anxiety.html">Anxiety</a>
+      <div class="menu-wrapper">
+        <div class="nav">
+          <a href="./Home.html">Home</a>
+          <a href="./About.html">About</a>
+          <div class="dropdown">
+            <a href="./blogs.html">Blogs</a>
+            <div class="dropdown-content">
+              <a href="./Featured pages/Agoraphobia.html">Agoraphobia</a>
+              <a href="./Featured pages/BPD.html">BPD</a>
+              <a href="./Featured pages/self-harm.html">Self-Harm</a>
+              <a href="./Featured pages/ADHD.html">ADHD</a>
+              <a href="./Featured pages/PTSD.html">PTSD</a>
+              <a href="./Featured pages/Anxiety.html">Anxiety</a>
+            </div>
           </div>
-        </div>
-        <div class="dropdown">
-          <a href="./Therapy.html">Therapy</a>
-          <div class="dropdown-content">
-            <a href="./Therapy-101.html">Therapy 101</a>
-            <a href="./Therapy/MoodChecker.html">Mood Checker</a>
-            <a href="./Therapy/Booster.html">Boost Your Mind</a>
-            <a href="./Therapy/calming-puzzles.html">Calming Puzzles</a>
+          <div class="dropdown">
+            <a href="./Therapy.html">Therapy</a>
+            <div class="dropdown-content">
+              <a href="./Therapy-101.html">Therapy 101</a>
+              <a href="./Therapy/MoodChecker.html">Mood Checker</a>
+              <a href="./Therapy/Booster.html">Boost Your Mind</a>
+              <!-- <div class="dropdown-submenu">
+                <a href="#">Relaxation Games <span class="arrow">▶</span></a>
+                <div class="dropdown-subcontent">
+                  <a href="./Therapy/breathing-exercise.html">Breathing Exercise</a>
+                  <a href="./Therapy/guided-imagery.html">Guided Imagery</a>
+                  <a href="./Therapy/calming-puzzles.html">Calming Puzzles</a>
+                  <a href="./Therapy/sound-therapy.html">Sound Therapy</a>
+                </div>
+              </div> -->
+            </div>
           </div>
+          <a href="./FAQ.html">FAQs</a>
+          <a href="./Contact.html">Contact</a>
         </div>
-        <a href="./FAQ.html">FAQs</a>
-        <a href="./Contact.html">Contact</a>
-      </div>
-      <div>
+
+        <div class="controls">            
+          <button class="controls" onclick="document.location='Signin.html'" data-tooltip="Login to your account">Sign In</button>
+          <button onclick="document.location='Signup.html'" data-tooltip="Sign up for a new account">Sign Up</button>
+        </div>
+
+        <!-- Dark Mode Toggle Button -->
         <button id="togglebtn" onclick="toggleDarkMode()" class="toggle-switch" data-tooltip="Toggle Dark/Light Mode">
           <span class="icon">😎</span>
           <span class="slider"></span>
           <span class="icon">&nbsp;🌜</span>
         </button>
       </div>
-    </div>
   </div>
 
   <div class="signin-container">
@@ -412,35 +426,85 @@
     </div>
   </div>
 
-  <footer class="site-footer">
-    <div class="footer-content">
-      <div class="footer-column footer-left">
-        <p><strong>Visit Us:</strong><br>
-          JoyJar, Mannarkkad, Kerala<br>
-          India 678582
-        </p>
-        <p>
-          <strong>Contact Us:</strong><br>
-          <a href="mailto:joyjar4u@gmail.com">joyjar4u@gmail.com</a><br>
-          <a href="tel:+918119948228">+91 811 994 8228</a>
-        </p>
+<script src="./chatbot/script.js"></script>
+<script src="./scripts/darkMode.js"></script>
+<script src="./scripts/script.js"></script>
+<script src="./scripts/basepg.js"></script>
+
+<div id="chatbot-icon" data-tooltip="Chat with us">
+  <img src="./Icons/JJ_Logo.png" alt="Chatbot Icon" class="chatbot-icon">
+</div>
+
+<!-- Chatbot Container -->
+<div id="chatbot-container" class="hidden">
+  <div id="chatbot-header">
+    <span>JoyJar - Your Companion</span>
+    <button id="close-btn">&times;</button>
+  </div>
+  <div id="chatbot-body">
+    <div id="chatbot-messages"></div>
+  </div>
+  <div id="chatbot-input-container">
+    <input type="text" id="chatbot-input" placeholder="Type a message..." />
+    <button id="send-btn">Send</button>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-column footer-left">
+      <p><strong>Visit Us:</strong><br>
+        JoyJar, Mannarkkad, Kerala<br>
+        India 678582
+      </p>
+      <p>
+        <strong>Contact Us:</strong><br>
+        <a href="mailto:joyjar4u@gmail.com">joyjar4u@gmail.com</a><br>
+        <a href="tel:+918119948228">+91 811 994 8228</a>
+      </p>
+    </div>
+
+    <div class="footer-column footer-middle">
+      <p><strong>Quick Links</strong></p>
+      <ul>
+        <li><a href="./Home.html">Home</a></li>
+        <li><a href="./About.html">About Us</a></li>
+        <li><a href="./Therapy.html">Therapy</a></li>
+        <li><a href="./blogs.html">Blogs</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column footer-right">
+      <div class="newsletter-signup">
+        <p style="text-wrap: nowrap;"><strong>Daily Tips for a Healthy Mind to Your Inbox</strong></p>
+        <form action="http://joyjar.chrispadaniel.com/subscribe" method="POST" class="newsletter-form">
+          <input type="email" name="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
       </div>
-      <div class="footer-column footer-middle">
-        <p><strong>Quick Links</strong></p>
-        <ul>
-          <li><a href="./Home.html">Home</a></li>
-          <li><a href="./About.html">About Us</a></li>
-          <li><a href="./Therapy.html">Therapy</a></li>
-          <li><a href="./blogs.html">Blogs</a></li>
-          <li><a href="./contact.html">Contact</a></li>
-        </ul>
+
+      <p><strong>Follow Us:</strong></p>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/joyjar4u" target="_blank" aria-label="Instagram">
+          <img src="icons/instagram.svg" alt="Instagram">
+        </a>
+        <a href="https://www.facebook.com/joyjar4u" target="_blank" aria-label="Facebook">
+          <img src="icons/facebook.svg" alt="Facebook">
+        </a>
+        <a href="https://wa.me/918119948228" target="_blank" aria-label="WhatsApp">
+          <img src="icons/whatsapp.svg" alt="WhatsApp">
+        </a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p><i>Designed and Developed by</i> <a href="http://chrispadaniel.com">Chrispa Daniel</a></p>
-      <p>&copy; 2025 <a href="http://joyjar.chrispadaniel.com">JoyJar</a> - All rights reserved.</p>
-    </div>
-  </footer>
+  </div>
+
+  <div class="footer-bottom">
+    <p><i>Designed and Developed by</i> <a href="http://chrispadaniel.com">Chrispa Daniel</a></p>
+    <p>&copy; 2025 <a href="http://joyjar.chrispadaniel.com">JoyJar</a> - All rights reserved.</p>
+  </div>
+</footer>
+<a href="#" class="scroll-top-btn" title="Back to Top">☝️</a>
 
   <script>
     // Remove the old dark mode functions since they're now in darkMode.js

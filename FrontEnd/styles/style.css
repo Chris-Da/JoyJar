@@ -1,3 +1,15 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+body > *:not(footer):not(script):not(#chatbot-container):not(#chatbot-icon) {
+  flex: 1;
+}
+
 html{
   scroll-behavior: smooth;
 }
@@ -459,13 +471,7 @@ body.dark-mode .toggle-switch .slider {
   }
   
   
-  
-  
-  
-  
-
-
-  
+    
   
   .heading {
     font-size: 20px;

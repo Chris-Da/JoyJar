@@ -43,6 +43,18 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
+    .bg-img{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size:contain;
+      background-position: center;
+      z-index: -1;
+      opacity: 0.5;
+    }
+
     .logo {
       font-size: 1.5rem;
       font-weight: bold;
@@ -229,6 +241,7 @@
         <!-- Fetched entries will appear here -->
       <!-- </div>
     </div> -->
+    <div class="bg-img" style="background-image: url('./Images/journal_bg.jpg');"></div>
     <h1> My Journal</h1>
 
         <div style="max-width: 600px; margin: auto;">

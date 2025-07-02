@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JoyJar - Dashboard</title>
+  <title>Resources - JoyJar</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -12,13 +12,14 @@
       --accent-color: #dfb459;
       --background-color: #f5f7fa;
       --text-color: #333;
-      --card-background: #fff;
+      --card-bg: #fff;
+      --radius: 12px;
     }
 
     [data-theme='dark'] {
       --background-color: #121212;
       --text-color: #f0f0f0;
-      --card-background: #1e1e1e;
+      --card-bg: #1e1e1e;
     }
 
     body {
@@ -39,7 +40,7 @@
       padding: 0 20px;
       background: var(--primary-color);
       color: white;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .logo {
@@ -59,15 +60,6 @@
       display: flex;
       align-items: center;
       gap: 15px;
-    }
-
-    .toggle-switch {
-      background: none;
-      border: 1px solid white;
-      color: white;
-      padding: 6px 10px;
-      border-radius: 12px;
-      cursor: pointer;
     }
 
     .profile-pic {
@@ -91,12 +83,21 @@
       border: none;
       color: white;
       padding: 8px 12px;
-      border-radius: 12px;
+      border-radius: var(--radius);
       cursor: pointer;
     }
 
     .logout-btn:hover {
       background: #cc0000;
+    }
+
+    .toggle-switch {
+      background: none;
+      border: 1px solid white;
+      color: white;
+      padding: 6px 10px;
+      border-radius: var(--radius);
+      cursor: pointer;
     }
 
     .layout {
@@ -107,10 +108,9 @@
 
     .sidebar {
       width: 250px;
-      background: var(--card-background);
+      background: white;
       padding: 20px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      overflow-y: auto;
     }
 
     .nav-menu {
@@ -128,7 +128,7 @@
       color: var(--text-color);
       display: block;
       padding: 10px;
-      border-radius: 12px;
+      border-radius: var(--radius);
       transition: 0.3s;
     }
 
@@ -140,56 +140,54 @@
 
     .main-content {
       flex: 1;
-      padding: 25px;
+      padding: 30px 20px;
       overflow-y: auto;
     }
 
-    .welcome-message h1 {
-      margin: 0;
-      font-size: 2rem;
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
       color: var(--primary-color);
     }
 
-    .dashboard-grid {
+    p {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    .resource-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      margin-top: 30px;
     }
 
-    .card {
-      background: var(--card-background);
+    .resource-card {
+      background: var(--card-bg);
       padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    .mood-selector {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      margin-top: 15px;
-    }
-
-    .mood-option {
-      cursor: pointer;
-      padding: 10px;
-      border-radius: 12px;
-      background: var(--background-color);
-      flex: 1 1 30%;
-      text-align: center;
-      margin: 5px;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       transition: 0.3s;
     }
 
-    .mood-option:hover {
-      background: var(--primary-color);
-      color: white;
+    .resource-card:hover {
+      transform: scale(1.02);
     }
 
-    .mood-option.selected {
-      background: var(--secondary-color);
-      color: white;
+    .resource-card h3 {
+      margin-top: 0;
+      color: var(--primary-color);
+    }
+
+    .resource-card p {
+      font-size: 0.95rem;
+    }
+
+    .resource-card a {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--accent-color);
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -214,48 +212,53 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <ul class="nav-menu">
-        <li><a href="dashboard.html" class="active">📊 Dashboard</a></li>
-        <li><a href="MoodChecker.html">😊 Mood Tracker</a></li>
+        <li><a href="dashboard.html">📊 Dashboard</a></li>
+        <li><a href="moodchecker.html">😊 Mood Tracker</a></li>
         <li><a href="journal.html">📝 Journal</a></li>
-        <li><a href="resources.html">📚 Resources</a></li>
+        <li><a href="#" class="active">📚 Resources</a></li>
         <li><a href="therapy-sessions.html">💆 Therapy Sessions</a></li>
       </ul>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
-      <div class="welcome-message">
-        <h1>Welcome, <span id="welcomeName">User</span></h1>
-      </div>
+      <h1>Helpful Resources</h1>
+      <p>Explore guides and articles to support your mental health journey.</p>
 
-      <div class="dashboard-grid">
-        <div class="card">
-          <h2>Your Progress</h2>
-          <p>Journal Entries: <span id="journalCount">0</span></p>
-          <p>Mood Check-ins: <span id="moodCount">0</span></p>
-          <p>Streak: <span id="streakCount">0</span></p>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <h3>Understanding Anxiety</h3>
+          <p>Learn about symptoms, causes, and tips to manage anxiety.</p>
+          <a href="anxiety.html">Read More →</a>
         </div>
-
-        <div class="card">
-          <h2>How are you feeling?</h2>
-          <div class="mood-selector">
-            <div class="mood-option" data-mood="happy">😊 Happy</div>
-            <div class="mood-option" data-mood="calm">😌 Calm</div>
-            <div class="mood-option" data-mood="neutral">😐 Neutral</div>
-            <div class="mood-option" data-mood="anxious">😰 Anxious</div>
-            <div class="mood-option" data-mood="sad">😔 Sad</div>
-          </div>
+        <div class="resource-card">
+          <h3>Managing ADHD</h3>
+          <p>Tools and techniques to focus, organize, and thrive with ADHD.</p>
+          <a href="adhd.html">Read More →</a>
+        </div>
+        <div class="resource-card">
+          <h3>Living with BPD</h3>
+          <p>Insights into borderline personality disorder and how to cope.</p>
+          <a href="bpd.html">Read More →</a>
+        </div>
+        <div class="resource-card">
+          <h3>Dealing with Stress</h3>
+          <p>Simple stress-relief techniques you can use daily.</p>
+          <a href="stress.html">Read More →</a>
+        </div>
+        <div class="resource-card">
+          <h3>Overcoming Self-Harm</h3>
+          <p>Find strength, support, and strategies to move forward.</p>
+          <a href="self-harm.html">Read More →</a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Scripts -->
   <script>
     function toggleDarkMode() {
       const html = document.documentElement;
-      const currentTheme = html.getAttribute("data-theme");
-      html.setAttribute("data-theme", currentTheme === "dark" ? "light" : "dark");
+      html.setAttribute("data-theme", html.getAttribute("data-theme") === "dark" ? "light" : "dark");
     }
 
     function handleLogout() {
@@ -271,20 +274,11 @@
       const user = JSON.parse(localStorage.getItem('user_data') || '{}');
       if (user.first_name) {
         document.getElementById('userName').textContent = user.first_name + ' ' + user.last_name;
-        document.getElementById('welcomeName').textContent = user.first_name;
         document.getElementById('profileInitials').textContent = getUserInitials(user.first_name, user.last_name);
       }
     }
 
     document.addEventListener('DOMContentLoaded', init);
-
-    document.querySelectorAll('.mood-option').forEach(opt => {
-      opt.addEventListener('click', () => {
-        document.querySelectorAll('.mood-option').forEach(o => o.classList.remove('selected'));
-        opt.classList.add('selected');
-        // Optional: Send mood to backend API
-      });
-    });
   </script>
 </body>
 </html>

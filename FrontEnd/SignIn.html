@@ -413,6 +413,9 @@
         <input type="password" name="password" required placeholder=" " minlength="6">
         <label>Password</label>
       </div>
+      <div style="text-align:right; margin-bottom:1rem;">
+        <a href="#" id="change-password-link" style="font-size:0.95em; color:#032775; text-decoration:underline;">Change Password?</a>
+      </div>
       <div class="button-group">
         <button type="submit" class="signin-btn" id="signinButton">Sign In to Your Account</button>
         <button type="button" class="clear-btn" onclick="clearForm()">Clear Form</button>
@@ -423,6 +426,18 @@
     </div>
     <div class="signup-link">
       Don't have an account? <a href="Signup.html">Sign Up</a>
+    </div>
+  </div>
+
+  <!-- Change Password Modal -->
+  <div id="change-password-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:10000; align-items:center; justify-content:center;">
+    <div style="background:#fff; padding:2rem; border-radius:12px; max-width:350px; margin:auto; box-shadow:0 4px 16px rgba(0,0,0,0.2); position:relative;">
+      <h3 style="margin-top:0; color:#032775;">Change Password</h3>
+      <input type="password" id="old-password" placeholder="Old Password" style="width:100%; margin-bottom:1rem; padding:0.75rem; border-radius:8px; border:1px solid #ccc;">
+      <input type="password" id="new-password" placeholder="New Password" style="width:100%; margin-bottom:1rem; padding:0.75rem; border-radius:8px; border:1px solid #ccc;">
+      <button id="submit-change-password" style="width:100%; background:#032775; color:#fff; border:none; border-radius:8px; padding:0.75rem; margin-bottom:0.5rem;">Change Password</button>
+      <button type="button" onclick="document.getElementById('change-password-modal').style.display='none'" style="width:100%; background:#eee; color:#032775; border:none; border-radius:8px; padding:0.75rem;">Cancel</button>
+      <div id="change-password-message" style="margin-top:1rem; color:#e74c3c; text-align:center;"></div>
     </div>
   </div>
 
@@ -652,6 +667,49 @@
         menuWrapper.classList.remove('active');
       }
     });
+
+    document.getElementById('change-password-link').onclick = function(e) {
+      e.preventDefault();
+      document.getElementById('change-password-modal').style.display = 'flex';
+      document.getElementById('change-password-message').textContent = '';
+    };
+
+    document.getElementById('submit-change-password').onclick = async function() {
+      const oldPassword = document.getElementById('old-password').value;
+      const newPassword = document.getElementById('new-password').value;
+      const messageDiv = document.getElementById('change-password-message');
+
+      const token = localStorage.getItem('access_token');
+      if (!token) {
+        messageDiv.textContent = 'You must be logged in to change your password.';
+        return;
+      }
+
+      const response = await fetch('http://localhost:8000/api/users/change-password/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({ old_password: oldPassword, new_password: newPassword })
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        messageDiv.style.color = '#2ecc71';
+        messageDiv.textContent = data.message;
+        setTimeout(() => {
+          document.getElementById('change-password-modal').style.display = 'none';
+          document.getElementById('old-password').value = '';
+          document.getElementById('new-password').value = '';
+          messageDiv.textContent = '';
+          messageDiv.style.color = '#e74c3c';
+        }, 1500);
+      } else {
+        messageDiv.style.color = '#e74c3c';
+        messageDiv.textContent = data.error || 'Failed to change password.';
+      }
+    };
   </script>
 </body>
 </html>

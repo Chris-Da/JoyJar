@@ -56,3 +56,5 @@ FrontEnd/Therapy/default.html
 Default.html
 Edit.html
 Color palette.txt
+backend/db.sqlite3-wal
+backend/db.sqlite3-shm

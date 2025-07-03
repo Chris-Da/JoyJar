@@ -5,6 +5,8 @@ from .views import (
     UserProfileView,
     MoodTrackerView,
     router,
+    JournalEntryCreateView,
+    NoteCreateView,
 )
 
 app_name = "users"
@@ -16,4 +18,6 @@ urlpatterns = router.urls + [
     path('register/', UserRegistrationView.as_view(), name='user-register'),
     path('profile/', UserProfileView.as_view(), name='user-profile'),
     path('mood/', MoodTrackerView.as_view(), name='mood-tracker'),
+    path('journal-entry/', JournalEntryCreateView.as_view(), name='journal-entry-create'),
+    path('note/', NoteCreateView.as_view(), name='note-create'),
 ]

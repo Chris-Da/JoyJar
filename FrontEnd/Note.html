@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Journal - JoyJar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary-color: #032775;
+      --secondary-color: #3b5998;
+      --accent-color: #dfb459;
+      --background-color: #f5f7fa;
+      --text-color: #333;
+      --card-bg: #fff;
+      --radius: 12px;
+    }
+
+    [data-theme='dark'] {
+      --background-color: #121212;
+      --text-color: #f0f0f0;
+      --card-bg: #1e1e1e;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--background-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .header {
+      height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      background: var(--primary-color);
+      color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .bg-img{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size:contain;
+      background-position: center;
+      z-index: -1;
+      opacity: 0.5;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+    }
+
+    .slogan {
+      font-size: 0.85rem;
+      margin-left: 10px;
+      font-style: italic;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .profile-pic {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+
+    .header-name {
+      font-weight: 500;
+    }
+
+    .toggle-switch {
+      background: none;
+      border: 1px solid white;
+      color: white;
+      padding: 6px 10px;
+      border-radius: var(--radius);
+      cursor: pointer;
+    }
+
+    .logout-btn {
+      background: #ff4444;
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .logout-btn:hover {
+      background: #cc0000;
+    }
+    .layout {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: white;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .nav-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-menu li {
+      margin: 15px 0;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: var(--text-color);
+      display: block;
+      padding: 10px;
+      border-radius: var(--radius);
+      transition: 0.3s;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 30px 20px;
+      overflow-y: auto;
+    }
+
+    .journal-entry {
+      max-width: 700px;
+      margin: 0 auto 20px;
+    }
+
+    .journal-entry input,
+    .journal-entry textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: var(--radius);
+      border: 1px solid #ccc;
+      background: var(--card-bg);
+      color: var(--text-color);
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+
+    .submit-btn {
+      background: var(--accent-color);
+      color: var(--primary-color);
+      border: none;
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background: #e0c26c;
+    }
+
+    .entries-list {
+      max-width: 700px;
+      margin: 30px auto;
+    }
+
+    .entry-card {
+      background: var(--card-bg);
+      padding: 15px;
+      border-left: 5px solid var(--accent-color);
+      border-radius: var(--radius);
+      margin-bottom: 15px;
+    }
+
+    .notes-list {
+      max-width: 700px;
+      margin: 30px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .note-card {
+      background: var(--card-bg);
+      border-left: 5px solid var(--accent-color);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      padding: 18px 20px;
+      transition: box-shadow 0.2s;
+    }
+
+    .note-card h3 {
+      margin: 0 0 8px 0;
+      color: var(--primary-color);
+      font-size: 1.2rem;
+    }
+
+    .note-card p {
+      margin: 0 0 8px 0;
+      color: var(--text-color);
+    }
+
+    .note-card small {
+      color: #888;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <div>
+      <a href="./Home.html" class="logo">JOYJAR</a>
+      <span class="slogan">Nurturing minds, One Jar at a time!</span>
+    </div>
+    <div class="header-right">
+      <button class="toggle-switch" onclick="toggleDarkMode()">🌞 / 🌜</button>
+      <div class="header-name" id="userName">User</div>
+      <div class="profile-pic" id="profileInitials">U</div>
+      <button class="logout-btn" onclick="handleLogout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar">
+      <ul class="nav-menu">
+        <li><a href="dashboard.html">📊 Dashboard</a></li>
+        <li><a href="moodchecker.html">😊 Mood Tracker</a></li>
+        <li><a href="journal.html" class="active">📝 Journal</a></li>
+        <li><a href="resources.html">📚 Resources</a></li>
+        <li><a href="therapy-sessions.html">💆 Therapy Sessions</a></li>
+      </ul>
+    </div>
+
+    <!-- <div class="main-content">
+      <h1 style="text-align:center; color: var(--primary-color);">Journal</h1>
+      <p style="text-align:center">Write about your day, thoughts, or anything you feel.</p>
+
+      <div class="journal-entry">
+        <input type="text" id="title" placeholder="Entry Title" required />
+        <textarea id="content" rows="5" placeholder="What's on your mind?" required></textarea>
+        <button class="submit-btn" onclick="submitJournal()">Save Entry</button>
+        <div class="message" id="message"></div>
+      </div>
+
+      <div class="entries-list" id="entries"> -->
+        <!-- Fetched entries will appear here -->
+      <!-- </div>
+    </div> -->
+    <div>
+  <input type="text" id="noteTitle" placeholder="Note Title" />
+  <textarea id="noteContent" placeholder="Note Content"></textarea>
+  <button onclick="submitNote()">Save Note</button>
+  <div id="noteMessage"></div>
+</div>
+
+<div class="notes-list" id="notesList"></div>
+
+</div>
+
+  <script>
+    function toggleDarkMode() {
+      const html = document.documentElement;
+      html.setAttribute("data-theme", html.getAttribute("data-theme") === "dark" ? "light" : "dark");
+    }
+
+    function handleLogout() {
+      localStorage.clear();
+      window.location.href = 'Signin.html';
+    }
+
+    function initUserInfo() {
+      const user = JSON.parse(localStorage.getItem('user_data') || '{}');
+      if (user.first_name) {
+        document.getElementById('userName').textContent = user.first_name + ' ' + user.last_name;
+        document.getElementById('profileInitials').textContent = (user.first_name[0] + user.last_name[0]).toUpperCase();
+      }
+    }
+
+async function submitNote() {
+  const title = document.getElementById('noteTitle').value.trim();
+  const content = document.getElementById('noteContent').value.trim();
+  const token = localStorage.getItem('access_token');
+  const messageBox = document.getElementById('noteMessage');
+  if (!title || !content) {
+    messageBox.textContent = "Title and content required.";
+    return;
+  }
+  try {
+    const res = await fetch("http://localhost:8000/api/users/note/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({ title, content })
+    });
+    const data = await res.json();
+    if (res.ok) {
+      messageBox.textContent = "Note saved!";
+      displayNote(data);
+    } else {
+      messageBox.textContent = data.detail || JSON.stringify(data);
+    }
+  } catch (err) {
+    messageBox.textContent = "Network error.";
+  }
+}
+
+function displayNote(note) {
+  const container = document.getElementById('notesList');
+  const div = document.createElement('div');
+  div.className = 'note-card';
+  div.innerHTML = `
+    <h3>${note.title}</h3>
+    <p>${note.content}</p>
+    <small>${new Date(note.created_at).toLocaleString()}</small>
+  `;
+  container.prepend(div);
+}
+
+async function fetchNotes() {
+  const token = localStorage.getItem('access_token');
+  const container = document.getElementById('notesList');
+  container.innerHTML = '';
+  try {
+    const res = await fetch("http://localhost:8000/api/users/note/", {
+      headers: { "Authorization": `Bearer ${token}` }
+    });
+    if (res.ok) {
+      const notes = await res.json();
+      notes.forEach(displayNote);
+    }
+  } catch (err) {
+    // handle error
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initUserInfo();
+  fetchNotes();
+});
+  </script>
+</body>
+</html>

@@ -20,6 +20,10 @@ from django.db import models
 import json
 from rest_framework.views import APIView
 from .services import ChatbotService
+import requests
+from django.conf import settings
+from chatterbot import ChatBot
+from chatterbot.trainers import ChatterBotCorpusTrainer, ListTrainer
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -160,7 +164,7 @@ class ChatbotView(APIView):
         ).order_by('-created_at').first()
 
         return Response({
-            'response': response,
+            'reply': response,
             'interaction_id': interaction.id if interaction else None
         })
 
@@ -217,3 +221,100 @@ class TrainingDataView(APIView):
         training_data.delete()
         chatbot_service.load_training_data()  # Reload training data
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class GeminiChatView(APIView):
+    def post(self, request):
+        user_message = request.data.get('message', '').strip().lower()
+        if not user_message:
+            return Response({'error': 'No message provided'}, status=400)
+        # Simple standard responses
+        if 'hello' in user_message or 'hi' in user_message:
+            reply = "Hello! How can I support your mental well-being today?"
+        elif 'sad' in user_message:
+            reply = "I'm sorry you're feeling sad. Would you like to talk about it or try a relaxation exercise?"
+        elif 'help' in user_message:
+            reply = "I'm here to help! You can share your thoughts or ask for resources."
+        elif 'thank' in user_message:
+            reply = "You're welcome! Remember, I'm always here for you."
+        else:
+            reply = "I'm here to listen. Please tell me more about what's on your mind."
+        return Response({'reply': reply})
+
+class OpenAIChatView(APIView):
+    def post(self, request):
+        user_message = request.data.get('message', '').strip()
+        if not user_message:
+            return Response({'error': 'No message provided'}, status=400)
+        try:
+            openai.api_key = settings.OPENAI_API_KEY
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "You are JoyJar, a friendly mental health companion."},
+                    {"role": "user", "content": user_message}
+                ],
+                max_tokens=150,
+                temperature=0.7,
+            )
+            reply = response.choices[0].message['content'].strip()
+            return Response({'reply': reply})
+        except Exception as e:
+            return Response({'error': str(e)}, status=500)
+
+# Instantiate ChatterBot globally
+chatterbot = ChatBot(
+    'JoyJarBot',
+    storage_adapter='chatterbot.storage.SQLStorageAdapter',
+    logic_adapters=[
+        'chatterbot.logic.BestMatch',
+    ],
+    database_uri='sqlite:///db.sqlite3'
+)
+
+# Train the bot with English corpus if not already trained
+trainer = ChatterBotCorpusTrainer(chatterbot)
+try:
+    # This will only add new data if not already present
+    trainer.train('chatterbot.corpus.english')
+except Exception as e:
+    pass  # Ignore if already trained or corpus not found
+
+custom_conversations = [
+    [
+        "What is mental health?",
+        "Mental health includes our emotional, psychological, and social well-being."
+    ],
+    [
+        "How can I manage stress?",
+        "You can manage stress by practicing mindfulness, exercising, and talking to someone you trust."
+    ],
+    [
+        "What should I do if I feel anxious?",
+        "Try deep breathing, grounding exercises, or reach out to a mental health professional."
+    ],
+    [
+        "Who can I talk to about depression?",
+        "You can talk to a trusted friend, family member, or a mental health professional."
+    ],
+    [
+        "How do I know if I need therapy?",
+        "If you're struggling to cope with daily life, therapy can help. It's okay to seek support."
+    ],
+    # Add more Q&A pairs as needed
+]
+
+list_trainer = ListTrainer(chatterbot)
+for conversation in custom_conversations:
+    list_trainer.train(conversation)
+
+class ChatterBotChatView(APIView):
+    def post(self, request):
+        user_message = request.data.get('message', '').strip()
+        if not user_message:
+            return Response({'error': 'No message provided'}, status=400)
+        try:
+            bot_response = chatterbot.get_response(user_message)
+            reply = str(bot_response)
+            return Response({'reply': reply})
+        except Exception as e:
+            return Response({'error': str(e)}, status=500)

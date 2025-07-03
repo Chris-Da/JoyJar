@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const chatbotIcon = document.getElementById("chatbot-icon");
   const closeButton = document.getElementById("close-btn");
 
+  const apiKey = "AIzaSyBPtr_wSY5QgPdkyKbouohznbDEtw_Q544"; // <-- Put your key here
+
   // Toggle chatbot visibility when clicking the icon
   // Show chatbot when clicking the icon
   chatbotIcon.addEventListener("click", function () {
@@ -30,10 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   chatbotInput.addEventListener("input", function () {
-    chatbotMessages.scrollTo({
-      top: chatbotMessages.scrollHeight,
-      behavior: "smooth",
-    });
+    setTimeout(() => {
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }, 0);
   });
 
   // Add welcome message
@@ -53,10 +54,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     try {
       // Show typing indicator
-      const typingIndicator = appendMessage("bot", "Typing...");
+      // const typingIndicator = appendMessage("bot", "Typing...");
+      const typingIndicator = appendMessage("bot", "...");
       
       // Send message to backend
-      const response = await fetch('http://localhost:8000/api/chatbot/chat/', {
+      const response = await fetch("http://127.0.0.1:8000/api/chatterbot-chat/", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -74,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
       typingIndicator.remove();
       
       // Add bot response
-      const messageElement = appendMessage("bot", data.response);
+      const messageElement = appendMessage("bot", data.reply);
       
       // Add feedback buttons if we have an interaction ID
       if (data.interaction_id) {
@@ -116,13 +118,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     } catch (error) {
       console.error('Error:', error);
-      appendMessage("bot", "I'm having trouble connecting right now. Please try again later.");
+      appendMessage("bot", "I'm learning and sometimes I make mistakes. Please try again later or contact support.");
     } finally {
       // Re-enable input
       chatbotInput.disabled = false;
       sendBtn.disabled = false;
       chatbotInput.focus();
     }
+  }
+
+  async function sendToGeminiViaBackend(userMessage) {
+    const res = await fetch("/api/chatterbot-chat/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: userMessage })
+    });
+    const data = await res.json();
+    return data.reply || data.error || "No response";
+  }
+
+  async function handleUserMessage(userMessage) {
+    // Show user message in chat UI...
+    const botReply = await sendToGeminiViaBackend(userMessage);
+    // Show botReply in chat UI...
   }
 
   function appendMessage(sender, message) {
@@ -132,10 +150,9 @@ document.addEventListener("DOMContentLoaded", function () {
     chatbotMessages.appendChild(messageElement);
 
     // Scroll to bottom
-    chatbotMessages.scrollTo({
-      top: chatbotMessages.scrollHeight,
-      behavior: "smooth"
-    });
+    setTimeout(() => {
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }, 0);
 
     return messageElement;
   }

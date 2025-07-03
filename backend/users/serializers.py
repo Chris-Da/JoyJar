@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
-from .models import JournalEntry
+from .models import JournalEntry, Note
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
@@ -46,4 +46,10 @@ class JournalEntrySerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         validated_data['user'] = self.context['request'].user
-        return super().create(validated_data) 
+        return super().create(validated_data)
+
+class NoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Note
+        fields = ['id', 'title', 'content', 'created_at']
+        read_only_fields = ['id', 'created_at'] 

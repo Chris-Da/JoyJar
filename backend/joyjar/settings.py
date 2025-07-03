@@ -150,3 +150,6 @@ CORS_ALLOW_HEADERS = [
     'x-csrftoken',
     'x-requested-with',
 ]
+CORS_ALLOW_ALL_ORIGINS = True
+
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')

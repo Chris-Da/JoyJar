@@ -3,7 +3,7 @@ from rest_framework import generics, status, viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.contrib.auth.models import User
-from .serializers import UserSerializer, JournalEntrySerializer
+from .serializers import UserSerializer, JournalEntrySerializer, NoteSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.views import APIView
 from django.utils import timezone
@@ -123,6 +123,26 @@ class JournalEntryViewSet(viewsets.ModelViewSet):
         if self.action in ['create', 'list']:
             return [IsAuthenticated()]
         return super().get_permissions()
+
+class JournalEntryCreateView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = JournalEntrySerializer(data=request.data, context={'request': request})
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class NoteCreateView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = NoteSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # Update the router registration
 router = DefaultRouter()

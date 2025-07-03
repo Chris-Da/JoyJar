@@ -2,7 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import views
 from django.views.generic import RedirectView
-from .views import ChatbotView, FeedbackView, TrainingDataView
+from .views import ChatbotView, FeedbackView, TrainingDataView, GeminiChatView, OpenAIChatView, ChatterBotChatView
 
 router = DefaultRouter()
 router.register(r'users', views.UserViewSet)
@@ -23,4 +23,7 @@ urlpatterns = [
     path('feedback/', FeedbackView.as_view(), name='chatbot-feedback'),
     path('training/', TrainingDataView.as_view(), name='chatbot-training'),
     path('training/<int:intent_id>/', TrainingDataView.as_view(), name='chatbot-training-delete'),
+    path('chatbot/', GeminiChatView.as_view(), name='gemini-chat'),
+    path('openai-chat/', OpenAIChatView.as_view(), name='openai-chat'),
+    path('chatterbot-chat/', ChatterBotChatView.as_view(), name='chatterbot-chat'),
 ] 

@@ -8,8 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const chatbotIcon = document.getElementById("chatbot-icon");
   const closeButton = document.getElementById("close-btn");
-
-  const apiKey = "AIzaSyBPtr_wSY5QgPdkyKbouohznbDEtw_Q544"; // <-- Put your key here
+ // <-- Put your key here
 
   // Toggle chatbot visibility when clicking the icon
   // Show chatbot when clicking the icon
